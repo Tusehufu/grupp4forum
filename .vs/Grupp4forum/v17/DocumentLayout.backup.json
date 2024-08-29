@@ -1,0 +1,79 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\johan\\source\\repos\\Grupp4forum\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{DAA8D058-BE14-49FC-A8CF-81B1F93C96CA}|Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj|c:\\users\\johan\\source\\repos\\grupp4forum\\grupp4forum.dev.infrastructure\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAA8D058-BE14-49FC-A8CF-81B1F93C96CA}|Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj|solutionrelative:grupp4forum.dev.infrastructure\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31B82626-D504-485F-9A8C-8FEC2ACE1B9D}|Grupp4forum.csproj|c:\\users\\johan\\source\\repos\\grupp4forum\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{31B82626-D504-485F-9A8C-8FEC2ACE1B9D}|Grupp4forum.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31B82626-D504-485F-9A8C-8FEC2ACE1B9D}|Grupp4forum.csproj|c:\\users\\johan\\source\\repos\\grupp4forum\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31B82626-D504-485F-9A8C-8FEC2ACE1B9D}|Grupp4forum.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\Users\\johan\\source\\repos\\Grupp4forum\\Grupp4forum.Dev.Infrastructure\\Class1.cs",
+              "RelativeDocumentMoniker": "Grupp4forum.Dev.Infrastructure\\Class1.cs",
+              "ToolTip": "C:\\Users\\johan\\source\\repos\\Grupp4forum\\Grupp4forum.Dev.Infrastructure\\Class1.cs",
+              "RelativeToolTip": "Grupp4forum.Dev.Infrastructure\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-29T08:14:54.086Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\johan\\source\\repos\\Grupp4forum\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\johan\\source\\repos\\Grupp4forum\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-08-29T07:48:35.288Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\johan\\source\\repos\\Grupp4forum\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\johan\\source\\repos\\Grupp4forum\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-29T07:39:05.448Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

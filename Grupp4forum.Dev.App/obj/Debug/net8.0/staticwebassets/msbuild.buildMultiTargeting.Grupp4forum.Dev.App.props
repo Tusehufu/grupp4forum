@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Grupp4forum.Dev.App.props" />
+</Project>

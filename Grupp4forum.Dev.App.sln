@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35219.272
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grupp4forum.Dev.Infrastructure", "Grupp4forum.Dev.Infrastructure\Grupp4forum.Dev.Infrastructure.csproj", "{DAA8D058-BE14-49FC-A8CF-81B1F93C96CA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grupp4forum.Dev.App", "Grupp4forum.Dev.App\Grupp4forum.Dev.App.csproj", "{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DAA8D058-BE14-49FC-A8CF-81B1F93C96CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAA8D058-BE14-49FC-A8CF-81B1F93C96CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAA8D058-BE14-49FC-A8CF-81B1F93C96CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAA8D058-BE14-49FC-A8CF-81B1F93C96CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {61EE0BD9-5378-480C-A74A-07DC412C0E54}
+	EndGlobalSection
+EndGlobal

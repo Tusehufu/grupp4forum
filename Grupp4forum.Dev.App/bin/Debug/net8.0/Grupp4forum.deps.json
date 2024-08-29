@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Grupp4forum/1.0.0": {
+        "runtime": {
+          "Grupp4forum.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Grupp4forum/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
