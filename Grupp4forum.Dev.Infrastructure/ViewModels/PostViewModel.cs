@@ -10,8 +10,9 @@ namespace Grupp4forum.Dev.Infrastructure.ViewModel
     {
         public string Title { get; set; }
         public string Content { get; set; }
-        public DateTime Timestamp { get; set; }
-        public string? Author { get; set; } 
+        public string? Author { get; set; }
+        public int? CategoryId { get; set; }    
+
 
     }
 }

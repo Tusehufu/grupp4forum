@@ -5,6 +5,7 @@ using Microsoft.Extensions.Options;
 using Dapper;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System;
 
 namespace Grupp4forum.Dev.Infrastructure.Repository
 {
@@ -26,10 +27,13 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
                     SELECT 
                         post_id AS PostId,
                         user_id AS UserId,
+                        category_id AS CategoryId,
                         title,
                         content,
-                        timestamp AS Timestamp,
-                        author
+                        created_at AS CreatedAt,
+                        updated_at AS UpdatedAt,
+                        author,
+                        isvisible
                     FROM 
                         Posts
                 ");
@@ -45,9 +49,11 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
                     SELECT 
                         post_id AS PostId,
                         user_id AS UserId,
+                        category_id AS CategoryId,
                         title,
                         content,
-                        timestamp AS Timestamp,
+                        created_at AS CreatedAt,
+                        updated_at AS UpdatedAt,
                         author
                     FROM 
                         Posts
@@ -56,7 +62,38 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
                 ", new { Id = id });
             }
         }
-       
+
+        public async Task<bool> AddPost(Post post, int userId)
+        {
+            try
+            {
+                using (var connection = new SqlConnection(_databaseSettings.DefaultConnection))
+                {
+                    var author = await GetAuthorName(connection, userId);
+
+                    await connection.ExecuteAsync(@"
+                        INSERT INTO Posts (user_id, category_id, title, content, created_at, updated_at, author) 
+                        VALUES (@UserId, @CategoryId, @Title, @Content, @CreatedAt, @UpdatedAt, @Author)
+                    ", new
+                    {
+                        post.UserId,
+                        post.CategoryId,
+                        post.Title,
+                        post.Content,
+                        post.CreatedAt,
+                        post.UpdatedAt,
+                        Author = author
+                    });
+
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public async Task<bool> UpdatePost(Post post)
         {
             try
@@ -64,15 +101,14 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
                 using (var connection = new SqlConnection(_databaseSettings.DefaultConnection))
                 {
                     await connection.ExecuteAsync(@"
-
-    UPDATE Posts
+                        UPDATE Posts
                         SET 
-                            user_id = @UserId,
                             title = @Title,
                             content = @Content,
-                            timestamp = @Timestamp
+                            category_id = @CategoryId,
+                            updated_at = @UpdatedAt
                         WHERE 
-                            post_id = @PostId
+                            post_id = @PostId AND user_id = @UserId
                     ", post);
                 }
                 return true;
@@ -85,104 +121,62 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
 
         public async Task<bool> DeletePost(int userId, int id)
         {
-            //try
+            var isPostAuthor = await IsUserPostAuthor(userId, id);
+            if (!isPostAuthor)
             {
-                var isPostAuthor = await IsUserPostAuthor(userId, id);
-                if (!isPostAuthor)
+                var isAdminOrModerator = await IsAdminOrModerator(userId);
+                if (!isAdminOrModerator)
                 {
-                    var isAdminOrModerator = await IsAdminOrModerator(userId);
-                    if (!isAdminOrModerator)
-                    {
-                        return false;
-                    }
+                    return false;
                 }
+            }
 
-                using (var connection = new SqlConnection(_databaseSettings.DefaultConnection))
-                {
-                    await connection.ExecuteAsync(@"
-                        DELETE FROM Posts
-                        WHERE 
-                            post_id = @Id
-                    ", new { Id = id });
-                }
-                return true;
-            }
-            //catch
+            using (var connection = new SqlConnection(_databaseSettings.DefaultConnection))
             {
-                return false;
+                await connection.ExecuteAsync(@"
+                    UPDATE Posts
+                    SET 
+                        title = 'Raderat', 
+                        content = 'Raderat'
+                    WHERE 
+                        post_id = @Id
+                ", new { Id = id });
             }
+
+            return true;
         }
+
         public async Task<bool> IsUserPostAuthor(int userId, int postId)
         {
             using (var connection = new SqlConnection(_databaseSettings.DefaultConnection))
             {
                 var ownerId = await connection.ExecuteScalarAsync<int?>(@"
-         SELECT user_id
-         FROM Posts
-         WHERE post_id = @PostId
-     ", new { PostId = postId });
+                    SELECT user_id
+                    FROM Posts
+                    WHERE post_id = @PostId
+                ", new { PostId = postId });
 
                 return ownerId.HasValue && ownerId.Value == userId;
             }
         }
+
         public async Task<bool> IsAdminOrModerator(int userId)
         {
             using var connection = new SqlConnection(_databaseSettings.DefaultConnection);
             var roleId = await connection.ExecuteScalarAsync<int?>(@"
-        SELECT RoleId FROM Users WHERE Id = @UserId", new { UserId = userId });
+                SELECT role_id FROM Users WHERE Id = @UserId", new { UserId = userId });
 
-            if (roleId.HasValue && (roleId == 2 || roleId == 3))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return roleId.HasValue && (roleId == 2 || roleId == 3);
         }
+
         private async Task<string> GetAuthorName(SqlConnection connection, int userId)
         {
-            // Skapa SQL-frågan för att hämta författarens namn från Users-tabellen
             var authorNameQuery = @"
-        SELECT Username AS Author
-        FROM Users
-        WHERE Id = @UserId";
+                SELECT Username AS Author
+                FROM Users
+                WHERE Id = @UserId";
 
-            // Exekvera SQL-frågan för att hämta författarens namn
-            var author = await connection.QueryFirstOrDefaultAsync<string>(authorNameQuery, new { UserId = userId });
-
-            return author;
+            return await connection.QueryFirstOrDefaultAsync<string>(authorNameQuery, new { UserId = userId });
         }
-        public async Task<bool> InsertPostWithAuthor(Post post, int userId)
-        {
-            try
-            {
-                using (var connection = new SqlConnection(_databaseSettings.DefaultConnection))
-                {
-                    // Hämta författarens namn baserat på användaridentifieringen
-                    var author = await GetAuthorName(connection, userId);
-
-                    // Uppdatera SQL-frågan för att infoga inlägg med författarens namn
-                    await connection.ExecuteAsync(@"
-                INSERT INTO Posts (user_id, title, content, timestamp, author) 
-                VALUES (@UserId, @Title, @Content, @Timestamp, @Author)
-            ", new
-                    {
-                        UserId = userId, // Användaridentifiering som författare
-                        post.Title,
-                        post.Content,
-                        Timestamp = DateTime.UtcNow, // Sätt den aktuella tidsstämpeln
-                        Author = author // Författarens namn
-                    });
-
-                    return true;
-                }
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
     }
 }

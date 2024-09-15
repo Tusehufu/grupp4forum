@@ -9,6 +9,7 @@
       "Grupp4forum.Dev.App/1.0.0": {
         "dependencies": {
           "Grupp4forum.Dev.Infrastructure": "1.0.0",
+          "Isopoh.Cryptography.Argon2": "2.0.0",
           "Microsoft.AspNetCore.SpaServices.Extensions": "8.0.8",
           "Microsoft.EntityFrameworkCore.Design": "8.0.8",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.8",
@@ -68,6 +69,37 @@
           "lib/net6.0/Humanizer.dll": {
             "assemblyVersion": "2.14.0.0",
             "fileVersion": "2.14.1.48190"
+          }
+        }
+      },
+      "Isopoh.Cryptography.Argon2/2.0.0": {
+        "dependencies": {
+          "Isopoh.Cryptography.Blake2b": "2.0.0",
+          "Isopoh.Cryptography.SecureArray": "2.0.0"
+        },
+        "runtime": {
+          "lib/net7.0/Isopoh.Cryptography.Argon2.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Isopoh.Cryptography.Blake2b/2.0.0": {
+        "dependencies": {
+          "Isopoh.Cryptography.SecureArray": "2.0.0"
+        },
+        "runtime": {
+          "lib/net7.0/Isopoh.Cryptography.Blake2b.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Isopoh.Cryptography.SecureArray/2.0.0": {
+        "runtime": {
+          "lib/net7.0/Isopoh.Cryptography.SecureArray.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
           }
         }
       },
@@ -897,6 +929,7 @@
       "Grupp4forum.Dev.Infrastructure/1.0.0": {
         "dependencies": {
           "Dapper": "2.1.35",
+          "Isopoh.Cryptography.Argon2": "2.0.0",
           "Microsoft.AspNetCore.SpaServices.Extensions": "8.0.8",
           "Microsoft.Data.SqlClient": "5.2.2",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.8",
@@ -946,6 +979,27 @@
       "sha512": "sha512-lQKvtaTDOXnoVJ20ibTuSIOf2i0uO0MPbDhd1jm238I+U/2ZnRENj0cktKZhtchBMtCUSRQ5v4xBCUbKNmyVMw==",
       "path": "humanizer.core/2.14.1",
       "hashPath": "humanizer.core.2.14.1.nupkg.sha512"
+    },
+    "Isopoh.Cryptography.Argon2/2.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8ytWN19j+qARb/XYi7KkNMm4Z8zS6tfGgnsZ1N5ihbQ5LXfyL+uYowfJxtGW9TO0S8NM2q0BaTKGOtOlsrhclQ==",
+      "path": "isopoh.cryptography.argon2/2.0.0",
+      "hashPath": "isopoh.cryptography.argon2.2.0.0.nupkg.sha512"
+    },
+    "Isopoh.Cryptography.Blake2b/2.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Co56bjSZV13fpvYHEN04qG8hqc0rKRm4os8iEgpJ/kujvt0pYtOVhj5J0Q7HBPbHwpcChRh2CjYVCGm4nw85VQ==",
+      "path": "isopoh.cryptography.blake2b/2.0.0",
+      "hashPath": "isopoh.cryptography.blake2b.2.0.0.nupkg.sha512"
+    },
+    "Isopoh.Cryptography.SecureArray/2.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-oWbRv/BTztKJxKFr3FBurWBBCgE1+nUTm3pwtA3Yg7Xeo4wDpaLstAwqx8HeQG3/b9yOs2qykpqfbNPJ40McIw==",
+      "path": "isopoh.cryptography.securearray/2.0.0",
+      "hashPath": "isopoh.cryptography.securearray.2.0.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.SpaServices.Extensions/8.0.8": {
       "type": "package",

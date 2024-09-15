@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\johan\\source\\repos\\Grupp4forum\\Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj": {}
+    "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj": {}
   },
   "projects": {
-    "C:\\Users\\johan\\source\\repos\\Grupp4forum\\Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj": {
+    "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\johan\\source\\repos\\Grupp4forum\\Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj",
+        "projectUniqueName": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj",
         "projectName": "Grupp4forum.Dev.App",
-        "projectPath": "C:\\Users\\johan\\source\\repos\\Grupp4forum\\Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj",
+        "projectPath": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj",
         "packagesPath": "C:\\Users\\johan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\johan\\source\\repos\\Grupp4forum\\Grupp4forum.Dev.App\\obj\\",
+        "outputPath": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -33,8 +33,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\johan\\source\\repos\\Grupp4forum\\Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\johan\\source\\repos\\Grupp4forum\\Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj"
+              "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj"
               }
             }
           }
@@ -54,6 +54,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Isopoh.Cryptography.Argon2": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            },
             "Microsoft.AspNetCore.SpaServices.Extensions": {
               "target": "Package",
               "version": "[8.0.8, )"
@@ -106,14 +110,14 @@
         }
       }
     },
-    "C:\\Users\\johan\\source\\repos\\Grupp4forum\\Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj": {
+    "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\johan\\source\\repos\\Grupp4forum\\Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj",
         "projectName": "Grupp4forum.Dev.Infrastructure",
-        "projectPath": "C:\\Users\\johan\\source\\repos\\Grupp4forum\\Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj",
+        "projectPath": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\johan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\johan\\source\\repos\\Grupp4forum\\Grupp4forum.Dev.Infrastructure\\obj\\",
+        "outputPath": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -155,6 +159,10 @@
             "Dapper": {
               "target": "Package",
               "version": "[2.1.35, )"
+            },
+            "Isopoh.Cryptography.Argon2": {
+              "target": "Package",
+              "version": "[2.0.0, )"
             },
             "Microsoft.AspNetCore.SpaServices.Extensions": {
               "target": "Package",

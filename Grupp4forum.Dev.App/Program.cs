@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Grupp4forum.Dev.Infrastructure.Services;
+using Grupp4forum.Dev.API.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +19,14 @@ builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("C
 // Add services to the container.
 builder.Services.AddTransient<PostRepository>();
 builder.Services.AddTransient<PostService>();
+builder.Services.AddTransient<RoleRepository>();
+builder.Services.AddTransient<RoleService>();
+builder.Services.AddTransient<UserRepository>();
+builder.Services.AddTransient<UserService>();
+builder.Services.AddTransient<CategoryRepository>();
+builder.Services.AddTransient<CategoryService>();
+builder.Services.AddTransient<ReplyRepository>();
+builder.Services.AddTransient<ReplyService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

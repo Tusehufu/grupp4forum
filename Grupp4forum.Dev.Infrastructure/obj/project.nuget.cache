@@ -1,13 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "3gPKRZnotuI=",
+  "dgSpecHash": "smklVRR5WSA=",
   "success": true,
-  "projectFilePath": "C:\\Users\\johan\\source\\repos\\Grupp4forum\\Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj",
+  "projectFilePath": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\johan\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\johan\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
     "C:\\Users\\johan\\.nuget\\packages\\dapper\\2.1.35\\dapper.2.1.35.nupkg.sha512",
     "C:\\Users\\johan\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\johan\\.nuget\\packages\\isopoh.cryptography.argon2\\2.0.0\\isopoh.cryptography.argon2.2.0.0.nupkg.sha512",
+    "C:\\Users\\johan\\.nuget\\packages\\isopoh.cryptography.blake2b\\2.0.0\\isopoh.cryptography.blake2b.2.0.0.nupkg.sha512",
+    "C:\\Users\\johan\\.nuget\\packages\\isopoh.cryptography.securearray\\2.0.0\\isopoh.cryptography.securearray.2.0.0.nupkg.sha512",
     "C:\\Users\\johan\\.nuget\\packages\\microsoft.aspnetcore.spaservices.extensions\\8.0.8\\microsoft.aspnetcore.spaservices.extensions.8.0.8.nupkg.sha512",
     "C:\\Users\\johan\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
     "C:\\Users\\johan\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.3.3\\microsoft.codeanalysis.analyzers.3.3.3.nupkg.sha512",

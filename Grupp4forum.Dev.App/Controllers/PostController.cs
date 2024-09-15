@@ -4,8 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Grupp4forum.Dev.Infrastructure.ViewModel;
-using System.Security.Claims;
-
+using System;
 
 namespace Grupp4forum.Dev.App.Controllers
 {
@@ -20,6 +19,7 @@ namespace Grupp4forum.Dev.App.Controllers
             _postService = postService;
         }
 
+        // Hämta alla inlägg
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Post>>> GetAllPosts()
         {
@@ -27,6 +27,7 @@ namespace Grupp4forum.Dev.App.Controllers
             return Ok(posts);
         }
 
+        // Hämta ett specifikt inlägg via ID
         [HttpGet("{id}")]
         public async Task<ActionResult<Post>> GetPostById(int id)
         {
@@ -38,70 +39,86 @@ namespace Grupp4forum.Dev.App.Controllers
             return Ok(post);
         }
 
+        // Lägg till ett nytt inlägg
         [HttpPost]
         public async Task<ActionResult> AddPost(PostViewModel postViewModel)
         {
-            // Kontrollera om modellen är giltig
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            // Hämta den inloggade användarens ID från HttpContext
-            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
-            if (userIdClaim == null)
-            {
-                return Unauthorized("Du måste vara inloggad för att skapa ett inlägg.");
-            }
+            // Här behövs ingen användarverifiering längre
+            var userId = 1; // Kan sätta till 0 eller annat värde för anonyma användare
 
-            // Convert the user ID to an integer or handle conversion errors
-            int userId;
-            if (!int.TryParse(userIdClaim.Value, out userId))
-            {
-                Console.WriteLine("Ogiltigt id");
-                return BadRequest("Ogiltigt användar-ID.");
-            }
-            Console.WriteLine(userId);
-
-            // Skapa ett nytt Post-objekt från viewmodel
             var post = new Post
             {
                 Title = postViewModel.Title,
                 Content = postViewModel.Content,
-                UserId = userId // Sätt användarens id
+                UserId = userId, // Anonym användare eller standardvärde
+                CategoryId = postViewModel.CategoryId,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow,
+                IsVisible = true
             };
 
-            // Lägg till inlägget
             var id = await _postService.AddPost(post, userId);
             var author = post.Author;
-            // Skapa ett svarsobjekt med inläggets ID och författare
             var response = new
             {
-                PostId = id,
-                Author = author
+                postId = post.PostId,
+                userId = post.UserId,
+                title = post.Title,
+                author = post.Author ?? "Anonymous",  // Om författaren är null, returnera "Anonymous"
+                isVisible = post.IsVisible,
+                likes = post.Likes,
+                content = post.Content,
+                categoryId = post.CategoryId,
+                createdAt = post.CreatedAt,
+                updatedAt = post.UpdatedAt
             };
 
-            // Returnera svar med skapad status
             return Ok(response);
         }
 
+        // Uppdatera ett inlägg
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdatePost(int id, PostViewModel postViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
+            // Här behövs ingen användarverifiering längre
+            var userId = 1; // Kan sätta till 0 eller annat värde för anonyma användare
+
+            var post = new Post
+            {
+                PostId = id, // Sätt inläggets ID
+                Title = postViewModel.Title,
+                Content = postViewModel.Content,
+                CategoryId = postViewModel.CategoryId,
+                UserId = userId, // Anonym användare eller standardvärde
+                UpdatedAt = DateTime.UtcNow // Uppdaterad tid
+            };
+
+            var success = await _postService.UpdatePost(post);
+            if (!success)
+            {
+                return NotFound();
+            }
+
+            return NoContent();
+        }
+
+        // Ta bort ett inlägg
         [HttpDelete("{id}")]
         public async Task<IActionResult> RemovePost(int id)
         {
-            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
-            if (userIdClaim == null)
-            {
-                return Unauthorized("Du måste vara inloggad för att ta bort evenemanget.");
-            }
+            // Här behövs ingen användarverifiering längre
+            var userId = 2; // Kan sätta till 0 eller annat värde för anonyma användare
 
-            // Convert the user ID to an integer or handle conversion errors
-            int userId;
-            if (!int.TryParse(userIdClaim.Value, out userId))
-            {
-                Console.WriteLine("Ogiltigt id");
-                return BadRequest("Ogiltigt användar-ID.");
-            }
             var result = await _postService.RemovePost(userId, id);
             if (!result)
             {
