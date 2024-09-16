@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "gw7EKLkIX9KkFjVQTCVH4KePtqVhJ6vU6RCb8T7oFjI=",
+  "Hash": "lnQE5/v3buE+T4GoiYmby7D/NrHYNWxCxgoaF7DAx2U=",
   "Source": "Grupp4forum.Dev.App",
   "BasePath": "_content/Grupp4forum.Dev.App",
   "Mode": "Default",
@@ -245,6 +245,25 @@
       "OriginalItemSpec": "wwwroot\\clientapp\\src\\components\\CreatePostModal.vue"
     },
     {
+      "Identity": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\CreateReplyModal.vue",
+      "SourceId": "Grupp4forum.Dev.App",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\",
+      "BasePath": "_content/Grupp4forum.Dev.App",
+      "RelativePath": "clientapp/src/components/CreateReplyModal.vue",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\clientapp\\src\\components\\CreateReplyModal.vue"
+    },
+    {
       "Identity": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\HelloWorld.vue",
       "SourceId": "Grupp4forum.Dev.App",
       "SourceType": "Discovered",
@@ -264,12 +283,12 @@
       "OriginalItemSpec": "wwwroot\\clientapp\\src\\components\\HelloWorld.vue"
     },
     {
-      "Identity": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\Posts.vue",
+      "Identity": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\PostList.vue",
       "SourceId": "Grupp4forum.Dev.App",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\",
       "BasePath": "_content/Grupp4forum.Dev.App",
-      "RelativePath": "clientapp/src/components/Posts.vue",
+      "RelativePath": "clientapp/src/components/PostList.vue",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -280,7 +299,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\clientapp\\src\\components\\Posts.vue"
+      "OriginalItemSpec": "wwwroot\\clientapp\\src\\components\\PostList.vue"
     },
     {
       "Identity": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\main.ts",

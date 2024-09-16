@@ -39,26 +39,23 @@
 
     // Funktion för att bekräfta borttagning
     const confirmDelete = async () => {
-        // Hämta JWT-token från lokal lagring eller autentiseringskälla
-        const token = localStorage.getItem('jwtToken');
         try {
-            await axios.delete(`https://localhost:7056/api/Post/${props.postId}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`, // Skicka JWT-token som en del av Authorization-headers
-                },
-            });
-            emit('confirm', props.postId);
-            window.location.reload();
+            // Gör DELETE-anropet här
+            await axios.delete(`https://localhost:7056/api/Post/${props.postId}`);
+            emit('confirm', props.postId); // Meddela att posten är raderad
         } catch (error) {
             console.error('Det uppstod ett fel vid borttagning av inlägget:', error);
+        } finally {
+            closeModal(); // Stäng modalen efter radering
         }
     };
 
     // Funktion för att stänga modalen
     const closeModal = () => {
-        emit('cancel');
+        emit('cancel'); // Skicka avbryt-händelsen
     };
 </script>
 
 <style scoped>
+    /* CSS-stilar */
 </style>

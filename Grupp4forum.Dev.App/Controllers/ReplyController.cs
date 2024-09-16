@@ -122,6 +122,18 @@ public class RepliesController : ControllerBase
         }
         return Ok("Tja");
     }
+    [HttpGet("post/{postId}")]
+    public async Task<ActionResult<IEnumerable<Reply>>> GetRepliesForPost(int postId)
+    {
+        var replies = await _replyService.GetRepliesByPostId(postId);
+
+        if (replies == null || !replies.Any())
+        {
+            return NotFound($"Inga replies hittades för postId: {postId}");
+        }
+
+        return Ok(replies);
+    }
 
 }
 

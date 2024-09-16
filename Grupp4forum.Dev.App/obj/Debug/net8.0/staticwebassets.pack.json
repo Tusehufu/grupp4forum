@@ -49,12 +49,16 @@
       "PackagePath": "staticwebassets\\clientapp\\src\\components\\CreatePostModal.vue"
     },
     {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\CreateReplyModal.vue",
+      "PackagePath": "staticwebassets\\clientapp\\src\\components\\CreateReplyModal.vue"
+    },
+    {
       "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\HelloWorld.vue",
       "PackagePath": "staticwebassets\\clientapp\\src\\components\\HelloWorld.vue"
     },
     {
-      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\Posts.vue",
-      "PackagePath": "staticwebassets\\clientapp\\src\\components\\Posts.vue"
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\PostList.vue",
+      "PackagePath": "staticwebassets\\clientapp\\src\\components\\PostList.vue"
     },
     {
       "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\main.ts",

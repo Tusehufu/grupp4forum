@@ -45,5 +45,9 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
         {
             return await _replyRepository.DeleteReply(userId, id);
         }
+        public async Task<IEnumerable<Reply>> GetRepliesByPostId(int postId)
+        {
+            return await _replyRepository.GetRepliesByPostId(postId);
+        }
     }
 }

@@ -157,19 +157,27 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
                 var sql = @"
             SELECT 
                 r.reply_id AS ReplyId,
+                r.post_id AS PostId,
                 r.user_id AS UserId,
                 r.content AS Content,
-                r.timestamp AS Timestamp
+                r.parent_reply_id AS ParentReplyId,
+                r.likes AS Likes,
+                r.created_at AS CreatedAt,
+                r.updated_at AS UpdatedAt,
+                r.isvisible AS IsVisible,
+                u.Username AS Author  
             FROM 
                 Replies r
             INNER JOIN 
-                PostReplies pr ON r.reply_id = pr.reply_id
+                Users u ON r.user_id = u.Id  
             WHERE 
-                pr.post_id = @PostId
+                r.post_id = @PostId
         ";
                 return await connection.QueryAsync<Reply>(sql, new { PostId = postId });
             }
         }
+
+
         public async Task<bool> InsertReplyWithAuthor(Reply reply, int userId, int postId)
         {
             try
@@ -254,5 +262,6 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
                 return false;
             }
         }
+
     }
 }
