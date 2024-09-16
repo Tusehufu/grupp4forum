@@ -28,9 +28,11 @@ builder.Services.AddTransient<CategoryService>();
 builder.Services.AddTransient<ReplyRepository>();
 builder.Services.AddTransient<ReplyService>();
 
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 
 builder.Services.AddCors(options =>
 {
