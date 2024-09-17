@@ -57,18 +57,24 @@
       "PackagePath": "staticwebassets\\clientapp\\src\\components\\HelloWorld.vue"
     },
     {
+<<<<<<< Updated upstream
       "Id": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\LoginModal.vue",
       "PackagePath": "staticwebassets\\clientapp\\src\\components\\LoginModal.vue"
     },
     {
+=======
+>>>>>>> Stashed changes
       "Id": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\PostList.vue",
       "PackagePath": "staticwebassets\\clientapp\\src\\components\\PostList.vue"
     },
     {
+<<<<<<< Updated upstream
       "Id": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\RegisterModal.vue",
       "PackagePath": "staticwebassets\\clientapp\\src\\components\\RegisterModal.vue"
     },
     {
+=======
+>>>>>>> Stashed changes
       "Id": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\main.ts",
       "PackagePath": "staticwebassets\\clientapp\\src\\main.ts"
     },
@@ -77,10 +83,13 @@
       "PackagePath": "staticwebassets\\clientapp\\src\\router\\index.ts"
     },
     {
+<<<<<<< Updated upstream
       "Id": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\services\\authService.ts",
       "PackagePath": "staticwebassets\\clientapp\\src\\services\\authService.ts"
     },
     {
+=======
+>>>>>>> Stashed changes
       "Id": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\shims-vue.d.ts",
       "PackagePath": "staticwebassets\\clientapp\\src\\shims-vue.d.ts"
     },
@@ -97,10 +106,13 @@
       "PackagePath": "staticwebassets\\clientapp\\src\\views\\HomeView.vue"
     },
     {
+<<<<<<< Updated upstream
       "Id": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\views\\LoginView.vue",
       "PackagePath": "staticwebassets\\clientapp\\src\\views\\LoginView.vue"
     },
     {
+=======
+>>>>>>> Stashed changes
       "Id": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\tsconfig.json",
       "PackagePath": "staticwebassets\\clientapp\\tsconfig.json"
     },

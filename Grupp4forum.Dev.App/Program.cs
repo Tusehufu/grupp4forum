@@ -9,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Grupp4forum.Dev.Infrastructure.Services;
 using Grupp4forum.Dev.API.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,9 +31,31 @@ builder.Services.AddTransient<ReplyService>();
 
 
 builder.Services.AddControllers();
+builder.Services.AddScoped<PasswordService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+<<<<<<< Updated upstream
+=======
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+        };
+    });
+
+
+
+
+>>>>>>> Stashed changes
 
 builder.Services.AddCors(options =>
 {
@@ -45,36 +68,37 @@ builder.Services.AddCors(options =>
     });
 });
 
-var app = builder.Build();
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-app.UseStaticFiles();
-app.UseCors("CorsRule");
-app.UseRouting();
+
+    var app = builder.Build();
+    // Configure the HTTP request pipeline.
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseDeveloperExceptionPage();
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
+    app.UseStaticFiles();
+    app.UseCors("CorsRule");
+    app.UseRouting();
 
 
 
-app.UseHttpsRedirection();
+    app.UseHttpsRedirection();
 
 
-app.UseAuthorization();
+    app.UseAuthorization();
 
-app.MapControllers();
+    app.MapControllers();
 
-// Here you can see we make sure it doesn't start with /api, if it does, it'll 404 within .NET if it can't be found.
-//app.MapWhen(x => !x.Request.Path.StartsWithSegments("/api"), x =>
-//{
-//    app.UseSpa(spa =>
-//    {
-//        if (!builder.Environment.IsDevelopment())
-//            spa.Options.SourcePath = "wwwroot/clientapp";
-//        else
-//            spa.Options.SourcePath = @"C:\Data\Repos\KEYnet\InternJohan.Dev.App\wwwroot\clientapp";
-//    });
-//});
-app.Run();
+    // Here you can see we make sure it doesn't start with /api, if it does, it'll 404 within .NET if it can't be found.
+    //app.MapWhen(x => !x.Request.Path.StartsWithSegments("/api"), x =>
+    //{
+    //    app.UseSpa(spa =>
+    //    {
+    //        if (!builder.Environment.IsDevelopment())
+    //            spa.Options.SourcePath = "wwwroot/clientapp";
+    //        else
+    //            spa.Options.SourcePath = @"C:\Data\Repos\KEYnet\InternJohan.Dev.App\wwwroot\clientapp";
+    //    });
+    //});
+    app.Run();

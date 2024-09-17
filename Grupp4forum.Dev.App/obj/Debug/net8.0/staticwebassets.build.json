@@ -1,6 +1,10 @@
 {
   "Version": 1,
+<<<<<<< Updated upstream
   "Hash": "IcyUY/JkV36S5HGlEQ+D92So/P1svUWIYrcGqhv2aKY=",
+=======
+  "Hash": "E0VYhej3JCTnCMySVxXFhbBsGgL34zvpYW6xsJ/NxCg=",
+>>>>>>> Stashed changes
   "Source": "Grupp4forum.Dev.App",
   "BasePath": "_content/Grupp4forum.Dev.App",
   "Mode": "Default",
@@ -283,6 +287,7 @@
       "OriginalItemSpec": "wwwroot\\clientapp\\src\\components\\HelloWorld.vue"
     },
     {
+<<<<<<< Updated upstream
       "Identity": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\LoginModal.vue",
       "SourceId": "Grupp4forum.Dev.App",
       "SourceType": "Discovered",
@@ -306,6 +311,12 @@
       "SourceId": "Grupp4forum.Dev.App",
       "SourceType": "Discovered",
       "ContentRoot": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\",
+=======
+      "Identity": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\PostList.vue",
+      "SourceId": "Grupp4forum.Dev.App",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\",
+>>>>>>> Stashed changes
       "BasePath": "_content/Grupp4forum.Dev.App",
       "RelativePath": "clientapp/src/components/PostList.vue",
       "AssetKind": "All",
@@ -321,6 +332,7 @@
       "OriginalItemSpec": "wwwroot\\clientapp\\src\\components\\PostList.vue"
     },
     {
+<<<<<<< Updated upstream
       "Identity": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\RegisterModal.vue",
       "SourceId": "Grupp4forum.Dev.App",
       "SourceType": "Discovered",
@@ -344,6 +356,12 @@
       "SourceId": "Grupp4forum.Dev.App",
       "SourceType": "Discovered",
       "ContentRoot": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\",
+=======
+      "Identity": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\main.ts",
+      "SourceId": "Grupp4forum.Dev.App",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\",
+>>>>>>> Stashed changes
       "BasePath": "_content/Grupp4forum.Dev.App",
       "RelativePath": "clientapp/src/main.ts",
       "AssetKind": "All",
@@ -378,6 +396,7 @@
       "OriginalItemSpec": "wwwroot\\clientapp\\src\\router\\index.ts"
     },
     {
+<<<<<<< Updated upstream
       "Identity": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\services\\authService.ts",
       "SourceId": "Grupp4forum.Dev.App",
       "SourceType": "Discovered",
@@ -401,6 +420,12 @@
       "SourceId": "Grupp4forum.Dev.App",
       "SourceType": "Discovered",
       "ContentRoot": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\",
+=======
+      "Identity": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\shims-vue.d.ts",
+      "SourceId": "Grupp4forum.Dev.App",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\",
+>>>>>>> Stashed changes
       "BasePath": "_content/Grupp4forum.Dev.App",
       "RelativePath": "clientapp/src/shims-vue.d.ts",
       "AssetKind": "All",
@@ -473,6 +498,7 @@
       "OriginalItemSpec": "wwwroot\\clientapp\\src\\views\\HomeView.vue"
     },
     {
+<<<<<<< Updated upstream
       "Identity": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\views\\LoginView.vue",
       "SourceId": "Grupp4forum.Dev.App",
       "SourceType": "Discovered",
@@ -496,6 +522,12 @@
       "SourceId": "Grupp4forum.Dev.App",
       "SourceType": "Discovered",
       "ContentRoot": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\",
+=======
+      "Identity": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\tsconfig.json",
+      "SourceId": "Grupp4forum.Dev.App",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\",
+>>>>>>> Stashed changes
       "BasePath": "_content/Grupp4forum.Dev.App",
       "RelativePath": "clientapp/tsconfig.json",
       "AssetKind": "All",

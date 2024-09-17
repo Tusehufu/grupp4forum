@@ -3,6 +3,7 @@
   "WorkspaceRootPath": "F:\\Desktop\\grupp4forum\\",
   "Documents": [
     {
+<<<<<<< Updated upstream
       "AbsoluteMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|f:\\desktop\\grupp4forum\\grupp4forum.dev.app\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|solutionrelative:grupp4forum.dev.app\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -37,6 +38,22 @@
     {
       "AbsoluteMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|f:\\desktop\\grupp4forum\\grupp4forum.dev.app\\wwwroot\\clientapp\\src\\router\\index.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
       "RelativeMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|solutionrelative:grupp4forum.dev.app\\wwwroot\\clientapp\\src\\router\\index.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+=======
+      "AbsoluteMoniker": "D:0:0:{DAA8D058-BE14-49FC-A8CF-81B1F93C96CA}|Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj|f:\\desktop\\grupp4forum\\grupp4forum.dev.infrastructure\\services\\passwordservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAA8D058-BE14-49FC-A8CF-81B1F93C96CA}|Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj|solutionrelative:grupp4forum.dev.infrastructure\\services\\passwordservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DAA8D058-BE14-49FC-A8CF-81B1F93C96CA}|Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj|f:\\desktop\\grupp4forum\\grupp4forum.dev.infrastructure\\repository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAA8D058-BE14-49FC-A8CF-81B1F93C96CA}|Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj|solutionrelative:grupp4forum.dev.infrastructure\\repository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|f:\\desktop\\grupp4forum\\grupp4forum.dev.app\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|solutionrelative:grupp4forum.dev.app\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|f:\\desktop\\grupp4forum\\grupp4forum.dev.app\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|solutionrelative:grupp4forum.dev.app\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+>>>>>>> Stashed changes
     }
   ],
   "DocumentGroupContainers": [
@@ -46,11 +63,16 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
+<<<<<<< Updated upstream
           "SelectedChildIndex": 5,
+=======
+          "SelectedChildIndex": 3,
+>>>>>>> Stashed changes
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+<<<<<<< Updated upstream
             },
             {
               "$type": "Bookmark",
@@ -72,11 +94,22 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
+=======
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+>>>>>>> Stashed changes
               "Title": "UserRepository.cs",
               "DocumentMoniker": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.Infrastructure\\Repository\\UserRepository.cs",
               "RelativeDocumentMoniker": "Grupp4forum.Dev.Infrastructure\\Repository\\UserRepository.cs",
               "ToolTip": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.Infrastructure\\Repository\\UserRepository.cs",
               "RelativeToolTip": "Grupp4forum.Dev.Infrastructure\\Repository\\UserRepository.cs",
+<<<<<<< Updated upstream
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-16T11:56:01.154Z",
@@ -93,23 +126,51 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-16T11:55:23.457Z",
+=======
+              "ViewState": "AQIAAD0AAAAAAAAAAAAwwFMAAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-17T08:19:23.192Z",
+>>>>>>> Stashed changes
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+<<<<<<< Updated upstream
+=======
+              "Title": "PasswordService.cs",
+              "DocumentMoniker": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.Infrastructure\\Services\\PasswordService.cs",
+              "RelativeDocumentMoniker": "Grupp4forum.Dev.Infrastructure\\Services\\PasswordService.cs",
+              "ToolTip": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.Infrastructure\\Services\\PasswordService.cs",
+              "RelativeToolTip": "Grupp4forum.Dev.Infrastructure\\Services\\PasswordService.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAmwA8AAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-16T12:00:25.098Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+>>>>>>> Stashed changes
               "Title": "Program.cs",
               "DocumentMoniker": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\Program.cs",
               "RelativeDocumentMoniker": "Grupp4forum.Dev.App\\Program.cs",
               "ToolTip": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\Program.cs",
               "RelativeToolTip": "Grupp4forum.Dev.App\\Program.cs",
+<<<<<<< Updated upstream
               "ViewState": "AQIAAA0AAAAAAAAAAAAqwB0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-16T11:53:41.107Z",
+=======
+              "ViewState": "AQIAAB8AAAAAAAAAAAAIwDAAAABPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-16T11:59:57.362Z",
+>>>>>>> Stashed changes
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+<<<<<<< Updated upstream
               "DocumentIndex": 5,
               "Title": "LoginView.vue",
               "DocumentMoniker": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\views\\LoginView.vue",
@@ -131,6 +192,17 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
               "WhenOpened": "2024-09-16T10:07:52.008Z",
+=======
+              "DocumentIndex": 2,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "Grupp4forum.Dev.App\\Controllers\\AuthController.cs",
+              "ToolTip": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "Grupp4forum.Dev.App\\Controllers\\AuthController.cs",
+              "ViewState": "AQIAABcAAAAAAAAAAAAxwB4AAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-16T11:59:29.044Z",
+>>>>>>> Stashed changes
               "EditorCaption": ""
             },
             {

@@ -25,7 +25,7 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
             var query = @"
         SELECT u.Id AS Id, u.username, u.email, u.password_hash AS PasswordHash, 
                u.created_at AS CreatedAt, u.updated_at AS UpdatedAt, u.role_id AS RoleId,
-               r.role_id AS RoleId, r.Name
+               r.role_id AS RoleIdAlias, r.Name
         FROM Users u
         JOIN Roles r ON u.role_id = r.role_id";  // Matchar mot role_id
 
@@ -36,7 +36,7 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
                     user.Role = role;  // Mappa användarens roll
                     return user;
                 },
-                splitOn: "RoleId"  // Ange RoleId som split-kolumnen
+                splitOn: "RoleIdAlias"  // Ange RoleId som split-kolumnen
             );
 
             return userRoleMapping;
@@ -49,16 +49,9 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
         {
             using var connection = new SqlConnection(_databaseSettings.DefaultConnection);
             var query = @"
-        SELECT 
-            u.Id AS Id, 
-            u.Username, 
-            u.Email, 
-            u.password_hash AS PasswordHash, 
-            u.created_at AS CreatedAt, 
-            u.updated_at AS UpdatedAt,
-            u.role_id AS RoleId,
-            r.role_id AS RoleId, 
-            r.Name AS RoleName
+        SELECT u.Id AS Id, u.Username, u.Email, u.password_hash AS PasswordHash, 
+               u.created_at AS CreatedAt, u.updated_at AS UpdatedAt, u.role_id AS RoleId,
+               r.role_id AS RoleIdAlias, r.Name AS RoleName
         FROM Users u
         JOIN Roles r ON u.role_id = r.role_id
         WHERE u.Id = @Id";
@@ -71,7 +64,7 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
                     return user;
                 },
                 new { Id = id },
-                splitOn: "RoleId"  // Se till att splitOn använder RoleId korrekt
+                splitOn: "RoleIdAlias"  // Se till att splitOn använder RoleId korrekt
             );
 
             return userRoleMapping.FirstOrDefault();
@@ -138,10 +131,10 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
         {
             using var connection = new SqlConnection(_databaseSettings.DefaultConnection);
             var query = @"
-                SELECT u.*, r.role_id, r.Name
-                FROM Users u
-                JOIN Roles r ON u.role_id = r.role_id
-                WHERE u.Username = @Username";
+                 SELECT u.*, r.role_id AS RoleIdAlias, r.Name
+        FROM Users u
+        JOIN Roles r ON u.role_id = r.role_id
+        WHERE u.Username = @Username";
 
             var userRoleMapping = await connection.QueryAsync<User, Role, User>(
                 query,
@@ -150,7 +143,8 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
                     user.Role = role;
                     return user;
                 },
-                new { Username = username }
+                new { Username = username },
+                 splitOn: "RoleIdAlias"
             );
 
             return userRoleMapping.FirstOrDefault();
