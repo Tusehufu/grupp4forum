@@ -3,57 +3,44 @@
   "WorkspaceRootPath": "F:\\Desktop\\grupp4forum\\",
   "Documents": [
     {
-<<<<<<< Updated upstream
-      "AbsoluteMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|f:\\desktop\\grupp4forum\\grupp4forum.dev.app\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|solutionrelative:grupp4forum.dev.app\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|f:\\desktop\\grupp4forum\\grupp4forum.dev.app\\controllers\\replycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|solutionrelative:grupp4forum.dev.app\\controllers\\replycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|f:\\desktop\\grupp4forum\\grupp4forum.dev.app\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|solutionrelative:grupp4forum.dev.app\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DAA8D058-BE14-49FC-A8CF-81B1F93C96CA}|Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj|f:\\desktop\\grupp4forum\\grupp4forum.dev.infrastructure\\repository\\replyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAA8D058-BE14-49FC-A8CF-81B1F93C96CA}|Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj|solutionrelative:grupp4forum.dev.infrastructure\\repository\\replyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DAA8D058-BE14-49FC-A8CF-81B1F93C96CA}|Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj|f:\\desktop\\grupp4forum\\grupp4forum.dev.infrastructure\\repository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DAA8D058-BE14-49FC-A8CF-81B1F93C96CA}|Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj|solutionrelative:grupp4forum.dev.infrastructure\\repository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DAA8D058-BE14-49FC-A8CF-81B1F93C96CA}|Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj|f:\\desktop\\grupp4forum\\grupp4forum.dev.infrastructure\\services\\replyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAA8D058-BE14-49FC-A8CF-81B1F93C96CA}|Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj|solutionrelative:grupp4forum.dev.infrastructure\\services\\replyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DAA8D058-BE14-49FC-A8CF-81B1F93C96CA}|Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj|f:\\desktop\\grupp4forum\\grupp4forum.dev.infrastructure\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DAA8D058-BE14-49FC-A8CF-81B1F93C96CA}|Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj|solutionrelative:grupp4forum.dev.infrastructure\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|f:\\desktop\\grupp4forum\\grupp4forum.dev.app\\wwwroot\\clientapp\\src\\components\\createreplymodal.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|solutionrelative:grupp4forum.dev.app\\wwwroot\\clientapp\\src\\components\\createreplymodal.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|f:\\desktop\\grupp4forum\\grupp4forum.dev.app\\wwwroot\\clientapp\\src\\services\\authservice.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|solutionrelative:grupp4forum.dev.app\\wwwroot\\clientapp\\src\\services\\authservice.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+      "AbsoluteMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|f:\\desktop\\grupp4forum\\grupp4forum.dev.app\\controllers\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|solutionrelative:grupp4forum.dev.app\\controllers\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|f:\\desktop\\grupp4forum\\grupp4forum.dev.app\\wwwroot\\clientapp\\src\\views\\loginview.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|solutionrelative:grupp4forum.dev.app\\wwwroot\\clientapp\\src\\views\\loginview.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{DAA8D058-BE14-49FC-A8CF-81B1F93C96CA}|Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj|f:\\desktop\\grupp4forum\\grupp4forum.dev.infrastructure\\repository\\postrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAA8D058-BE14-49FC-A8CF-81B1F93C96CA}|Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj|solutionrelative:grupp4forum.dev.infrastructure\\repository\\postrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|f:\\desktop\\grupp4forum\\grupp4forum.dev.app\\wwwroot\\clientapp\\src\\components\\loginmodal.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|solutionrelative:grupp4forum.dev.app\\wwwroot\\clientapp\\src\\components\\loginmodal.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{DAA8D058-BE14-49FC-A8CF-81B1F93C96CA}|Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj|f:\\desktop\\grupp4forum\\grupp4forum.dev.infrastructure\\viewmodels\\replyviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAA8D058-BE14-49FC-A8CF-81B1F93C96CA}|Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj|solutionrelative:grupp4forum.dev.infrastructure\\viewmodels\\replyviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|f:\\desktop\\grupp4forum\\grupp4forum.dev.app\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|solutionrelative:grupp4forum.dev.app\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{DAA8D058-BE14-49FC-A8CF-81B1F93C96CA}|Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj|f:\\desktop\\grupp4forum\\grupp4forum.dev.infrastructure\\repository\\categoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAA8D058-BE14-49FC-A8CF-81B1F93C96CA}|Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj|solutionrelative:grupp4forum.dev.infrastructure\\repository\\categoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|f:\\desktop\\grupp4forum\\grupp4forum.dev.app\\wwwroot\\clientapp\\src\\router\\index.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|solutionrelative:grupp4forum.dev.app\\wwwroot\\clientapp\\src\\router\\index.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
-=======
-      "AbsoluteMoniker": "D:0:0:{DAA8D058-BE14-49FC-A8CF-81B1F93C96CA}|Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj|f:\\desktop\\grupp4forum\\grupp4forum.dev.infrastructure\\services\\passwordservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DAA8D058-BE14-49FC-A8CF-81B1F93C96CA}|Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj|solutionrelative:grupp4forum.dev.infrastructure\\services\\passwordservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DAA8D058-BE14-49FC-A8CF-81B1F93C96CA}|Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj|f:\\desktop\\grupp4forum\\grupp4forum.dev.infrastructure\\repository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DAA8D058-BE14-49FC-A8CF-81B1F93C96CA}|Grupp4forum.Dev.Infrastructure\\Grupp4forum.Dev.Infrastructure.csproj|solutionrelative:grupp4forum.dev.infrastructure\\repository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|f:\\desktop\\grupp4forum\\grupp4forum.dev.app\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|solutionrelative:grupp4forum.dev.app\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|f:\\desktop\\grupp4forum\\grupp4forum.dev.app\\wwwroot\\clientapp\\src\\components\\postlist.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|solutionrelative:grupp4forum.dev.app\\wwwroot\\clientapp\\src\\components\\postlist.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|f:\\desktop\\grupp4forum\\grupp4forum.dev.app\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{27B9D729-83F9-4B15-BB35-5F52E0FAF6D4}|Grupp4forum.Dev.App\\Grupp4forum.Dev.App.csproj|solutionrelative:grupp4forum.dev.app\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
->>>>>>> Stashed changes
     }
   ],
   "DocumentGroupContainers": [
@@ -63,183 +50,140 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-<<<<<<< Updated upstream
-          "SelectedChildIndex": 5,
-=======
           "SelectedChildIndex": 3,
->>>>>>> Stashed changes
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
-<<<<<<< Updated upstream
             },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "Grupp4forum.Dev.App\\Controllers\\UserController.cs",
-              "ToolTip": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\Controllers\\UserController.cs",
-              "RelativeToolTip": "Grupp4forum.Dev.App\\Controllers\\UserController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-16T11:56:21.417Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-=======
-            },
-            {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
->>>>>>> Stashed changes
-              "Title": "UserRepository.cs",
-              "DocumentMoniker": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.Infrastructure\\Repository\\UserRepository.cs",
-              "RelativeDocumentMoniker": "Grupp4forum.Dev.Infrastructure\\Repository\\UserRepository.cs",
-              "ToolTip": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.Infrastructure\\Repository\\UserRepository.cs",
-              "RelativeToolTip": "Grupp4forum.Dev.Infrastructure\\Repository\\UserRepository.cs",
-<<<<<<< Updated upstream
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-16T11:56:01.154Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UserService.cs",
-              "DocumentMoniker": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.Infrastructure\\Services\\UserService.cs",
-              "RelativeDocumentMoniker": "Grupp4forum.Dev.Infrastructure\\Services\\UserService.cs",
-              "ToolTip": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.Infrastructure\\Services\\UserService.cs",
-              "RelativeToolTip": "Grupp4forum.Dev.Infrastructure\\Services\\UserService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-16T11:55:23.457Z",
-=======
-              "ViewState": "AQIAAD0AAAAAAAAAAAAwwFMAAAAuAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-17T08:19:23.192Z",
->>>>>>> Stashed changes
-              "EditorCaption": ""
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-<<<<<<< Updated upstream
-=======
-              "Title": "PasswordService.cs",
-              "DocumentMoniker": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.Infrastructure\\Services\\PasswordService.cs",
-              "RelativeDocumentMoniker": "Grupp4forum.Dev.Infrastructure\\Services\\PasswordService.cs",
-              "ToolTip": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.Infrastructure\\Services\\PasswordService.cs",
-              "RelativeToolTip": "Grupp4forum.Dev.Infrastructure\\Services\\PasswordService.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAmwA8AAAApAAAA",
+              "Title": "ReplyController.cs",
+              "DocumentMoniker": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\Controllers\\ReplyController.cs",
+              "RelativeDocumentMoniker": "Grupp4forum.Dev.App\\Controllers\\ReplyController.cs",
+              "ToolTip": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\Controllers\\ReplyController.cs",
+              "RelativeToolTip": "Grupp4forum.Dev.App\\Controllers\\ReplyController.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-16T12:00:25.098Z",
+              "WhenOpened": "2024-09-17T08:55:12.388Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
->>>>>>> Stashed changes
+              "DocumentIndex": 5,
+              "Title": "PostRepository.cs",
+              "DocumentMoniker": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.Infrastructure\\Repository\\PostRepository.cs",
+              "RelativeDocumentMoniker": "Grupp4forum.Dev.Infrastructure\\Repository\\PostRepository.cs",
+              "ToolTip": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.Infrastructure\\Repository\\PostRepository.cs",
+              "RelativeToolTip": "Grupp4forum.Dev.Infrastructure\\Repository\\PostRepository.cs",
+              "ViewState": "AgIAAF8AAAAAAAAAAAAIwHQAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-17T08:47:32.599Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PostController.cs",
+              "DocumentMoniker": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\Controllers\\PostController.cs",
+              "RelativeDocumentMoniker": "Grupp4forum.Dev.App\\Controllers\\PostController.cs",
+              "ToolTip": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\Controllers\\PostController.cs",
+              "RelativeToolTip": "Grupp4forum.Dev.App\\Controllers\\PostController.cs",
+              "ViewState": "AgIAAFMAAAAAAAAAAAAIwGoAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-17T08:46:26.19Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ReplyViewModel.cs",
+              "DocumentMoniker": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.Infrastructure\\ViewModels\\ReplyViewModel.cs",
+              "RelativeDocumentMoniker": "Grupp4forum.Dev.Infrastructure\\ViewModels\\ReplyViewModel.cs",
+              "ToolTip": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.Infrastructure\\ViewModels\\ReplyViewModel.cs",
+              "RelativeToolTip": "Grupp4forum.Dev.Infrastructure\\ViewModels\\ReplyViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-17T08:45:48.442Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "Program.cs",
               "DocumentMoniker": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\Program.cs",
               "RelativeDocumentMoniker": "Grupp4forum.Dev.App\\Program.cs",
               "ToolTip": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\Program.cs",
               "RelativeToolTip": "Grupp4forum.Dev.App\\Program.cs",
-<<<<<<< Updated upstream
-              "ViewState": "AQIAAA0AAAAAAAAAAAAqwB0AAAAAAAAA",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-16T11:53:41.107Z",
-=======
-              "ViewState": "AQIAAB8AAAAAAAAAAAAIwDAAAABPAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-16T11:59:57.362Z",
->>>>>>> Stashed changes
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-<<<<<<< Updated upstream
-              "DocumentIndex": 5,
-              "Title": "LoginView.vue",
-              "DocumentMoniker": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\views\\LoginView.vue",
-              "RelativeDocumentMoniker": "Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\views\\LoginView.vue",
-              "ToolTip": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\views\\LoginView.vue",
-              "RelativeToolTip": "Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\views\\LoginView.vue",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003491|",
-              "WhenOpened": "2024-09-16T11:40:32.314Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "authService.ts",
-              "DocumentMoniker": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\services\\authService.ts",
-              "RelativeDocumentMoniker": "Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\services\\authService.ts",
-              "ToolTip": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\services\\authService.ts",
-              "RelativeToolTip": "Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\services\\authService.ts",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAxAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2024-09-16T10:07:52.008Z",
-=======
-              "DocumentIndex": 2,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "Grupp4forum.Dev.App\\Controllers\\AuthController.cs",
-              "ToolTip": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "Grupp4forum.Dev.App\\Controllers\\AuthController.cs",
-              "ViewState": "AQIAABcAAAAAAAAAAAAxwB4AAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-16T11:59:29.044Z",
->>>>>>> Stashed changes
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "LoginModal.vue",
-              "DocumentMoniker": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\LoginModal.vue",
-              "RelativeDocumentMoniker": "Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\LoginModal.vue",
-              "ToolTip": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\LoginModal.vue",
-              "RelativeToolTip": "Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\LoginModal.vue",
-              "ViewState": "AQIAACoAAAAAAAAAAAAAABYAAAAYAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003491|",
-              "WhenOpened": "2024-09-16T10:03:07.932Z"
+              "WhenOpened": "2024-09-17T08:00:55.183Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\appsettings.json",
-              "RelativeDocumentMoniker": "Grupp4forum.Dev.App\\appsettings.json",
-              "ToolTip": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\appsettings.json",
-              "RelativeToolTip": "Grupp4forum.Dev.App\\appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAwAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-09-16T09:23:15.248Z"
+              "Title": "CategoryRepository.cs",
+              "DocumentMoniker": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.Infrastructure\\Repository\\CategoryRepository.cs",
+              "RelativeDocumentMoniker": "Grupp4forum.Dev.Infrastructure\\Repository\\CategoryRepository.cs",
+              "ToolTip": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.Infrastructure\\Repository\\CategoryRepository.cs",
+              "RelativeToolTip": "Grupp4forum.Dev.Infrastructure\\Repository\\CategoryRepository.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAmwFYAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-17T06:51:44.8Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ReplyRepository.cs",
+              "DocumentMoniker": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.Infrastructure\\Repository\\ReplyRepository.cs",
+              "RelativeDocumentMoniker": "Grupp4forum.Dev.Infrastructure\\Repository\\ReplyRepository.cs",
+              "ToolTip": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.Infrastructure\\Repository\\ReplyRepository.cs",
+              "RelativeToolTip": "Grupp4forum.Dev.Infrastructure\\Repository\\ReplyRepository.cs",
+              "ViewState": "AgIAAF8AAAAAAAAAAAAAAHwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-16T19:36:53.898Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "index.ts",
-              "DocumentMoniker": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\router\\index.ts",
-              "RelativeDocumentMoniker": "Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\router\\index.ts",
-              "ToolTip": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\router\\index.ts",
-              "RelativeToolTip": "Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\router\\index.ts",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAmwBkAAAAYAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2024-09-16T09:02:26.825Z"
+              "Title": "PostList.vue",
+              "DocumentMoniker": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\PostList.vue",
+              "RelativeDocumentMoniker": "Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\PostList.vue",
+              "ToolTip": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\PostList.vue",
+              "RelativeToolTip": "Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\PostList.vue",
+              "ViewState": "AgIAAJUAAAAAAAAAAAAUwLQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003491|",
+              "WhenOpened": "2024-09-13T19:22:24.384Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CreateReplyModal.vue",
+              "DocumentMoniker": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\CreateReplyModal.vue",
+              "RelativeDocumentMoniker": "Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\CreateReplyModal.vue",
+              "ToolTip": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\CreateReplyModal.vue",
+              "RelativeToolTip": "Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\CreateReplyModal.vue",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAQwFIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003491|",
+              "WhenOpened": "2024-09-15T16:55:41.514Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ReplyService.cs",
+              "DocumentMoniker": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.Infrastructure\\Services\\ReplyService.cs",
+              "RelativeDocumentMoniker": "Grupp4forum.Dev.Infrastructure\\Services\\ReplyService.cs",
+              "ToolTip": "F:\\Desktop\\grupp4forum\\Grupp4forum.Dev.Infrastructure\\Services\\ReplyService.cs",
+              "RelativeToolTip": "Grupp4forum.Dev.Infrastructure\\Services\\ReplyService.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAIwCgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-13T13:56:51.37Z"
             }
           ]
         }
