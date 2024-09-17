@@ -33,6 +33,7 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
                         created_at AS CreatedAt,
                         updated_at AS UpdatedAt,
                         author,
+                        likes AS Likes,
                         isvisible
                     FROM 
                         Posts
@@ -54,6 +55,7 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
                         content,
                         created_at AS CreatedAt,
                         updated_at AS UpdatedAt,
+                        likes AS Likes,
                         author
                     FROM 
                         Posts
@@ -137,7 +139,8 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
                     UPDATE Posts
                     SET 
                         title = 'Raderat', 
-                        content = 'Raderat'
+                        content = 'Raderat',
+                        isVisible = 0 
                     WHERE 
                         post_id = @Id
                 ", new { Id = id });
@@ -178,5 +181,58 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
 
             return await connection.QueryFirstOrDefaultAsync<string>(authorNameQuery, new { UserId = userId });
         }
+
+        // Hämta en specifik post-like för att kontrollera om användaren redan har gillat posten
+        public async Task<PostLike> GetPostLikeAsync(int postId, int userId)
+        {
+            using (var connection = new SqlConnection(_databaseSettings.DefaultConnection))
+            {
+                var postLike = await connection.QuerySingleOrDefaultAsync<PostLike>(@"
+                    SELECT 
+                        post_id AS PostId,
+                        user_id AS UserId
+                    FROM post_likes
+                    WHERE post_id = @PostId AND user_id = @UserId",
+                    new { PostId = postId, UserId = userId });
+
+                return postLike;
+            }
+        }
+
+        // Lägg till en post-like
+        public async Task AddPostLikeAsync(PostLike postLike)
+        {
+            using (var connection = new SqlConnection(_databaseSettings.DefaultConnection))
+            {
+                var query = @"
+                    INSERT INTO post_likes (post_id, user_id)
+                    VALUES (@PostId, @UserId)";
+
+                await connection.ExecuteAsync(query, new { PostId = postLike.PostId, UserId = postLike.UserId });
+            }
+        }
+
+        // Uppdatera en posts likes
+        public async Task UpdatePostLikesAsync(int postId, int likes)
+        {
+            using (var connection = new SqlConnection(_databaseSettings.DefaultConnection))
+            {
+                var query = @"
+                    UPDATE Posts
+                    SET likes = @Likes
+                    WHERE post_id = @PostId";
+
+                await connection.ExecuteAsync(query, new { Likes = likes, PostId = postId });
+            }
+        }
+    }
+
+    public interface IPostRepository
+    {
+        Task<Post> GetPostByIdAsync(int postId);
+        Task<PostLike> GetPostLikeAsync(int postId, int userId);
+        Task AddPostLikeAsync(PostLike postLike);
+        Task UpdatePostLikesAsync(int postId, int likes);
     }
 }
+

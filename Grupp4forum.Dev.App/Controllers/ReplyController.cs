@@ -43,60 +43,67 @@ public class RepliesController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<Reply>> CreateReply(ReplyViewModel replyViewModel)
+    public async Task<ActionResult<Reply>> CreateReply(int postId, int? parentReplyId, [FromBody] ReplyViewModel replyViewModel)
     {
-        // Kontrollera om modellen är giltig
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
         }
-        // Hämta den inloggade användarens ID från HttpContext
-        var userId = 1;
-        //if (userIdClaim == null)
-        //{
-        //    return Unauthorized("Du måste vara inloggad för att skapa ett inlägg.");
-        //}
-        // Convert the user ID to an integer or handle conversion errors
-        //int userId;
-        //if (!int.TryParse(userIdClaim.Value, out userId))
-        //{
-        //    return BadRequest("Ogiltigt användar-ID.");
-        //}
-        int postId = 1;
 
+        var userId = 1; // Här hårdkodas användar-ID
+
+        // Skapa ett nytt Reply-objekt
+        var reply = new Reply
         {
+            Content = replyViewModel.Content,
+            UserId = userId,
+            PostId = postId,
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow,
+            IsVisible = true,
+            ParentReplyId = parentReplyId // Kan vara null om det är ett svar på en post
+        };
 
-             // Uppdatera detta beroende på hur du får postens ID i ReplyViewModel
-            //Console.WriteLine($"PostId: {postId}");
-            // Skapa ett nytt Reply-objekt från viewmodel
-            var reply = new Reply
-            {
-                Content = replyViewModel.Content,
-                UserId = userId,
-            };
-            //Console.WriteLine($"Reply", postId);
-            // Lägg till inlägget
+        // Anropa ReplyService för att spara reply i databasen och få det genererade ReplyId
+        var replyId = await _replyService.CreateReply(reply, userId, postId);
 
-            var author = reply.Author;
-            // Skapa ett svarsobjekt med inläggets ID och författare
-            var response = new
-            {
-                Author = author
-            };
-            return Ok(response);
-        }
+        // Uppdatera reply med det genererade ReplyId
+        reply.ReplyId = replyId;
+
+        // Returnera det skapade reply-objektet med det genererade ID:t
+        return Ok(reply);
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateReply(int id, Reply reply)
+    public async Task<IActionResult> UpdateReply(int id, ReplyViewModel replyViewModel)
     {
-        if (id != reply.ReplyId)
+        if (!ModelState.IsValid)
         {
-            return BadRequest();
+            return BadRequest(ModelState);
         }
-        await _replyService.UpdateReply(reply);
+
+        // Användarverifiering eller sätt standardvärde för UserId (om det behövs)
+        var userId = 1; // Detta är ett exempelvärde för en användare
+
+        // Skapa en Reply-entitet baserat på den mottagna ViewModel
+        var reply = new Reply
+        {
+            ReplyId = id,
+            Content = replyViewModel.Content,
+            UserId = userId, // Kan vara en faktisk användare eller ett standardvärde
+            UpdatedAt = DateTime.UtcNow
+        };
+
+        // Skicka Reply till ditt service-lager/repository för uppdatering
+        var success = await _replyService.UpdateReply(reply);
+        if (!success)
+        {
+            return NotFound();
+        }
+
         return NoContent();
     }
+
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> RemoveReply(int id)
@@ -133,6 +140,27 @@ public class RepliesController : ControllerBase
         }
 
         return Ok(replies);
+    }
+
+    [HttpPost("{replyId}/like")]
+    public async Task<IActionResult> LikeReply(int replyId)
+    {
+        // Här antas att användar-ID hämtas från autentiseringssystem (t.ex. JWT)
+        var userId = 1;
+
+        var result = await _replyService.LikeReplyAsync(replyId, userId);
+
+        if (result == "Reply kunde inte hittas.")
+        {
+            return NotFound(new { message = result });
+        }
+
+        if (result == "Du har redan gillat denna reply.")
+        {
+            return BadRequest(new { message = result });
+        }
+
+        return Ok(new { message = result });
     }
 
 }

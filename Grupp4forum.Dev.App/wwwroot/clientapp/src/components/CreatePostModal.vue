@@ -18,6 +18,15 @@
                             <label for="content" class="form-label">Innehåll</label>
                             <textarea id="content" v-model="content" class="form-control" required></textarea>
                         </div>
+                        <div class="mb-3">
+                            <label for="category" class="form-label">Kategori</label>
+                            <!-- Dropdown-lista för att välja kategori -->
+                            <select id="category" v-model="selectedCategory" class="form-select" required>
+                                <option v-for="category in categories" :key="category.id" :value="category.id">
+                                    {{ category.name }}
+                                </option>
+                            </select>
+                        </div>
                         <button type="submit" class="btn btn-primary">Spara</button>
                     </form>
                 </div>
@@ -27,9 +36,10 @@
 </template>
 
 <script setup lang="ts">
-    import { ref } from 'vue';
+    import { ref, onMounted } from 'vue';
+    import axios from 'axios';
 
-    // Använd defineProps för att definiera props
+    // Props för modalen
     const props = defineProps({
         isVisible: {
             type: Boolean,
@@ -37,26 +47,59 @@
         },
     });
 
-    // Använd defineEmits för att skicka händelser
-    const emit = defineEmits(['close']);
+    // Emit för att stänga modalen och uppdatera inlägg
+    const emit = defineEmits(['close', 'postCreated']);
 
-    // Reaktiva data för formuläret
+    // Reaktiva data
     const title = ref('');
     const content = ref('');
+    const selectedCategory = ref('');  // Kategorin som användaren väljer
+    const categories = ref([]);  // Alla kategorier
 
     // Funktion för att stänga modalen
     const closeModal = () => {
         emit('close');
     };
 
-    // Funktion för att hantera formulärinlämning
-    const submitForm = () => {
-        console.log('Nytt inlägg:', title.value, content.value);
-        // Logik för att hantera inlämnat inlägg, t.ex. skicka det till API
-        title.value = '';
-        content.value = '';
-        // Stäng modalen när inlägget har skapats
-        closeModal();
+    // Funktion för att hämta alla kategorier från API
+    const fetchCategories = async () => {
+        try {
+            const response = await axios.get('https://localhost:7147/api/Category');  // Hämta från API
+            categories.value = response.data;  // Spara kategorierna
+        } catch (error) {
+            console.error('Misslyckades med att hämta kategorier:', error);
+        }
+    };
+
+    // Hämta kategorier när komponenten monteras
+    onMounted(() => {
+        fetchCategories();
+    });
+
+    // Funktion för att hantera formulärinlämning och skapa ett nytt inlägg
+    const submitForm = async () => {
+        try {
+            // Skicka en POST-förfrågan till API för att skapa ett nytt inlägg
+            const newPost = {
+                title: title.value,
+                content: content.value,
+                categoryId: selectedCategory.value,
+            };
+            await axios.post('https://localhost:7147/api/Post', newPost);
+
+            // Emitera en händelse för att uppdatera listan av inlägg
+            emit('postCreated');
+
+            // Återställ formuläret
+            title.value = '';
+            content.value = '';
+            selectedCategory.value = '';
+
+            // Stäng modalen efter skapandet
+            closeModal();
+        } catch (error) {
+            console.error('Ett fel uppstod vid skapandet av inlägget:', error);
+        }
     };
 </script>
 

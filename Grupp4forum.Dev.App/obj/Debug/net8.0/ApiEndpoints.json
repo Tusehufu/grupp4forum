@@ -1,5 +1,21 @@
 [
   {
+    "ContainingType": "Grupp4forum.Dev.API.Controllers.AuthController",
+    "Method": "Login",
+    "RelativePath": "api/auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Grupp4forum.Dev.API.Controllers.LoginRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Grupp4forum.Dev.API.Controllers.CategoryController",
     "Method": "GetAll",
     "RelativePath": "api/Category",
@@ -188,6 +204,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Grupp4forum.Dev.App.Controllers.PostController",
+    "Method": "LikePost",
+    "RelativePath": "api/Post/{postId}/like",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "postId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "RepliesController",
     "Method": "GetAllReplies",
     "RelativePath": "api/Replies",
@@ -215,6 +247,16 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [
+      {
+        "Name": "postId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "parentReplyId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
       {
         "Name": "replyViewModel",
         "Type": "Grupp4forum.Dev.Infrastructure.ViewModel.ReplyViewModel",
@@ -273,8 +315,8 @@
         "IsRequired": true
       },
       {
-        "Name": "reply",
-        "Type": "Grupp4forum.Dev.Infrastructure.Models.Reply",
+        "Name": "replyViewModel",
+        "Type": "Grupp4forum.Dev.Infrastructure.ViewModel.ReplyViewModel",
         "IsRequired": true
       }
     ],
@@ -290,6 +332,22 @@
     "Parameters": [
       {
         "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RepliesController",
+    "Method": "LikeReply",
+    "RelativePath": "api/Replies/{replyId}/like",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "replyId",
         "Type": "System.Int32",
         "IsRequired": true
       }

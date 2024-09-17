@@ -45,12 +45,24 @@
       "PackagePath": "staticwebassets\\clientapp\\src\\components\\ConfirmDeletePostModal.vue"
     },
     {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\ConfirmDeleteReplyModal.vue",
+      "PackagePath": "staticwebassets\\clientapp\\src\\components\\ConfirmDeleteReplyModal.vue"
+    },
+    {
       "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\CreatePostModal.vue",
       "PackagePath": "staticwebassets\\clientapp\\src\\components\\CreatePostModal.vue"
     },
     {
       "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\CreateReplyModal.vue",
       "PackagePath": "staticwebassets\\clientapp\\src\\components\\CreateReplyModal.vue"
+    },
+    {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\EditPostModal.vue",
+      "PackagePath": "staticwebassets\\clientapp\\src\\components\\EditPostModal.vue"
+    },
+    {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\EditReplyModal.vue",
+      "PackagePath": "staticwebassets\\clientapp\\src\\components\\EditReplyModal.vue"
     },
     {
       "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\HelloWorld.vue",

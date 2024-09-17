@@ -6,7 +6,7 @@
             <button class="btn btn-primary me-1" @click="openCreatePostModal">Skapa inlägg</button>
 
             <!-- Modalen styrs av isCreatePostModalVisible och lyssnar på close-eventet -->
-            <CreatePostModal :isVisible="isCreatePostModalVisible" @close="closeCreatePostModal" />
+            <CreatePostModal :isVisible="isCreatePostModalVisible" @close="closeCreatePostModal" @postCreated="fetchPosts" />
 
             <!-- Lista över inlägg -->
             <PostList :posts="posts" />

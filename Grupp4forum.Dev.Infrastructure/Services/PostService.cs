@@ -46,6 +46,42 @@ namespace Grupp4forum.Dev.Infrastructure.Services
         {
             return await _postRepository.DeletePost(userId, postId);
         }
+        public async Task<string> LikePostAsync(int postId, int userId)
+        {
+            // Hämta posten för att kontrollera att den existerar
+            var post = await _postRepository.GetPostById(postId);
+            if (post == null)
+            {
+                return "Posten kunde inte hittas.";
+            }
+
+            // Kontrollera om användaren redan har gillat posten
+            var existingLike = await _postRepository.GetPostLikeAsync(postId, userId);
+            if (existingLike != null)
+            {
+                return "Du har redan gillat denna post.";
+            }
+
+            // Lägg till gillningen
+            var postLike = new PostLike
+            {
+                PostId = postId,
+                UserId = userId
+            };
+            await _postRepository.AddPostLikeAsync(postLike);
+
+            // Öka gillningar i posten och uppdatera
+            post.Likes += 1;
+            await _postRepository.UpdatePostLikesAsync(postId, post.Likes);
+
+            return "Post gillad!";
+        }
     }
 
+    public interface IPostService
+    {
+        Task<string> LikePostAsync(int postId, int userId);
+    }
 }
+
+

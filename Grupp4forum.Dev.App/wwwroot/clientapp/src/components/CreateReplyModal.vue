@@ -20,54 +20,75 @@
     </div>
 </template>
 
-<script lang="ts" setup>
-import { ref, defineProps, defineEmits } from 'vue';
-import axios from 'axios';
+<script setup lang="ts">
+    import { ref } from 'vue';
+    import axios from 'axios';
 
-// Props
-const props = defineProps<{
-  isVisible: boolean;
-  postId: number | null;
-  parentReplyId: number | null;
-}>();
-
-const emit = defineEmits(['close']);
-
-// Reaktiv variabel för svaret
-const content = ref('');
-
-// Funktion för att skicka formulär
-const submitForm = async () => {
-  try {
-    const token = localStorage.getItem('jwtToken');
-    const author = 'Användarnamn eller ID för inloggad användare';
-
-    const replyData = {
-      content: content.value,
-      author,
-      postId: props.postId,
-      parentReplyId: props.parentReplyId,
-    };
-
-    const response = await axios.post('https://localhost:7056/api/replies', replyData, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+    // Props för modalen
+    const props = defineProps({
+        isVisible: {
+            type: Boolean,
+            required: true,
+        },
+        postId: {
+            type: Number,
+            required: true,
+        },
+        parentReplyId: {
+            type: [Number, null],  // Tillåter både Number och null
+            default: null,
+        }
     });
 
-    console.log('Svar skapat:', response.data);
-    content.value = '';
-    emit('close');
-  } catch (error) {
-    console.error('Fel vid skapandet av svar:', error);
-  }
-};
 
-const closeModal = () => {
-  emit('close');
-};
+    // Emit för att stänga modalen och avisera att ett nytt svar har skapats
+    const emit = defineEmits(['close', 'replyCreated']);
+
+    // Reaktiv variabel för svaret
+    const content = ref('');
+
+    const submitForm = async () => {
+        try {
+            const userId = 1;  // Hårdkodat användar-ID
+
+            // Skapa reply-data som skickas till backend
+            const replyData = {
+                content: content.value,
+                userId
+            };
+
+            // Skicka POST-förfrågan till API med postId och parentReplyId som query-parametrar
+            let url = `https://localhost:7147/api/Replies?postId=${props.postId}`;
+
+            // Lägg till parentReplyId till URL:en endast om det inte är null
+            if (props.parentReplyId !== null) {
+                url += `&parentReplyId=${props.parentReplyId}`;
+            }
+
+            const response = await axios.post(url, replyData);
+
+            console.log('Svar skapat:', response.data);
+
+            emit('replyCreated');  // Emitera event för att meddela att ett svar har skapats
+
+            // Återställ formuläret
+            content.value = '';
+
+            // Stäng modalen
+            closeModal();
+        } catch (error) {
+            console.error('Fel vid skapandet av svar:', error);
+        }
+    };
+
+    // Funktion för att stänga modalen
+    const closeModal = () => {
+        emit('close');
+    };
 </script>
 
 <style scoped>
-    /* Din CSS här */
+    .modal {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
 </style>

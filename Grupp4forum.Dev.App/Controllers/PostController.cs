@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Grupp4forum.Dev.Infrastructure.ViewModel;
 using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Grupp4forum.Dev.App.Controllers
 {
@@ -117,7 +118,7 @@ namespace Grupp4forum.Dev.App.Controllers
         public async Task<IActionResult> RemovePost(int id)
         {
             // Här behövs ingen användarverifiering längre
-            var userId = 2; // Kan sätta till 0 eller annat värde för anonyma användare
+            var userId = 1; // Kan sätta till 0 eller annat värde för anonyma användare
 
             var result = await _postService.RemovePost(userId, id);
             if (!result)
@@ -125,6 +126,26 @@ namespace Grupp4forum.Dev.App.Controllers
                 return NotFound();
             }
             return NoContent();
+        }
+
+        [HttpPost("{postId}/like")]
+        public async Task<IActionResult> LikePost(int postId)
+        {
+            var userId = 1;  // Exempel för att hämta userId från autentisering (exempelvis JWT)
+
+            var result = await _postService.LikePostAsync(postId, userId);
+
+            if (result == "Posten kunde inte hittas.")
+            {
+                return NotFound(new { message = result });
+            }
+
+            if (result == "Du har redan gillat denna post.")
+            {
+                return BadRequest(new { message = result });
+            }
+
+            return Ok(new { message = result });
         }
     }
 }

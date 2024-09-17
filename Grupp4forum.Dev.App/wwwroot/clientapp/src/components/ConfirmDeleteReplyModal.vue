@@ -7,7 +7,7 @@
                     <button type="button" class="btn-close" @click="closeModal"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Är du säker på att du vill radera detta inlägg?</p>
+                    <p>Är du säker på att du vill radera detta svar?</p>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-danger" @click="confirmDelete">Radera</button>
@@ -19,43 +19,55 @@
 </template>
 
 <script setup lang="ts">
-    import { defineProps, defineEmits } from 'vue';
+    import { onMounted, defineEmits, defineProps } from 'vue';
     import axios from 'axios';
 
-    // Definiera props
+    // Props
     const props = defineProps({
         isVisible: {
             type: Boolean,
             required: true,
         },
-        postId: {
+        replyId: {
             type: Number,
             required: true,
         },
     });
 
-    // Emitter för att skicka eventen 'confirm' och 'cancel'
+    // Emits
     const emit = defineEmits(['confirm', 'cancel']);
 
-    // Funktion för att bekräfta borttagning
+    onMounted(() => {
+        console.log('Reply ID received in modal:', props.replyId);
+    });
+
+    // Funktion för att bekräfta borttagning av svar
     const confirmDelete = async () => {
+        const token = localStorage.getItem('jwtToken');
+        console.log('Attempting to delete reply ID:', props.replyId); // Lägg till loggning
+
         try {
-            // Gör DELETE-anropet här
-            await axios.delete(`https://localhost:7147/api/Post/${props.postId}`);
-            emit('confirm', props.postId); // Meddela att posten är raderad
+            const response = await axios.delete(
+                `https://localhost:7147/api/Replies/${props.replyId}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`, // Skicka JWT-token som en del av Authorization-headers
+                    },
+                }
+            );
+            emit('confirm', props.replyId);
+            window.location.reload();
         } catch (error) {
-            console.error('Det uppstod ett fel vid borttagning av inlägget:', error);
-        } finally {
-            closeModal(); // Stäng modalen efter radering
+            console.error('Det uppstod ett fel vid borttagning av svaret:', error);
         }
     };
 
     // Funktion för att stänga modalen
     const closeModal = () => {
-        emit('cancel'); // Skicka avbryt-händelsen
+        emit('cancel');
     };
 </script>
 
 <style scoped>
-    /* CSS-stilar */
+    /* Lägg till din CSS här om du vill */
 </style>
