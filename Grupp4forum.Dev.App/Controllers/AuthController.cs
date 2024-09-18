@@ -31,7 +31,7 @@ namespace Grupp4forum.Dev.API.Controllers
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
             // Hämta användare från databasen baserat på det angivna användarnamnet
-            var user = await _userRepository.FindByUsername(request.Email);
+            var user = await _userRepository.FindByUsername(request.Username);
 
             // Om användaren inte hittas eller lösenordet inte stämmer, returnera 401 Unauthorized
             if (user == null || !_passwordService.VerifyPassword(request.Password, user.PasswordHash))
@@ -79,7 +79,7 @@ namespace Grupp4forum.Dev.API.Controllers
     // Klassen för inloggningsbegäran
     public class LoginRequest
     {
-        public string Email { get; set; }
+        public string Username { get; set; }
         public string Password { get; set; }
     }
 }

@@ -22,10 +22,15 @@
                             <label for="category" class="form-label">Kategori</label>
                             <!-- Dropdown-lista för att välja kategori -->
                             <select id="category" v-model="selectedCategory" class="form-select" required>
-                                <option v-for="category in categories" :key="category.id" :value="category.id">
+                                <option v-for="category in categories" :key="category.categoryId" :value="category.categoryId">
                                     {{ category.name }}
                                 </option>
                             </select>
+                        </div>
+                        <!-- Nytt bilduppladdningsfält -->
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Lägg till bild</label>
+                            <input type="file" id="image" @change="handleImageUpload" class="form-control" />
                         </div>
                         <button type="submit" class="btn btn-primary">Spara</button>
                     </form>
@@ -34,6 +39,7 @@
         </div>
     </div>
 </template>
+
 
 <script setup lang="ts">
     import { ref, onMounted } from 'vue';
@@ -55,6 +61,15 @@
     const content = ref('');
     const selectedCategory = ref('');  // Kategorin som användaren väljer
     const categories = ref([]);  // Alla kategorier
+    const image = ref<File | null>(null); // För att hålla den valda bilden
+
+// Funktion för att hantera när en fil väljs i bilduppladdningen
+const handleImageUpload = (event: Event) => {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (file) {
+        image.value = file; // Spara den valda filen i image ref
+    }
+};
 
     // Funktion för att stänga modalen
     const closeModal = () => {
@@ -62,14 +77,16 @@
     };
 
     // Funktion för att hämta alla kategorier från API
-    const fetchCategories = async () => {
-        try {
-            const response = await axios.get('https://localhost:7147/api/Category');  // Hämta från API
-            categories.value = response.data;  // Spara kategorierna
-        } catch (error) {
-            console.error('Misslyckades med att hämta kategorier:', error);
-        }
-    };
+   const fetchCategories = async () => {
+    try {
+        const response = await axios.get('https://localhost:7147/api/Category');  // Din API-endpoint
+        categories.value = response.data;
+        console.log('Kategorier hämtade:', categories.value);  // Kontrollera om kategorier hämtas korrekt
+    } catch (error) {
+        console.error('Fel vid hämtning av kategorier:', error);
+    }
+};
+
 
     // Hämta kategorier när komponenten monteras
     onMounted(() => {
@@ -77,30 +94,40 @@
     });
 
     // Funktion för att hantera formulärinlämning och skapa ett nytt inlägg
-    const submitForm = async () => {
-        try {
-            // Skicka en POST-förfrågan till API för att skapa ett nytt inlägg
-            const newPost = {
-                title: title.value,
-                content: content.value,
-                categoryId: selectedCategory.value,
-            };
-            await axios.post('https://localhost:7147/api/Post', newPost);
+const submitForm = async () => {
+    try {
+        console.log('Vald kategori:', selectedCategory.value);  // Kontrollera om selectedCategory är ett nummer
+        console.log('Typ av vald kategori:', typeof selectedCategory.value);  // Kontrollera typen (ska vara "number")
 
-            // Emitera en händelse för att uppdatera listan av inlägg
-            emit('postCreated');
+        const formData = new FormData();
+        formData.append('title', title.value);
+        formData.append('content', content.value);
+        formData.append('categoryId', String(selectedCategory.value));  // Konvertera till sträng om det är ett nummer
 
-            // Återställ formuläret
-            title.value = '';
-            content.value = '';
-            selectedCategory.value = '';
-
-            // Stäng modalen efter skapandet
-            closeModal();
-        } catch (error) {
-            console.error('Ett fel uppstod vid skapandet av inlägget:', error);
+        if (image.value) {
+            formData.append('image', image.value);
         }
-    };
+
+        await axios.post('https://localhost:7147/api/Post', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+
+        emit('postCreated');
+
+        title.value = '';
+        content.value = '';
+        selectedCategory.value = '';
+        image.value = null;
+        closeModal();
+    } catch (error) {
+        console.error('Ett fel uppstod vid skapandet av inlägget:', error);
+    }
+};
+
+
+
 </script>
 
 <style scoped>

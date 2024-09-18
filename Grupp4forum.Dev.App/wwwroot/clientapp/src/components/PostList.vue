@@ -35,6 +35,9 @@
                 <p>Uppdaterades senast: {{ formatDate(post.updatedAt) }}</p>
                 <p>Skrivet av: {{ post.author }}</p>
                 <p>Antal gillningar: {{ post.likes }}</p>
+                <div v-if="post.imageBase64">
+                    <img :src="'data:image/jpeg;base64,' + post.imageBase64" alt="Post Image" class="img-fluid post-image" />
+                </div>
 
                 <!-- Gilla-knapp -->
                 <button class="btn btn-success" @click="likePost(post.postId)">Gilla</button>
@@ -71,6 +74,10 @@
                                 <p>{{ formatDate(reply.createdAt) }}</p>
                                 <p>{{ reply.content }} - <em>{{ reply.author }}</em> ({{ formatDate(reply.updatedAt) }})</p>
                                 <p>Gillningar: {{ reply.likes }}</p>
+                                <!-- Visa bilden om den finns -->
+                                <div v-if="reply.imageBase64">
+                                    <img :src="'data:image/jpeg;base64,' + reply.imageBase64" alt="Reply Image" class="img-fluid post-image" />
+                                </div>
                                 <!-- Svara-knapp för reply -->
                                 <button class="btn btn-secondary" @click="openCreateReplyModal(post.postId, reply.replyId)">
                                     Svara på detta svar
@@ -142,6 +149,7 @@
         likes: number;
         categoryId: number;
         categoryName?: string;
+        imageBase64?: string;
         replies?: Reply[];
     }
 
@@ -152,6 +160,7 @@
         createdAt: string;
         postId: number;
         likes: number;
+        imageBase64?: string;
     }
 
     interface Category {
@@ -288,7 +297,14 @@
                 response.data.map(async (post) => {
                     const replies = await fetchRepliesForPost(post.postId);
                     const category = categories.value.find(cat => cat.categoryId === post.categoryId);
-                    return { ...post, replies, categoryName: category ? category.name : 'Okänd kategori' };
+
+                    // Om API:t returnerar base64-sträng för bilden, inkludera den
+                    return {
+                        ...post,
+                        replies,
+                        categoryName: category ? category.name : 'Okänd kategori',
+                        imageBase64: post.imageBase64 // Lägg till base64-strängen för bilden
+                    };
                 })
             );
             posts.value = postsWithReplies;
@@ -298,16 +314,23 @@
         }
     };
 
+
     // Funktion för att hämta alla replies för ett specifikt postId
     const fetchRepliesForPost = async (postId: number) => {
         try {
             const response = await axios.get<Reply[]>(`https://localhost:7147/api/replies/post/${postId}`);
-            return response.data;
+
+            // Om API:t returnerar Base64-sträng för bilden, inkludera den i varje reply
+            return response.data.map(reply => ({
+                ...reply,
+                imageBase64: reply.imageBase64 || null // Om Base64-strängen finns, inkludera den
+            }));
         } catch (error) {
             console.error('Fel vid hämtning av replies:', error);
             return [];
         }
     };
+
 
     // Lifecycle hook för att hämta alla inlägg och kategorier när komponenten monteras
     onMounted(async () => {
@@ -321,4 +344,10 @@
         margin-top: 20px;
         text-align: center;
     }
+    .post-image {
+        max-width: 300px; /* Maximal bredd */
+        max-height: 300px; /* Maximal höjd */
+        object-fit: contain; /* Behåll bildens proportioner */
+    }
+
 </style>

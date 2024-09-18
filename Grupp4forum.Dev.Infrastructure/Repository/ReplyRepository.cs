@@ -33,10 +33,18 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
                         likes AS Likes,
                         created_at AS CreatedAt,
                         updated_at AS UpdatedAt,
-                        isvisible as IsVisible
+                        isvisible as IsVisible,
+                        Image
                     FROM 
                         Replies
                 ");
+            }
+            foreach (var reply in replies)
+            {
+                if (reply.Image != null && reply.Image.Length > 0)
+                {
+                    reply.ImageBase64 = Convert.ToBase64String(reply.Image);
+                }
             }
             return replies;
         }
@@ -55,7 +63,8 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
                         likes AS Likes,
                         created_at AS CreatedAt,
                         updated_at AS UpdatedAt,
-                        isvisible as IsVisible
+                        isvisible as IsVisible,
+                        Image
                     FROM 
                         Replies
                     WHERE 
@@ -72,9 +81,9 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
                 {
                     // Modifierad SQL för att hämta det genererade ReplyId
                     var query = @"
-                INSERT INTO Replies (user_id, post_id, content, parent_reply_id, likes, created_at, updated_at, isvisible) 
+                INSERT INTO Replies (user_id, post_id, content, parent_reply_id, likes, created_at, updated_at, isvisible, Image) 
                 OUTPUT INSERTED.reply_id
-                VALUES (@UserId, @PostId, @Content, @ParentReplyId, @Likes, @CreatedAt, @UpdatedAt, @IsVisible);
+                VALUES (@UserId, @PostId, @Content, @ParentReplyId, @Likes, @CreatedAt, @UpdatedAt, @IsVisible, @Image);
             ";
 
                     // Använd ExecuteScalarAsync för att hämta det nya ReplyId
@@ -88,6 +97,7 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
                         reply.CreatedAt,
                         reply.UpdatedAt,
                         reply.IsVisible,
+                        Image = reply.Image
                     });
                 }
                 return true;
@@ -162,27 +172,44 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
             using (var connection = new SqlConnection(_databaseSettings.DefaultConnection))
             {
                 var sql = @"
-            SELECT 
-                r.reply_id AS ReplyId,
-                r.post_id AS PostId,
-                r.user_id AS UserId,
-                r.content AS Content,
-                r.parent_reply_id AS ParentReplyId,
-                r.likes AS Likes,
-                r.created_at AS CreatedAt,
-                r.updated_at AS UpdatedAt,
-                r.isvisible AS IsVisible,
-                u.Username AS Author  
-            FROM 
-                Replies r
-            INNER JOIN 
-                Users u ON r.user_id = u.Id  
-            WHERE 
-                r.post_id = @PostId
+        SELECT 
+            r.reply_id AS ReplyId,
+            r.post_id AS PostId,
+            r.user_id AS UserId,
+            r.content AS Content,
+            r.parent_reply_id AS ParentReplyId,
+            r.likes AS Likes,
+            r.created_at AS CreatedAt,
+            r.updated_at AS UpdatedAt,
+            r.isvisible AS IsVisible,
+            u.Username AS Author,   
+            r.Image
+
+        FROM 
+            Replies r
+        INNER JOIN 
+            Users u ON r.user_id = u.Id  
+        WHERE 
+            r.post_id = @PostId
         ";
-                return await connection.QueryAsync<Reply>(sql, new { PostId = postId });
+
+                // Hämta alla replies för det givna postId
+                var replies = await connection.QueryAsync<Reply>(sql, new { PostId = postId });
+
+                // Gå igenom varje reply och omvandla binär bilddata till Base64-sträng
+                foreach (var reply in replies)
+                {
+                    if (reply.Image != null && reply.Image.Length > 0)
+                    {
+                        // Konvertera binärdata till Base64-sträng
+                        reply.ImageBase64 = Convert.ToBase64String(reply.Image);
+                    }
+                }
+
+                return replies;
             }
         }
+
 
         public async Task<bool> InsertReplyWithAuthor(Reply reply, int userId, int postId)
         {

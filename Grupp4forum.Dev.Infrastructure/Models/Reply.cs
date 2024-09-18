@@ -21,6 +21,7 @@ namespace Grupp4forum.Dev.Infrastructure.Models
 
         public bool IsVisible { get; set; }
 
-
+        public byte[]? Image { get; set; } 
+        public string? ImageBase64 { get; set; }
     }
 }

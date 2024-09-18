@@ -29,6 +29,7 @@ builder.Services.AddTransient<ReplyRepository>();
 builder.Services.AddTransient<ReplyService>();
 
 builder.Services.AddControllers();
+builder.Services.AddScoped<PasswordService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

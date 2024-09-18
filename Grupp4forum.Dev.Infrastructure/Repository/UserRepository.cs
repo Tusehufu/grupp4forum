@@ -137,12 +137,23 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
         public async Task<User> FindByUsername(string username)
         {
             using var connection = new SqlConnection(_databaseSettings.DefaultConnection);
-            var query = @"
-                SELECT u.*, r.role_id, r.Name
-                FROM Users u
-                JOIN Roles r ON u.role_id = r.role_id
-                WHERE u.Username = @Username";
 
+            // SQL-frågan specificerar kolumnerna som krävs för att mappa User och Role
+            var query = @"
+        SELECT 
+            u.Id AS UserId, 
+            u.Username, 
+            u.Email, 
+            u.password_hash AS PasswordHash, 
+            u.created_at AS CreatedAt, 
+            u.updated_at AS UpdatedAt,
+            r.role_id AS RoleId, 
+            r.Name AS RoleName
+        FROM Users u
+        JOIN Roles r ON u.role_id = r.role_id
+        WHERE u.Username = @Username";
+
+            // Använd splitOn "role_id" eftersom det är första kolumnen i Role-entiteten
             var userRoleMapping = await connection.QueryAsync<User, Role, User>(
                 query,
                 (user, role) =>
@@ -150,10 +161,13 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
                     user.Role = role;
                     return user;
                 },
-                new { Username = username }
+                new { Username = username },
+                splitOn: "role_id"  // Här ska vi matcha SQL-kolumnen exakt
             );
 
             return userRoleMapping.FirstOrDefault();
         }
+
+
     }
 }

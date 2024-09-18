@@ -37,8 +37,20 @@
       "PackagePath": "staticwebassets\\clientapp\\src\\App.vue"
     },
     {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\assets\\flowertopleft.png",
+      "PackagePath": "staticwebassets\\clientapp\\src\\assets\\flowertopleft.png"
+    },
+    {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\assets\\flowertopright.png",
+      "PackagePath": "staticwebassets\\clientapp\\src\\assets\\flowertopright.png"
+    },
+    {
       "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\assets\\logo.png",
       "PackagePath": "staticwebassets\\clientapp\\src\\assets\\logo.png"
+    },
+    {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\assets\\site.css",
+      "PackagePath": "staticwebassets\\clientapp\\src\\assets\\site.css"
     },
     {
       "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\ConfirmDeletePostModal.vue",
@@ -69,8 +81,16 @@
       "PackagePath": "staticwebassets\\clientapp\\src\\components\\HelloWorld.vue"
     },
     {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\Login.vue",
+      "PackagePath": "staticwebassets\\clientapp\\src\\components\\Login.vue"
+    },
+    {
       "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\PostList.vue",
       "PackagePath": "staticwebassets\\clientapp\\src\\components\\PostList.vue"
+    },
+    {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\Register.vue",
+      "PackagePath": "staticwebassets\\clientapp\\src\\components\\Register.vue"
     },
     {
       "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\main.ts",
@@ -83,10 +103,6 @@
     {
       "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\shims-vue.d.ts",
       "PackagePath": "staticwebassets\\clientapp\\src\\shims-vue.d.ts"
-    },
-    {
-      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\views\\AboutView.vue",
-      "PackagePath": "staticwebassets\\clientapp\\src\\views\\AboutView.vue"
     },
     {
       "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\views\\ForumView.vue",

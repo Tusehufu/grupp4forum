@@ -43,7 +43,7 @@ public class RepliesController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<Reply>> CreateReply(int postId, int? parentReplyId, [FromBody] ReplyViewModel replyViewModel)
+    public async Task<ActionResult<Reply>> CreateReply(int postId, int? parentReplyId, [FromForm] ReplyViewModel replyViewModel, IFormFile? image)
     {
         if (!ModelState.IsValid)
         {
@@ -64,6 +64,16 @@ public class RepliesController : ControllerBase
             ParentReplyId = parentReplyId // Kan vara null om det är ett svar på en post
         };
 
+        // Hantera bilduppladdningen om det finns en bild
+        if (image != null)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                await image.CopyToAsync(memoryStream);
+                reply.Image = memoryStream.ToArray(); // Lagra bilden som byte-array
+            }
+        }
+
         // Anropa ReplyService för att spara reply i databasen och få det genererade ReplyId
         var replyId = await _replyService.CreateReply(reply, userId, postId);
 
@@ -73,6 +83,7 @@ public class RepliesController : ControllerBase
         // Returnera det skapade reply-objektet med det genererade ID:t
         return Ok(reply);
     }
+
 
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateReply(int id, ReplyViewModel replyViewModel)

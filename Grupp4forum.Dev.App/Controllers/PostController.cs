@@ -40,37 +40,45 @@ namespace Grupp4forum.Dev.App.Controllers
             return Ok(post);
         }
 
-        // Lägg till ett nytt inlägg
         [HttpPost]
-        public async Task<ActionResult> AddPost(PostViewModel postViewModel)
+        public async Task<ActionResult> AddPost([FromForm] PostViewModel postViewModel, IFormFile? image)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            // Här behövs ingen användarverifiering längre
-            var userId = 1; // Kan sätta till 0 eller annat värde för anonyma användare
+            var userId = 1; // Användar-ID, standard för anonym användare
 
             var post = new Post
             {
                 Title = postViewModel.Title,
                 Content = postViewModel.Content,
-                UserId = userId, // Anonym användare eller standardvärde
+                UserId = userId,
                 CategoryId = postViewModel.CategoryId,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow,
                 IsVisible = true
             };
 
+            // Hantera bilduppladdningen om det finns en bild
+            if (image != null)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    await image.CopyToAsync(memoryStream);
+                    post.Image = memoryStream.ToArray(); // Lagra bilden som byte-array
+                }
+            }
+
             var id = await _postService.AddPost(post, userId);
-            var author = post.Author;
+
             var response = new
             {
                 postId = post.PostId,
                 userId = post.UserId,
                 title = post.Title,
-                author = post.Author ?? "Anonymous",  // Om författaren är null, returnera "Anonymous"
+                author = post.Author ?? "Anonymous",
                 isVisible = post.IsVisible,
                 likes = post.Likes,
                 content = post.Content,
@@ -81,6 +89,7 @@ namespace Grupp4forum.Dev.App.Controllers
 
             return Ok(response);
         }
+
 
         // Uppdatera ett inlägg
         [HttpPut("{id}")]

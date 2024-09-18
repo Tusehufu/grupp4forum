@@ -34,10 +34,19 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
                         updated_at AS UpdatedAt,
                         author,
                         likes AS Likes,
-                        isvisible
+                        isvisible,
+                        Image
                     FROM 
                         Posts
                 ");
+            }
+            // Konvertera bilden till Base64-sträng om den finns
+            foreach (var post in posts)
+            {
+                if (post.Image != null && post.Image.Length > 0)
+                {
+                    post.ImageBase64 = Convert.ToBase64String(post.Image);
+                }
             }
             return posts;
         }
@@ -74,9 +83,9 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
                     var author = await GetAuthorName(connection, userId);
 
                     await connection.ExecuteAsync(@"
-                        INSERT INTO Posts (user_id, category_id, title, content, created_at, updated_at, author) 
-                        VALUES (@UserId, @CategoryId, @Title, @Content, @CreatedAt, @UpdatedAt, @Author)
-                    ", new
+                INSERT INTO Posts (user_id, category_id, title, content, created_at, updated_at, author, Image) 
+                VALUES (@UserId, @CategoryId, @Title, @Content, @CreatedAt, @UpdatedAt, @Author, @Image)
+            ", new
                     {
                         post.UserId,
                         post.CategoryId,
@@ -84,7 +93,8 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
                         post.Content,
                         post.CreatedAt,
                         post.UpdatedAt,
-                        Author = author
+                        Author = author,
+                        Image = post.Image // Lägg till bilden
                     });
 
                     return true;
@@ -95,6 +105,7 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
                 return false;
             }
         }
+
 
         public async Task<bool> UpdatePost(Post post)
         {
