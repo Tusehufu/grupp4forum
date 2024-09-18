@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Grupp4forum.Dev.App")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+674b8d22f41f3ce4e56e0ea25987e819d93ca8b1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("Grupp4forum.Dev.App")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Grupp4forum.Dev.App")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

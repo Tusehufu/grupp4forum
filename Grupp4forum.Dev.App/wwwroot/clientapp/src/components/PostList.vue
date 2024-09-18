@@ -27,29 +27,44 @@
 
         <!-- Visa endast inlägg på den aktuella sidan -->
         <div v-for="post in paginatedPosts" :key="post.postId" class="post">
-            <div class="border">
-                <h3>{{ post.title }}</h3>
-                <p>{{ post.categoryName }}</p>
-                <p>{{ post.content }}</p>
-                <p>Skapat: {{ formatDate(post.createdAt) }}</p>
-                <p>Uppdaterades senast: {{ formatDate(post.updatedAt) }}</p>
-                <p>Skrivet av: {{ post.author }}</p>
-                <p>Antal gillningar: {{ post.likes }}</p>
+            <div class="postborder">
+                <h3 class="posttitle">{{ post.title }}</h3>
+                <p class="postcontent">{{ post.content }}</p>
                 <div v-if="post.imageBase64">
                     <img :src="'data:image/jpeg;base64,' + post.imageBase64" alt="Post Image" class="img-fluid post-image" />
                 </div>
+                <div class="postcontainer">
+                    <div class="left-section">
+                        <div class="leftsectioncontainer">
+                            <p class="postcategory">Kategori: {{ post.categoryName }}</p>
+                            <p class="postauthor">Skrivet av: {{ post.author }}</p>
+                        </div>
+                    </div>
+                    <div class="middle-section">
+                        <div class="middlesectioncontainer">
+                            <p class="postlikes">Antal gillningar: {{ post.likes }}</p>
+                        </div>
+                    </div>
+                    <div class="right-section">
+                        <div class="rightsectioncontainer">
+                            <p class="postcreatedat">Skapades: {{ formatDate(post.createdAt) }}</p>
+                            <p class="postlastupdate">Uppdaterad: {{ formatDate(post.updatedAt) }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="buttoncontainer">
+                    <!-- Gilla-knapp -->
+                    <button class="btn btnlike" @click="likePost(post.postId)">Gilla</button>
 
-                <!-- Gilla-knapp -->
-                <button class="btn btn-success" @click="likePost(post.postId)">Gilla</button>
+                    <!-- Svara-knapp för post -->
+                    <button class="btn btnanswer" @click="openCreateReplyModal(post.postId, null)">Svara</button>
 
-                <!-- Radera-knapp -->
-                <button class="btn btn-danger" @click="showConfirmDeleteModal(post.postId)">Radera</button>
+                    <!-- Radera-knapp -->
+                    <button class="btn btn-danger" @click="showConfirmDeleteModal(post.postId)">Radera</button>
 
-                <!-- Gul redigera-knapp -->
-                <button class="btn btn-warning" @click="openEditPostModal(post)">Redigera</button>
-
-                <!-- Svara-knapp för post -->
-                <button class="btn btn-primary" @click="openCreateReplyModal(post.postId, null)">Svara</button>
+                    <!-- Gul redigera-knapp -->
+                    <button class="btn btn-warning" @click="openEditPostModal(post)">Redigera</button>
+                </div>
             </div>
 
             <!-- Accordion för att visa alla replies under posten -->
@@ -344,10 +359,179 @@
         margin-top: 20px;
         text-align: center;
     }
+
     .post-image {
         max-width: 300px; /* Maximal bredd */
         max-height: 300px; /* Maximal höjd */
         object-fit: contain; /* Behåll bildens proportioner */
     }
 
+
+    .post, .reply {
+        border: 1px solid #ddd;
+        border-radius: 0.375rem;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        background-color: #fff;
+    }
+    /*Text inside posts*/
+
+    .postcontainer {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        height: auto;
+        padding: 0.5rem;
+        max-height: 4rem;
+    }
+
+
+
+        .postcontainer > div {
+            display: flex;
+            flex-direction: column;
+        }
+
+    .leftsectioncontainer {
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 0.20rem;
+    }
+
+    .left-section {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .middlesectioncontainer {
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 0.20rem;
+    }
+
+    .middle-section {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .rightsectioncontainer {
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 0.20rem;
+    }
+
+    .right-section {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    /* Reset margins for items */
+    .postcategory, .postcreatedat, .postlastupdate, .postauthor {
+        margin: 0;
+    }
+
+    .posttitle {
+        background-color: #6ECB63;
+        font-weight: bold;
+        border-radius: 10px;
+    }
+
+    .postcontent{
+        margin-top:1rem;
+        border:1px solid black;
+        border-radius:5px;
+    }
+
+
+
+    /* Button Styles */
+
+    .buttoncontainer {
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: flex-start;
+        padding: 1rem;
+    }
+
+    .btnlike {
+        background-color: #6ECB63;
+        color: black;
+        border: 1px solid transparent;
+        align-content: flex-start;
+    }
+
+        .btnlike:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+            color: black;
+        }
+
+    .btnanswer {
+        background-color: #6ECB63;
+        color: black;
+        border: 1px solid transparent;
+        align-content: flex-start;
+    }
+
+        .btnanswer:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+            color: black;
+        }
+
+    .btn {
+        margin-right: 0.5rem;
+    }
+
+    /* Sorting Dropdown */
+    .dropdown-menu {
+        min-width: 200px;
+    }
+
+    .dropdown-item {
+        padding: 0.5rem 1rem;
+    }
+
+    /* Accordion Styles */
+    .accordion-button {
+        border-radius: 0.375rem;
+    }
+
+    .accordion-body {
+        padding: 1rem;
+    }
+
+    /* Pagination Controls */
+    .pagination-controls {
+        margin-top: 1rem;
+        text-align: center;
+    }
+
+        .pagination-controls .btn {
+            margin: 0 0.5rem;
+        }
+
+    /* Modal Styles */
+    .modal-dialog {
+        max-width: 90%;
+    }
+
+    .modal-content {
+        border-radius: 0.375rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .btn {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .pagination-controls {
+            display: block;
+        }
+    }
 </style>

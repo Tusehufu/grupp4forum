@@ -38,7 +38,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: "CorsRule",
     builder =>
     {
-        builder.WithOrigins("http://localhost:8080")
+        builder.AllowAnyOrigin()
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
