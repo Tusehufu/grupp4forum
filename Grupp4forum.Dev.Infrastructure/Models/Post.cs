@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace Grupp4forum.Dev.Infrastructure.Models
 {
@@ -12,12 +12,11 @@ namespace Grupp4forum.Dev.Infrastructure.Models
         public int? CategoryId { get; set; }     // Referens till kategori (nullable)
         public bool IsVisible { get; set; }
         public int Likes { get; set; }
+        public byte[]? Image { get; set; }
+        public string? ImageBase64 { get; set; } // Base64-sträng för frontend
+
         public DateTime CreatedAt { get; set; }  // Tidpunkt när inlägget skapades
         public DateTime UpdatedAt { get; set; }  // Tidpunkt när inlägget senast uppdaterades
 
-        //// Navigationsegenskaper
-        //public virtual User User { get; set; }   // Referens till användaren (kan kommenteras bort om det inte används)
-        //public virtual Category Category { get; set; } // Referens till kategori
-        //public virtual ICollection<Reply> Replies { get; set; }  // Samling av replies för inlägget (om det används)
     }
 }
