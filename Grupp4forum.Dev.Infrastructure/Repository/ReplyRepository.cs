@@ -1,4 +1,4 @@
-﻿using Grupp4forum.Dev.Infrastructure.Configuration;
+using Grupp4forum.Dev.Infrastructure.Configuration;
 using Grupp4forum.Dev.Infrastructure.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
@@ -33,10 +33,18 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
                         likes AS Likes,
                         created_at AS CreatedAt,
                         updated_at AS UpdatedAt,
-                        isvisible as IsVisible
+                        isvisible as IsVisible,
+                        Image
                     FROM 
                         Replies
                 ");
+            }
+            foreach (var reply in replies)
+            {
+                if (reply.Image != null && reply.Image.Length > 0)
+                {
+                    reply.ImageBase64 = Convert.ToBase64String(reply.Image);
+                }
             }
             return replies;
         }
@@ -55,7 +63,8 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
                         likes AS Likes,
                         created_at AS CreatedAt,
                         updated_at AS UpdatedAt,
-                        isvisible as IsVisible
+                        isvisible as IsVisible,
+                        Image
                     FROM 
                         Replies
                     WHERE 
@@ -70,10 +79,15 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
             {
                 using (var connection = new SqlConnection(_databaseSettings.DefaultConnection))
                 {
-                    await connection.ExecuteAsync(@"
-                        INSERT INTO Replies (user_id, post_id, content, parent_reply_id, likes, created_at, updated_at, isvisible) 
-                        VALUES (@UserId, @PostId, @Content, @ParentReplyId, @Likes, @CreatedAt, @UpdatedAt, ,@IsVisible)
-                    ", new
+                    // Modifierad SQL för att hämta det genererade ReplyId
+                    var query = @"
+                INSERT INTO Replies (user_id, post_id, content, parent_reply_id, likes, created_at, updated_at, isvisible, Image) 
+                OUTPUT INSERTED.reply_id
+                VALUES (@UserId, @PostId, @Content, @ParentReplyId, @Likes, @CreatedAt, @UpdatedAt, @IsVisible, @Image);
+            ";
+
+                    // Använd ExecuteScalarAsync för att hämta det nya ReplyId
+                    reply.ReplyId = await connection.ExecuteScalarAsync<int>(query, new
                     {
                         reply.UserId,
                         reply.PostId,
@@ -83,7 +97,33 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
                         reply.CreatedAt,
                         reply.UpdatedAt,
                         reply.IsVisible,
+                        Image = reply.Image
                     });
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Fel vid insättning av svar: {ex.Message}");
+                return false;
+            }
+        }
+
+
+        public async Task<bool> UpdateReply(Reply reply)
+        {
+            try
+            {
+                using (var connection = new SqlConnection(_databaseSettings.DefaultConnection))
+                {
+                    await connection.ExecuteAsync(@"
+                UPDATE Replies
+                SET 
+                    content = @Content,
+                    updated_at = @UpdatedAt
+                WHERE 
+                    reply_id = @ReplyId AND user_id = @UserId
+            ", reply);
                 }
                 return true;
             }
@@ -93,29 +133,6 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
             }
         }
 
-        public async Task<bool> UpdateReply(Reply reply)
-        {
-            try
-            {
-                using (var connection = new SqlConnection(_databaseSettings.DefaultConnection))
-                {
-                    await connection.ExecuteAsync(@"
-                        UPDATE Replies
-                        SET 
-                            user_id = @UserId,
-                            content = @Content,
-                            timestamp = @Timestamp
-                        WHERE 
-                            reply_id = @ReplyId
-                    ", reply);
-                }
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
 
         public async Task<bool> DeleteReply(int userId, int id)
         {
@@ -155,25 +172,41 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
             using (var connection = new SqlConnection(_databaseSettings.DefaultConnection))
             {
                 var sql = @"
-            SELECT 
-                r.reply_id AS ReplyId,
-                r.post_id AS PostId,
-                r.user_id AS UserId,
-                r.content AS Content,
-                r.parent_reply_id AS ParentReplyId,
-                r.likes AS Likes,
-                r.created_at AS CreatedAt,
-                r.updated_at AS UpdatedAt,
-                r.isvisible AS IsVisible,
-                u.Username AS Author  
-            FROM 
-                Replies r
-            INNER JOIN 
-                Users u ON r.user_id = u.Id  
-            WHERE 
-                r.post_id = @PostId
+        SELECT 
+            r.reply_id AS ReplyId,
+            r.post_id AS PostId,
+            r.user_id AS UserId,
+            r.content AS Content,
+            r.parent_reply_id AS ParentReplyId,
+            r.likes AS Likes,
+            r.created_at AS CreatedAt,
+            r.updated_at AS UpdatedAt,
+            r.isvisible AS IsVisible,
+            u.Username AS Author,   
+            r.Image
+
+        FROM 
+            Replies r
+        INNER JOIN 
+            Users u ON r.user_id = u.Id  
+        WHERE 
+            r.post_id = @PostId
         ";
-                return await connection.QueryAsync<Reply>(sql, new { PostId = postId });
+
+                // Hämta alla replies för det givna postId
+                var replies = await connection.QueryAsync<Reply>(sql, new { PostId = postId });
+
+                // Gå igenom varje reply och omvandla binär bilddata till Base64-sträng
+                foreach (var reply in replies)
+                {
+                    if (reply.Image != null && reply.Image.Length > 0)
+                    {
+                        // Konvertera binärdata till Base64-sträng
+                        reply.ImageBase64 = Convert.ToBase64String(reply.Image);
+                    }
+                }
+
+                return replies;
             }
         }
 
@@ -184,43 +217,32 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
             {
                 using (var connection = new SqlConnection(_databaseSettings.DefaultConnection))
                 {
-                    // Hämta författarens namn baserat på användaridentifieringen
-                    var author = await GetReplyAuthorName(connection, userId);
+                    var query = @"
+                INSERT INTO Replies (user_id, post_id, content, parent_reply_id, likes, created_at, updated_at) 
+                OUTPUT INSERTED.reply_id
+                VALUES (@UserId, @PostId, @Content, @ParentReplyId, @Likes, @CreatedAt, @UpdatedAt);
+            ";
 
-                    // Uppdatera SQL-frågan för att infoga inlägg med författarens namn
-                    await connection.ExecuteAsync(@"
-                INSERT INTO Replies (user_id, content, timestamp, author, post_id) 
-                VALUES (@UserId, @Content, @Timestamp, @Author, @PostId)
-            ", new
+                    reply.ReplyId = await connection.ExecuteScalarAsync<int>(query, new
                     {
-                        UserId = userId, // Användaridentifiering som författare
+                        reply.UserId,
+                        reply.PostId,
                         reply.Content,
-                        Timestamp = DateTime.UtcNow, // Sätt den aktuella tidsstämpeln
-                        Author = author, // Författarens namn
-                        PostId = postId, // Postens ID
+                        reply.ParentReplyId,
+                        reply.Likes,
+                        reply.CreatedAt,
+                        reply.UpdatedAt, 
                     });
-                    Console.WriteLine(postId);
-
-                    // Hämta ID för den insatta replyn
-                    var replyId = await connection.ExecuteScalarAsync<int>("SELECT CAST(SCOPE_IDENTITY() as int)");
-                    // Lägg till postens ID och replyns ID i PostReplies-tabellen
-                    await connection.ExecuteAsync(@"
-                INSERT INTO PostReplies (post_id, reply_id)
-                VALUES (@PostId, @ReplyId)
-            ", new
-                    {
-                        PostId = postId,
-                        ReplyId = replyId
-                    });
-
-                    return true;
                 }
+                return true;
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine($"Fel vid insättning av svar: {ex.Message}");
                 return false;
             }
         }
+
         private async Task<string> GetReplyAuthorName(SqlConnection connection, int userId)
         {
             // Skapa SQL-frågan för att hämta författarens namn från Users-tabellen
@@ -262,6 +284,57 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
                 return false;
             }
         }
+        // Kontrollera om användaren redan har gillat en reply
+        public async Task<ReplyLike> GetReplyLikeAsync(int replyId, int userId)
+        {
+            using (var connection = new SqlConnection(_databaseSettings.DefaultConnection))
+            {
+                var replyLike = await connection.QuerySingleOrDefaultAsync<ReplyLike>(@"
+                    SELECT 
+                        reply_id AS ReplyId,
+                        user_id AS UserId
+                    FROM reply_likes
+                    WHERE reply_id = @ReplyId AND user_id = @UserId",
+                    new { ReplyId = replyId, UserId = userId });
 
+                return replyLike;
+            }
+        }
+
+        // Lägg till en reply-like
+        public async Task AddReplyLikeAsync(ReplyLike replyLike)
+        {
+            using (var connection = new SqlConnection(_databaseSettings.DefaultConnection))
+            {
+                var query = @"
+                    INSERT INTO reply_likes (reply_id, user_id)
+                    VALUES (@ReplyId, @UserId)";
+
+                await connection.ExecuteAsync(query, new { ReplyId = replyLike.ReplyId, UserId = replyLike.UserId });
+            }
+        }
+
+        // Uppdatera likes för en reply
+        public async Task UpdateReplyLikesAsync(int replyId, int likes)
+        {
+            using (var connection = new SqlConnection(_databaseSettings.DefaultConnection))
+            {
+                var query = @"
+                    UPDATE replies
+                    SET likes = @Likes
+                    WHERE reply_id = @ReplyId";
+
+                await connection.ExecuteAsync(query, new { Likes = likes, ReplyId = replyId });
+            }
+        }
     }
+
+    public interface IReplyRepository
+    {
+        Task<Reply> GetReplyByIdAsync(int replyId);
+        Task<ReplyLike> GetReplyLikeAsync(int replyId, int userId);
+        Task AddReplyLikeAsync(ReplyLike replyLike);
+        Task UpdateReplyLikesAsync(int replyId, int likes);
+    }
+
 }
