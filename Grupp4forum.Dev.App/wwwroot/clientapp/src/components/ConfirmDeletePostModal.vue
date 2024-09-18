@@ -1,4 +1,4 @@
-﻿<template>
+<template>
     <div class="modal show" style="display: block;" v-if="isVisible">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -41,7 +41,7 @@
     const confirmDelete = async () => {
         try {
             // Gör DELETE-anropet här
-            await axios.delete(`https://localhost:7056/api/Post/${props.postId}`);
+            await axios.delete(`https://localhost:7147/api/Post/${props.postId}`);
             emit('confirm', props.postId); // Meddela att posten är raderad
         } catch (error) {
             console.error('Det uppstod ett fel vid borttagning av inlägget:', error);
