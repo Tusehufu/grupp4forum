@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -9,7 +9,6 @@ using Microsoft.IdentityModel.Tokens;
 using Isopoh.Cryptography.Argon2;
 using Grupp4forum.Dev.Infrastructure.Models;
 using Grupp4forum.Dev.Infrastructure.Repository;
-using Grupp4forum.Dev.Infrastructure.Services;
 
 namespace Grupp4forum.Dev.API.Controllers
 {
@@ -80,7 +79,7 @@ namespace Grupp4forum.Dev.API.Controllers
     // Klassen för inloggningsbegäran
     public class LoginRequest
     {
-        public string Username { get; set; } = string.Empty;
-        public string Password { get; set; } = string.Empty;
+        public string Username { get; set; }
+        public string Password { get; set; }
     }
 }
