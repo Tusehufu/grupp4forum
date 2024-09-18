@@ -16,6 +16,8 @@ namespace Grupp4forum.Dev.Infrastructure.Models
         public string Author { get; set; }
         public int ParentReplyId { get; set; }
         public int Likes { get; set; }
+        public byte[]? Image { get; set; }
+        public string? ImageBase64 { get; set; } // Base64-sträng för frontend
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 

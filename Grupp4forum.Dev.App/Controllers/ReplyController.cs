@@ -61,7 +61,7 @@ public class RepliesController : ControllerBase
             CreatedAt = DateTime.UtcNow,
             UpdatedAt = DateTime.UtcNow,
             IsVisible = true,
-            ParentReplyId = parentReplyId // Kan vara null om det är ett svar på en post
+            //ParentReplyId = parentReplyId // Kan vara null om det är ett svar på en post
         };
 
         // Hantera bilduppladdningen om det finns en bild

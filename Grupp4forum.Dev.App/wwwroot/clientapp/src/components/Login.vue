@@ -129,4 +129,87 @@
     .error-feedback {
         color: red;
     }
+
+    .card-container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    .form-control {
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        padding: 10px;
+        font-size: 14px;
+        transition: border-color 0.3s;
+    }
+
+        .form-control:focus {
+            border-color: #80bdff;
+            outline: none;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+    .btn-block {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border: none;
+    }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+    .spinner-border {
+        margin-right: 8px;
+    }
+
+    .error-feedback {
+        color: red;
+        font-size: 13px;
+    }
+
+    .alert {
+        margin-top: 10px;
+    }
+
+    .text-success {
+        color: green;
+        font-weight: bold;
+    }
+
+    @media (max-width: 576px) {
+        .card-container {
+            padding: 15px;
+            max-width: 100%;
+        }
+    }
+
 </style>

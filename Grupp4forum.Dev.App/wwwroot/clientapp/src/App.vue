@@ -4,9 +4,9 @@
         <img src="@/assets/flowertopright.png" alt="Right Image" class="corner-image right-image" />
         <nav>
             <router-link to="/" class="btn custom-primary">Hem</router-link>
-            <router-link to="/about" class="btn custom-primary">Kategorier</router-link>
-            <router-link to="/login" class="btn custom-primary">Logga in</router-link>
             <router-link to="/forum" class="btn custom-primary">Forum</router-link>
+            <router-link to="/kategorier" class="btn custom-primary">Kategorier</router-link>
+            <router-link to="/login" class="btn custom-primary">Logga in</router-link>
         </nav>
         <router-view />
 
@@ -28,8 +28,7 @@
         padding: 30px;
     }
 
-    
-
+   
    
 
     /* Custom button styles */
