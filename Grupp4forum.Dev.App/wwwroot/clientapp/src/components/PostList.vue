@@ -59,11 +59,12 @@
                     <!-- Svara-knapp för post -->
                     <button class="btn btnanswer" @click="openCreateReplyModal(post.postId, null)">Svara</button>
 
+                    <!-- Gul redigera-knapp -->
+                    <button class="btn btn-warning" @click="openEditPostModal(post)">Redigera</button>
+
                     <!-- Radera-knapp -->
                     <button class="btn btn-danger" @click="showConfirmDeleteModal(post.postId)">Radera</button>
 
-                    <!-- Gul redigera-knapp -->
-                    <button class="btn btn-warning" @click="openEditPostModal(post)">Redigera</button>
                 </div>
             </div>
 
@@ -86,8 +87,10 @@
                          data-bs-parent="#accordionReplies">
                         <div class="accordion-body">
                             <div v-for="reply in post.replies" :key="reply.replyId" class="reply">
+                                <div class="replytextbox">
+                                    <p>{{ reply.content }} /Skrivet av:<em>{{ reply.author }}</em></p>
+                                </div>
                                 <p>{{ formatDate(reply.createdAt) }}</p>
-                                <p>{{ reply.content }} - <em>{{ reply.author }}</em> ({{ formatDate(reply.updatedAt) }})</p>
                                 <p>Gillningar: {{ reply.likes }}</p>
                                 <!-- Visa bilden om den finns -->
                                 <div v-if="reply.imageBase64">
@@ -97,10 +100,11 @@
                                 <button class="btn btn-secondary" @click="openCreateReplyModal(post.postId, reply.replyId)">
                                     Svara på detta svar
                                 </button>
-                                <button class="btn btn-danger" @click="openDeleteReplyModal(reply.replyId)">Radera</button>
+                                <button class="btn btn-success" @click="likeReply(reply.replyId)">Gilla</button>
+
                                 <!-- Redigera-knapp för reply -->
                                 <button class="btn btn-warning" @click="openEditReplyModal(reply)">Redigera</button>
-                                <button class="btn btn-success" @click="likeReply(reply.replyId)">Gilla</button>
+                                <button class="btn btn-danger" @click="openDeleteReplyModal(reply.replyId)">Radera</button>
                             </div>
                         </div>
                     </div>
@@ -188,7 +192,7 @@
     const allPosts = ref<Post[]>([]); // Kopia för att hålla alla inlägg
     const categories = ref<Category[]>([]);
     const currentPage = ref(1);
-    const postsPerPage = 20;
+    const postsPerPage = 5;
 
     // Paginering
     const totalPages = computed(() => Math.ceil(posts.value.length / postsPerPage));
@@ -383,6 +387,7 @@
         height: auto;
         padding: 0.5rem;
         max-height: 4rem;
+        border: 1px solid black;
     }
 
 
@@ -393,8 +398,7 @@
         }
 
     .leftsectioncontainer {
-        border: 1px solid black;
-        border-radius: 10px;
+        
         padding: 0.20rem;
     }
 
@@ -405,8 +409,7 @@
     }
 
     .middlesectioncontainer {
-        border: 1px solid black;
-        border-radius: 10px;
+        
         padding: 0.20rem;
     }
 
@@ -417,8 +420,7 @@
     }
 
     .rightsectioncontainer {
-        border: 1px solid black;
-        border-radius: 10px;
+        
         padding: 0.20rem;
     }
 
@@ -428,6 +430,10 @@
         gap: 0.5rem;
     }
 
+    .replytextbox{
+        border:1px solid black;
+        border-radius:10px;
+    }
     /* Reset margins for items */
     .postcategory, .postcreatedat, .postlastupdate, .postauthor {
         margin: 0;

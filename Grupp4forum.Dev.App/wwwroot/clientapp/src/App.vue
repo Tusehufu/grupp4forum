@@ -7,7 +7,7 @@
         <nav>
             <router-link to="/" class="btn custom-primary">Hem</router-link>
             <router-link to="/forum" class="btn custom-primary">Forum</router-link>
-            <router-link to="/kategorier" class="btn custom-primary">Kategorier</router-link>
+            <router-link to="/register" class="btn custom-primary">Registrera dig</router-link>
             <router-link to="/login" class="btn custom-primary">Logga in</router-link>
         </nav>
         <router-view />

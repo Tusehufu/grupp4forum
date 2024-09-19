@@ -2,7 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ForumView from '../views/ForumView.vue'
 import Login from '../components/Login.vue';
-import Register from '../components/Register.vue'; 
+import Register from '../components/Register.vue';
 
 const routes = [
     {

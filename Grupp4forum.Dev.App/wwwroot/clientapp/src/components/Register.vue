@@ -1,20 +1,20 @@
 ﻿<template>
-    <div class="register-user">
-        <h1 class="text-center">Registrera ny användare</h1>
-        <form @submit.prevent="submitForm">
-            <div class="mb-3">
+    <div class="register-user-container">
+        <h1 class="register-title text-center">Registrering</h1>
+        <form class="register-form" @submit.prevent="submitForm">
+            <div class="form-group">
                 <label for="username" class="form-label">Användarnamn</label>
                 <input type="text" id="username" v-model="newUser.username" class="form-control" required />
             </div>
-            <div class="mb-3">
+            <div class="form-group">
                 <label for="email" class="form-label">E-post</label>
                 <input type="email" id="email" v-model="newUser.email" class="form-control" required />
             </div>
-            <div class="mb-3">
+            <div class="form-group">
                 <label for="password" class="form-label">Lösenord</label>
                 <input type="password" id="password" v-model="newUser.password" class="form-control" required />
             </div>
-            <button type="submit" class="btn btn-primary">Registrera</button>
+            <button type="submit" class="btn btn-submit">Registrera</button>
         </form>
 
         <!-- Visa meddelandet när användaren har registrerats -->
@@ -72,5 +72,78 @@
 </script>
 
 <style scoped>
-    /* Lägg till din CSS här om du vill */
+    .register-user-container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .register-title {
+        font-family: 'Arial', sans-serif;
+        color: #333;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    .register-form .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-label {
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    .form-input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        color: #333;
+        transition: border-color 0.2s ease;
+    }
+
+        .form-input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+    .btn-submit {
+        width: 100%;
+        padding: 12px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+        .btn-submit:hover {
+            background-color: #0056b3;
+        }
+
+    .alert {
+        margin-top: 20px;
+        padding: 15px;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    .alert-success {
+        background-color: #d4edda;
+        color: #155724;
+    }
+
+    .alert-danger {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
 </style>
