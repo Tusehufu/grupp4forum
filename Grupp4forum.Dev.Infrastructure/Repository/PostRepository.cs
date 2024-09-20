@@ -107,36 +107,59 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
         }
 
 
-        public async Task<bool> UpdatePost(Post post)
+        public async Task<bool> UpdatePost(Post post, int userId)
         {
             try
             {
+                // Kontrollera om användaren är författaren till inlägget
+                var isPostAuthor = await IsUserPostAuthor(userId, post.PostId);
+                if (!isPostAuthor)
+                {
+                    // Om användaren inte är författare, kolla om de är admin eller moderator
+                    var isAdminOrModerator = await IsAdminOrModerator(userId);
+                    if (!isAdminOrModerator)
+                    {
+                        return false; // Returnera false om de inte har tillräckliga rättigheter
+                    }
+                }
+
+                // Uppdatera inlägget i databasen
                 using (var connection = new SqlConnection(_databaseSettings.DefaultConnection))
                 {
                     await connection.ExecuteAsync(@"
-                        UPDATE Posts
-                        SET 
-                            title = @Title,
-                            content = @Content,
-                            category_id = @CategoryId,
-                            updated_at = @UpdatedAt
-                        WHERE 
-                            post_id = @PostId AND user_id = @UserId
-                    ", post);
+                UPDATE Posts
+                SET 
+                    title = @Title,
+                    content = @Content,
+                    category_id = @CategoryId,
+                    updated_at = @UpdatedAt
+                WHERE 
+                    post_id = @PostId AND user_id = @UserId
+            ", new
+                    {
+                        post.Title,
+                        post.Content,
+                        post.CategoryId,
+                        post.UpdatedAt,
+                        post.PostId,
+                        UserId = userId // Skicka med userId här
+                    });
                 }
                 return true;
             }
             catch
             {
-                return false;
+                return false; // Hantera fel om det sker något oväntat
             }
         }
+
 
         public async Task<bool> DeletePost(int userId, int id)
         {
             var isPostAuthor = await IsUserPostAuthor(userId, id);
             if (!isPostAuthor)
             {
+                Console.WriteLine("Fisk");
                 var isAdminOrModerator = await IsAdminOrModerator(userId);
                 if (!isAdminOrModerator)
                 {
@@ -236,6 +259,33 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
                 await connection.ExecuteAsync(query, new { Likes = likes, PostId = postId });
             }
         }
+
+        // Ta bort en post-like
+        public async Task RemovePostLikeAsync(int postId, int userId)
+        {
+            using (var connection = new SqlConnection(_databaseSettings.DefaultConnection))
+            {
+                var query = @"
+            DELETE FROM post_likes
+            WHERE post_id = @PostId AND user_id = @UserId";
+
+                await connection.ExecuteAsync(query, new { PostId = postId, UserId = userId });
+            }
+        }
+
+        public async Task<bool> UserHasLikedPost(int postId, int userId)
+        {
+            using (var connection = new SqlConnection(_databaseSettings.DefaultConnection))
+            {
+                var query = @"
+            SELECT COUNT(1) FROM post_likes
+            WHERE post_id = @PostId AND user_id = @UserId";
+
+                var hasLiked = await connection.ExecuteScalarAsync<int>(query, new { PostId = postId, UserId = userId });
+                return hasLiked > 0;
+            }
+        }
+
     }
 
     public interface IPostRepository

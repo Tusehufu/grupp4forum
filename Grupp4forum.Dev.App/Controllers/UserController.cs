@@ -5,6 +5,8 @@ using Grupp4forum.Dev.API.Services;
 using Grupp4forum.Dev.Infrastructure.Models;
 using Grupp4forum.Dev.Infrastructure.ViewModel;
 using System;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace Grupp4forum.Dev.API.Controllers
 {
@@ -26,10 +28,20 @@ namespace Grupp4forum.Dev.API.Controllers
             return await _userService.GetAllUsers();
         }
 
+        [Authorize]
         // GET: api/users/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
+            var userIdClaim = User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            // Om användaren inte är inloggad, hantera som anonym eller returnera obehörigt
+            if (string.IsNullOrEmpty(userIdClaim))
+            {
+                return Unauthorized();
+            }
+
+            // Konvertera användarens ID från string till int (eller annan relevant datatyp)
+            var userId = int.Parse(userIdClaim);
             var user = await _userService.GetUserById(id);
 
             if (user == null)
@@ -106,18 +118,56 @@ namespace Grupp4forum.Dev.API.Controllers
             return NoContent();
         }
 
-        // DELETE: api/users/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+
+        //// DELETE: api/users/5
+        //[Authorize]
+        //[HttpDelete("{id}")]
+        //public async Task<IActionResult> Delete(int id)
+        //{
+        //    var userIdClaim = User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        //    // Om användaren inte är inloggad, hantera som anonym eller returnera obehörigt
+        //    if (string.IsNullOrEmpty(userIdClaim))
+        //    {
+        //        return Unauthorized();
+        //    }
+        //    bool success = await _userService.DeleteUser(id);
+        //    if (!success)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return NoContent();
+        //}
+
+        // DELETE: api/users/by-username/{username}
+        [Authorize]
+        [HttpDelete("by-username/{username}")]
+        public async Task<IActionResult> DeleteByUsername(string username)
         {
-            bool success = await _userService.DeleteUser(id);
+            var userIdClaim = User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var userId = int.Parse(userIdClaim);
+            if (string.IsNullOrEmpty(userIdClaim))
+            {
+                return Unauthorized();
+            }
+
+            // Hämta användaren baserat på användarnamn, och kolla om användaren finns
+            var user = await _userService.FindUserByUsername(username);
+            if (user == null)
+            {
+                return NotFound(); // Om användaren inte finns
+            }
+
+            // Utför borttagning av användare
+            bool success = await _userService.DeleteUser(user.Id, userId);
             if (!success)
             {
                 return NotFound();
             }
 
-            return NoContent();
+            return NoContent(); // Returnera en lyckad radering utan innehåll
         }
+
 
         // Åtgärd för att lägga till en roll till en användare
         [HttpPost("{userId}/roles/{roleId}")]
@@ -134,8 +184,8 @@ namespace Grupp4forum.Dev.API.Controllers
         }
 
         // Hämta användar-ID baserat på användarnamn
-        [HttpGet("username/{username}")]
-        public async Task<IActionResult> GetUserIdByUsername(string username)
+        [HttpGet("id")]
+        public async Task<IActionResult> GetUserIdByUsername([FromQuery] string username)
         {
             var user = await _userService.FindUserByUsername(username);
 
@@ -146,5 +196,23 @@ namespace Grupp4forum.Dev.API.Controllers
 
             return Ok(user.Id);
         }
+
+        [Authorize]
+        [HttpGet("is-admin-or-moderator")]
+        public async Task<IActionResult> IsAdminOrModerator()
+        {
+            var userIdClaim = User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (string.IsNullOrEmpty(userIdClaim))
+            {
+                return Unauthorized();
+            }
+
+            int userId = int.Parse(userIdClaim);
+            bool isAdminOrModerator = await _userService.IsAdminOrModerator(userId);
+
+            return Ok(new { isAdminOrModerator });
+        }
+
     }
 }

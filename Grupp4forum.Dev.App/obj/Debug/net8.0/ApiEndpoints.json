@@ -9,7 +9,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "Grupp4forum.Dev.API.Controllers.LoginRequest",
+        "Type": "Grupp4forum.Dev.API.Controllers.AuthController\u002BLoginRequest",
         "IsRequired": true
       }
     ],
@@ -250,8 +250,56 @@
   },
   {
     "ContainingType": "Grupp4forum.Dev.App.Controllers.PostController",
+    "Method": "CanEditPost",
+    "RelativePath": "api/Post/{postId}/can-edit",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "postId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Grupp4forum.Dev.App.Controllers.PostController",
+    "Method": "HasUserLikedPost",
+    "RelativePath": "api/Post/{postId}/hasLiked",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "postId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Grupp4forum.Dev.App.Controllers.PostController",
     "Method": "LikePost",
     "RelativePath": "api/Post/{postId}/like",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "postId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Grupp4forum.Dev.App.Controllers.PostController",
+    "Method": "UnlikePost",
+    "RelativePath": "api/Post/{postId}/unlike",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -400,8 +448,56 @@
   },
   {
     "ContainingType": "RepliesController",
+    "Method": "CanEditReply",
+    "RelativePath": "api/Replies/{replyId}/can-edit",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "replyId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RepliesController",
+    "Method": "HasUserLikedReply",
+    "RelativePath": "api/Replies/{replyId}/hasLiked",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "replyId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RepliesController",
     "Method": "LikeReply",
     "RelativePath": "api/Replies/{replyId}/like",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "replyId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RepliesController",
+    "Method": "UnlikeReply",
+    "RelativePath": "api/Replies/{replyId}/unlike",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -604,22 +700,6 @@
   },
   {
     "ContainingType": "Grupp4forum.Dev.API.Controllers.UsersController",
-    "Method": "Delete",
-    "RelativePath": "api/Users/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Grupp4forum.Dev.API.Controllers.UsersController",
     "Method": "AddRoleToUser",
     "RelativePath": "api/Users/{userId}/roles/{roleId}",
     "HttpMethod": "POST",
@@ -641,9 +721,9 @@
   },
   {
     "ContainingType": "Grupp4forum.Dev.API.Controllers.UsersController",
-    "Method": "GetUserIdByUsername",
-    "RelativePath": "api/Users/username/{username}",
-    "HttpMethod": "GET",
+    "Method": "DeleteByUsername",
+    "RelativePath": "api/Users/by-username/{username}",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -653,6 +733,32 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Grupp4forum.Dev.API.Controllers.UsersController",
+    "Method": "GetUserIdByUsername",
+    "RelativePath": "api/Users/id",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "username",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Grupp4forum.Dev.API.Controllers.UsersController",
+    "Method": "IsAdminOrModerator",
+    "RelativePath": "api/Users/is-admin-or-moderator",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   }
 ]

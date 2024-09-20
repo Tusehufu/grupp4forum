@@ -32,13 +32,12 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
         public async Task<int> CreateReply(Reply reply, int userId, int postId)
         {
             await _replyRepository.InsertReplyWithAuthor(reply, userId, postId);
-            Console.WriteLine(postId);
             return reply.ReplyId;
         }
 
-        public async Task<bool> UpdateReply(Reply reply)
+        public async Task<bool> UpdateReply(Reply reply, int ReplyId)
         {
-            return await _replyRepository.UpdateReply(reply);
+            return await _replyRepository.UpdateReply(reply, ReplyId);
         }
 
 
@@ -81,11 +80,50 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
 
             return "Reply gillad!";
         }
+
+        public async Task<string> UnlikeReplyAsync(int replyId, int userId)
+        {
+            var reply = await _replyRepository.GetReplyById(replyId);
+            if (reply == null)
+            {
+                return "Reply kunde inte hittas.";
+            }
+
+            var existingLike = await _replyRepository.GetReplyLikeAsync(replyId, userId);
+            if (existingLike == null)
+            {
+                return "Du har inte gillat denna reply.";
+            }
+
+            await _replyRepository.RemoveReplyLikeAsync(replyId, userId);
+            reply.Likes -= 1;
+            await _replyRepository.UpdateReplyLikesAsync(replyId, reply.Likes);
+
+            return "Reply ogillad!";
+        }
+
+        public async Task<bool> HasUserLikedReply(int replyId, int userId)
+        {
+            // Anropar repository för att kolla om användaren har gillat replyn
+            return await _replyRepository.UserHasLikedReply(replyId, userId);
+        }
+
+        public async Task<bool> CanEditReply(int userId, int replyId)
+        {
+            var isAuthor = await _replyRepository.IsUserReplyAuthor(userId, replyId);
+            var isAdminOrModerator = await _replyRepository.IsAdminOrModerator(userId);
+
+            return isAuthor || isAdminOrModerator;
+        }
     }
+
+
 
     public interface IReplyService
     {
         Task<string> LikeReplyAsync(int replyId, int userId);
+        Task<bool> CanEditReply(int userId, int replyId);
+
     }
 }
 

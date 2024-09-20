@@ -53,9 +53,9 @@ namespace Grupp4forum.Dev.API.Services
         }
 
         // Ta bort en användare
-        public async Task<bool> DeleteUser(int id)
+        public async Task<bool> DeleteUser(int id, int userId)
         {
-            return await _userRepository.Delete(id);
+            return await _userRepository.Delete(id, userId);
         }
 
         // Lägg till en roll till en användare
@@ -80,5 +80,11 @@ namespace Grupp4forum.Dev.API.Services
         {
             return await _userRepository.FindByUsername(username);
         }
+
+        public async Task<bool> IsAdminOrModerator(int userId)
+        {
+            return await _userRepository.IsAdminOrModerator(userId);
+        }
+
     }
 }

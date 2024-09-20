@@ -52,11 +52,20 @@ const closeModal = () => {
 // Funktion för att hantera formulärinlämning och uppdatera svaret
 const submitForm = async () => {
     try {
-        const updatedReply = {
-            content: content.value,
-        };
-        await axios.put(`https://localhost:7147/api/Replies/${props.reply.replyId}`, updatedReply); // Uppdatera svaret med PUT
-
+        const formData = new FormData();
+        formData.append('Content', content.value);
+        const token = localStorage.getItem('jwtToken');
+        if (!token) {
+            console.error('Ingen JWT-token hittades i localStorage.');
+            return;
+        }
+        await axios.put(`https://localhost:7147/api/Replies/${props.reply.replyId}`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer ${token}`
+            },
+        });
+      
         // Emitera en händelse för att uppdatera listan av svar
         emit('replyUpdated');
 

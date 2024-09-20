@@ -75,30 +75,53 @@ const fetchCategories = async () => {
     }
 };
 
-// Funktion för att hantera formulärinlämning och uppdatera inlägget
-const submitForm = async () => {
-    try {
-        const updatedPost = {
-            title: title.value,
-            content: content.value,
-            categoryId: selectedCategory.value,
-        };
-        await axios.put(`https://localhost:7147/api/Post/${props.post.postId}`, updatedPost); // Uppdatera inlägg med PUT
+    // Funktion för att hantera formulärinlämning och uppdatera inlägget
+    const submitForm = async () => {
+        console.log('submitForm anropad');
 
-        // Emitera en händelse för att uppdatera listan av inlägg
-        emit('postUpdated');
+        try {
 
-        // Stäng modalen efter uppdateringen
-        closeModal();
-    } catch (error) {
-        console.error('Ett fel uppstod vid uppdateringen av inlägget:', error);
-    }
-};
+            const formData = new FormData();
+            formData.append('Title', title.value);
+            formData.append('Content', content.value);
+            formData.append('categoryId', String(selectedCategory.value));  // Konvertera till sträng om det är ett nummer
+
+            // Logga serverns svar för att se vad API:et returnerar
+            //console.log('Serverns svar:', response);
+            const token = localStorage.getItem('jwtToken');
+            if (!token) {
+                console.error('Ingen JWT-token hittades i localStorage.');
+                return;
+            }
+            await axios.put(`https://localhost:7147/api/Post/${props.post.postId}`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': `Bearer ${token}`
+                },
+            });
+            // Emitera en händelse för att uppdatera listan av inlägg
+            emit('postUpdated');
+
+            // Stäng modalen efter uppdateringen
+            closeModal();
+        } catch (error) {
+            // Logga detaljerat felmeddelande om något går fel
+            console.error('Ett fel uppstod vid uppdateringen av inlägget:', error);
+
+            // Logga ut eventuella detaljer från serverns felmeddelande
+            if (error.response) {
+                console.error('Server fel:', error.response.data);
+            }
+        }
+    };
+
+
+
 
 // Uppdatera reaktiva data om posten ändras (vid öppning av ny post)
 watch(() => props.post, (newPost) => {
-    title.value = newPost.title;
-    content.value = newPost.content;
+    Title.value = newPost.Title;
+    Content.value = newPost.Content;
     selectedCategory.value = newPost.categoryId;
 });
 

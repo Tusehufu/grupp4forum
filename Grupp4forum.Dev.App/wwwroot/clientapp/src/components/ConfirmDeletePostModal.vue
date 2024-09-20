@@ -40,8 +40,16 @@
     // Funktion för att bekräfta borttagning
     const confirmDelete = async () => {
         try {
-            // Gör DELETE-anropet här
-            await axios.delete(`https://localhost:7147/api/Post/${props.postId}`);
+            const token = localStorage.getItem('jwtToken');
+
+            // Gör DELETE-anropet här med Bearer-token och rätt headers
+            await axios.delete(`https://localhost:7147/api/Post/${props.postId}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json' // Lägg till om det behövs för DELETE
+                }
+            });
+
             emit('confirm', props.postId); // Meddela att posten är raderad
         } catch (error) {
             console.error('Det uppstod ett fel vid borttagning av inlägget:', error);
@@ -49,6 +57,7 @@
             closeModal(); // Stäng modalen efter radering
         }
     };
+
 
     // Funktion för att stänga modalen
     const closeModal = () => {

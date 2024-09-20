@@ -63,12 +63,17 @@
     // Skicka formulärdata till backend
     const submitForm = async () => {
         try {
-            const userId = 1;  // Hårdkodat användar-ID
+            // Hämta JWT-token från localStorage (justera detta baserat på var du lagrar token)
+            const token = localStorage.getItem('jwtToken');
+
+            // Kontrollera att token existerar
+            if (!token) {
+                throw new Error('Ingen JWT-token tillgänglig, användaren är inte inloggad.');
+            }
 
             // Skapa FormData för att inkludera både text och bild
             const formData = new FormData();
             formData.append('Content', content.value);  // Lägg till svaret
-            formData.append('UserId', userId.toString());  // Lägg till användar-ID
 
             // Om en bild är vald, lägg till den i FormData
             if (replyImage.value) {
@@ -86,6 +91,7 @@
             const response = await axios.post(url, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',  // Viktigt att specificera detta när vi skickar FormData
+                    Authorization: `Bearer ${token}`,  // Skicka JWT-token i Authorization-headern
                 },
             });
 
@@ -99,10 +105,14 @@
 
             // Stäng modalen
             closeModal();
-        } catch (error) {
+        } catch (error: any) {
             console.error('Fel vid skapandet av svar:', error);
+            if (error.response && error.response.status === 401) {
+                console.error('Obehörig: Ingen giltig JWT-token eller inloggning krävs.');
+            }
         }
     };
+
 
     // Funktion för att stänga modalen
     const closeModal = () => {

@@ -42,6 +42,7 @@ public class RepliesController : ControllerBase
         return reply;
     }
 
+    [Authorize]
     [HttpPost]
     public async Task<ActionResult<Reply>> CreateReply(int postId, int? parentReplyId, [FromForm] ReplyViewModel replyViewModel, IFormFile? image)
     {
@@ -50,8 +51,15 @@ public class RepliesController : ControllerBase
             return BadRequest(ModelState);
         }
 
-        var userId = 1; // Här hårdkodas användar-ID
+        var userIdClaim = User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        // Om användaren inte är inloggad, hantera som anonym eller returnera obehörigt
+        if (string.IsNullOrEmpty(userIdClaim))
+        {
+            return Unauthorized();
+        }
 
+        // Konvertera användarens ID från string till int (eller annan relevant datatyp)
+        var userId = int.Parse(userIdClaim);
         // Skapa ett nytt Reply-objekt
         var reply = new Reply
         {
@@ -84,7 +92,7 @@ public class RepliesController : ControllerBase
         return Ok(reply);
     }
 
-
+    [Authorize]
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateReply(int id, ReplyViewModel replyViewModel)
     {
@@ -93,8 +101,14 @@ public class RepliesController : ControllerBase
             return BadRequest(ModelState);
         }
 
-        // Användarverifiering eller sätt standardvärde för UserId (om det behövs)
-        var userId = 1; // Detta är ett exempelvärde för en användare
+        // Hämta userId från ClaimsPrincipal (den inloggade användaren)
+        var userIdClaim = User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (string.IsNullOrEmpty(userIdClaim))
+        {
+            return Unauthorized();
+        }
+
+        var userId = int.Parse(userIdClaim);
 
         // Skapa en Reply-entitet baserat på den mottagna ViewModel
         var reply = new Reply
@@ -106,7 +120,7 @@ public class RepliesController : ControllerBase
         };
 
         // Skicka Reply till ditt service-lager/repository för uppdatering
-        var success = await _replyService.UpdateReply(reply);
+        var success = await _replyService.UpdateReply(reply, userId);
         if (!success)
         {
             return NotFound();
@@ -115,24 +129,19 @@ public class RepliesController : ControllerBase
         return NoContent();
     }
 
-
+    [Authorize]
     [HttpDelete("{id}")]
     public async Task<IActionResult> RemoveReply(int id)
     {
-        //var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
-        //if (userIdClaim == null)
-        //{
-        //    return Unauthorized("Du måste vara inloggad för att ta bort svaret.");
-        //}
+        var userIdClaim = User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        // Om användaren inte är inloggad, hantera som anonym eller returnera obehörigt
+        if (string.IsNullOrEmpty(userIdClaim))
+        {
+            return Unauthorized();
+        }
 
-        //// Convert the user ID to an integer or handle conversion errors
-        //int userId;
-        //if (!int.TryParse(userIdClaim.Value, out userId))
-        //{
-        //    Console.WriteLine("Ogiltigt id");
-        //    return BadRequest("Ogiltigt användar-ID.");
-        //}
-        var userId = 1;
+        // Konvertera användarens ID från string till int (eller annan relevant datatyp)
+        var userId = int.Parse(userIdClaim);
         var result = await _replyService.RemoveReply(userId, id);
         if (!result)
         {
@@ -153,11 +162,21 @@ public class RepliesController : ControllerBase
         return Ok(replies);
     }
 
+    [Authorize]
     [HttpPost("{replyId}/like")]
     public async Task<IActionResult> LikeReply(int replyId)
     {
-        // Här antas att användar-ID hämtas från autentiseringssystem (t.ex. JWT)
-        var userId = 1;
+
+        // Hämta användarens ID från ClaimsPrincipal (den inloggade användaren)
+        var userIdClaim = User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        // Om användaren inte är inloggad, hantera som anonym eller returnera obehörigt
+        if (string.IsNullOrEmpty(userIdClaim))
+        {
+            return Unauthorized();
+        }
+
+        // Konvertera användarens ID från string till int (eller annan relevant datatyp)
+        var userId = int.Parse(userIdClaim);
 
         var result = await _replyService.LikeReplyAsync(replyId, userId);
 
@@ -173,6 +192,60 @@ public class RepliesController : ControllerBase
 
         return Ok(new { message = result });
     }
+
+    [Authorize]
+    [HttpPost("{replyId}/unlike")]
+    public async Task<IActionResult> UnlikeReply(int replyId)
+    {
+        var userIdClaim = User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (string.IsNullOrEmpty(userIdClaim))
+        {
+            return Unauthorized();
+        }
+
+        var userId = int.Parse(userIdClaim);
+        var result = await _replyService.UnlikeReplyAsync(replyId, userId);
+
+        if (result == "Reply kunde inte hittas.")
+        {
+            return NotFound(new { message = result });
+        }
+
+        if (result == "Du har inte gillat denna reply.")
+        {
+            return BadRequest(new { message = result });
+        }
+
+        return Ok(new { message = result });
+    }
+
+    [Authorize]
+    [HttpGet("{replyId}/hasLiked")]
+    public async Task<IActionResult> HasUserLikedReply(int replyId)
+    {
+        var userIdClaim = User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (string.IsNullOrEmpty(userIdClaim))
+        {
+            return Unauthorized();
+        }
+
+        var userId = int.Parse(userIdClaim);
+        var hasLiked = await _replyService.HasUserLikedReply(replyId, userId);
+
+        return Ok(hasLiked);
+    }
+
+    [HttpGet("{replyId}/can-edit")]
+    public async Task<IActionResult> CanEditReply(int replyId)
+    {
+        var userIdClaim = User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var userId = int.Parse(userIdClaim);
+
+        var canEdit = await _replyService.CanEditReply(userId, replyId);
+
+        return Ok(new { canEdit });
+    }
+
 
 }
 

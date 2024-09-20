@@ -82,15 +82,11 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
         // Lägg till en användare
         public async Task<int> Add(User user)
         {
-            // Hasha användarens lösenord, username och email
+            // Hasha endast användarens lösenord
             string hashedPassword = Argon2.Hash(user.Password);
-            string hashedUsername = Argon2.Hash(user.Username);
-            string hashedEmail = Argon2.Hash(user.Email);
 
-            // Spara de hashade värdena
+            // Spara användarnamn och e-post som klartext
             user.PasswordHash = hashedPassword;
-            user.Username = hashedUsername;
-            user.Email = hashedEmail;
 
             using var connection = new SqlConnection(_databaseSettings.DefaultConnection);
             var query = @"
@@ -99,6 +95,7 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
         VALUES (@Username, @Email, @PasswordHash, @RoleId, @CreatedAt, @UpdatedAt)";
             return await connection.ExecuteScalarAsync<int>(query, user);
         }
+
 
 
         // Uppdatera en användare
@@ -116,8 +113,13 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
         }
 
         // Ta bort en användare med soft delete (anonymisering och inaktivering)
-        public async Task<bool> Delete(int id)
+        public async Task<bool> Delete(int id, int userId)
         {
+            var isAdminOrModerator = await IsAdminOrModerator(userId);
+            if (!isAdminOrModerator)
+            {
+                return false;
+            }
             using var connection = new SqlConnection(_databaseSettings.DefaultConnection);
             var query = @"
         UPDATE Users
@@ -133,40 +135,75 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
 
 
 
-        // Hitta användare baserat på användarnamn
         public async Task<User> FindByUsername(string username)
         {
             using var connection = new SqlConnection(_databaseSettings.DefaultConnection);
 
-            // SQL-frågan specificerar kolumnerna som krävs för att mappa User och Role
             var query = @"
         SELECT 
             u.Id AS UserId, 
             u.Username, 
             u.Email, 
-            u.password_hash AS PasswordHash, 
+            u.password_hash AS PasswordHash, -- Använd alias
             u.created_at AS CreatedAt, 
             u.updated_at AS UpdatedAt,
-            r.role_id AS RoleId, 
+            r.role_id AS RoleId,  
             r.Name AS RoleName
         FROM Users u
         JOIN Roles r ON u.role_id = r.role_id
         WHERE u.Username = @Username";
 
-            // Använd splitOn "role_id" eftersom det är första kolumnen i Role-entiteten
-            var userRoleMapping = await connection.QueryAsync<User, Role, User>(
-                query,
-                (user, role) =>
-                {
-                    user.Role = role;
-                    return user;
-                },
-                new { Username = username },
-                splitOn: "role_id"  // Här ska vi matcha SQL-kolumnen exakt
-            );
+            var result = await connection.QueryAsync<dynamic>(query, new { Username = username });
 
-            return userRoleMapping.FirstOrDefault();
+            var user = result.Select(row => new User
+            {
+                Id = row.UserId,
+                Username = row.Username,
+                Email = row.Email,
+                PasswordHash = row.PasswordHash,  // Mappa lösenordshashen manuellt
+                CreatedAt = row.CreatedAt,
+                UpdatedAt = row.UpdatedAt,
+                Role = new Role
+                {
+                    RoleId = row.RoleId,
+                    Name = row.RoleName
+                }
+            }).FirstOrDefault();
+
+            if (user != null)
+            {
+                // Logga lösenordshashen
+                Console.WriteLine($"User: {user.Username}, PasswordHash: {user.PasswordHash ?? "null"}");
+            }
+            else
+            {
+                Console.WriteLine("User not found.");
+            }
+
+            return user;
         }
+        public async Task<bool> IsAdminOrModerator(int userId)
+        {
+            using var connection = new SqlConnection(_databaseSettings.DefaultConnection);
+            var roleId = await connection.ExecuteScalarAsync<int?>(@"
+        SELECT role_Id FROM Users WHERE Id = @UserId", new { UserId = userId });
+
+            if (roleId.HasValue && (roleId == 2 || roleId == 3))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+
+
+
+
+
 
 
     }

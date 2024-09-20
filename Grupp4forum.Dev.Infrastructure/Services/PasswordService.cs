@@ -2,15 +2,26 @@
 
 public class PasswordService
 {
-    // Hash(a) lösenord med Argon2
-    public string HashPassword(string password)
-    {
-        return Argon2.Hash(password);
-    }
-
-    // Verifiera att ett lösenord matchar en given hash
     public bool VerifyPassword(string password, string hashedPassword)
     {
-        return Argon2.Verify(hashedPassword, password);
+        if (hashedPassword == null)
+        {
+            Console.WriteLine("Hashed password is null!");
+            return false;
+        }
+
+        Console.WriteLine($"Verifying password: {password}");
+        Console.WriteLine($"Against hash: {hashedPassword}");
+
+        try
+        {
+            return Argon2.Verify(hashedPassword, password);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error during password verification: {ex.Message}");
+            return false;
+        }
     }
+
 }

@@ -2,7 +2,9 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ForumView from '../views/ForumView.vue'
 import Login from '../components/Login.vue';
-import Register from '../components/Register.vue'; 
+import Register from '../components/Register.vue';
+import DeleteUser from '../components/DeleteUser.vue'
+import ProfileView from '../views/ProfileView.vue'
 
 const routes = [
     {
@@ -25,6 +27,16 @@ const routes = [
         path: '/register',
         name: 'register',
         component: Register
+    },
+    {
+        path: '/admin',
+        name: 'admin',
+        component: DeleteUser
+    },
+        {
+        path: '/profile',
+        name: 'profile',
+        component: ProfileView
     }
 ]
 

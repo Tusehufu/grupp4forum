@@ -49,37 +49,41 @@ namespace Grupp4forum.Dev.API.Controllers
 
         private string GenerateJwtToken(User user)
         {
-            // Skapa claims för användarens ID och användarnamn
+            // Skapa claims för användarens ID, användarnamn och roll
             var claims = new[]
             {
-        new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-        new Claim(ClaimTypes.Name, user.Username), // Använd ClaimTypes.Name för användarnamn
-        new Claim(ClaimTypes.Role, user.Role.Name)
+        new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()), // Lagrar användar-ID
+        new Claim("userId", user.Id.ToString()), // Lägger till userId som en specifik claim
+        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()), // Unik token-identifierare
+        new Claim(ClaimTypes.Name, user.Username), // Lagrar användarnamnet
+        new Claim(ClaimTypes.Role, user.Role.Name) // Lagrar användarens roll
     };
 
-            // Hämta signaturnyckeln från konfigurationen
+            // Hämta signeringsnyckeln från konfigurationen
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-            // Skapa JWT-tokenen med claims, utgångstid och signatur
+            // Skapa JWT-token med claims, utgångstid och signatur
             var token = new JwtSecurityToken(
                 issuer: _configuration["Jwt:Issuer"],
                 audience: _configuration["Jwt:Audience"],
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(30), // Justera utgångstiden enligt behov
+                expires: DateTime.Now.AddMinutes(30), // Utgångstid
                 signingCredentials: creds
             );
 
             // Returnera tokenen som sträng
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-    }
 
-    // Klassen för inloggningsbegäran
-    public class LoginRequest
-    {
-        public string Username { get; set; }
-        public string Password { get; set; }
+
+
+
+        // Klassen för inloggningsbegäran
+        public class LoginRequest
+        {
+            public string Username { get; set; }
+            public string Password { get; set; }
+        }
     }
 }

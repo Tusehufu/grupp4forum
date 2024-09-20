@@ -96,9 +96,7 @@ const handleImageUpload = (event: Event) => {
     // Funktion för att hantera formulärinlämning och skapa ett nytt inlägg
 const submitForm = async () => {
     try {
-        console.log('Vald kategori:', selectedCategory.value);  // Kontrollera om selectedCategory är ett nummer
-        console.log('Typ av vald kategori:', typeof selectedCategory.value);  // Kontrollera typen (ska vara "number")
-
+        
         const formData = new FormData();
         formData.append('title', title.value);
         formData.append('content', content.value);
@@ -107,10 +105,16 @@ const submitForm = async () => {
         if (image.value) {
             formData.append('image', image.value);
         }
-
+        const token = localStorage.getItem('jwtToken');
+        // Kontrollera om token finns
+        if (!token) {
+            console.error('Ingen JWT-token hittades i localStorage.');
+            return;
+        }
         await axios.post('https://localhost:7147/api/Post', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer ${token}`
             },
         });
 

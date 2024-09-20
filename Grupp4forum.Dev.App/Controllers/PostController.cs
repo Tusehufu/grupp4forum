@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Grupp4forum.Dev.Infrastructure.ViewModel;
 using System;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace Grupp4forum.Dev.App.Controllers
 {
@@ -39,7 +40,7 @@ namespace Grupp4forum.Dev.App.Controllers
             }
             return Ok(post);
         }
-
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult> AddPost([FromForm] PostViewModel postViewModel, IFormFile? image)
         {
@@ -47,9 +48,16 @@ namespace Grupp4forum.Dev.App.Controllers
             {
                 return BadRequest(ModelState);
             }
+           
+            var userIdClaim = User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            // Om användaren inte är inloggad, hantera som anonym eller returnera obehörigt
+            if (string.IsNullOrEmpty(userIdClaim))
+            {
+                return Unauthorized();
+            }
 
-            var userId = 1; // Användar-ID, standard för anonym användare
-
+            // Konvertera användarens ID från string till int (eller annan relevant datatyp)
+            var userId = int.Parse(userIdClaim);
             var post = new Post
             {
                 Title = postViewModel.Title,
@@ -89,31 +97,33 @@ namespace Grupp4forum.Dev.App.Controllers
 
             return Ok(response);
         }
-
-
-        // Uppdatera ett inlägg
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdatePost(int id, PostViewModel postViewModel)
         {
-            if (!ModelState.IsValid)
+            // Hämta användarens ID från ClaimsPrincipal (den inloggade användaren)
+            var userIdClaim = User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            // Om användaren inte är inloggad, hantera som anonym eller returnera obehörigt
+            if (string.IsNullOrEmpty(userIdClaim))
             {
-                return BadRequest(ModelState);
+                return Unauthorized();
             }
 
-            // Här behövs ingen användarverifiering längre
-            var userId = 1; // Kan sätta till 0 eller annat värde för anonyma användare
+            // Konvertera användarens ID från string till int (eller annan relevant datatyp)
+            var userId = int.Parse(userIdClaim);
 
+            // Skapa post-objektet med userId
             var post = new Post
             {
-                PostId = id, // Sätt inläggets ID
+                PostId = id,
                 Title = postViewModel.Title,
                 Content = postViewModel.Content,
                 CategoryId = postViewModel.CategoryId,
                 UserId = userId, // Anonym användare eller standardvärde
-                UpdatedAt = DateTime.UtcNow // Uppdaterad tid
+                UpdatedAt = DateTime.UtcNow
             };
 
-            var success = await _postService.UpdatePost(post);
+            var success = await _postService.UpdatePost(post, userId); // userId skickas inom post-objektet
             if (!success)
             {
                 return NotFound();
@@ -123,11 +133,20 @@ namespace Grupp4forum.Dev.App.Controllers
         }
 
         // Ta bort ett inlägg
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> RemovePost(int id)
         {
-            // Här behövs ingen användarverifiering längre
-            var userId = 1; // Kan sätta till 0 eller annat värde för anonyma användare
+            // Hämta användarens ID från ClaimsPrincipal (den inloggade användaren)
+            var userIdClaim = User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            // Om användaren inte är inloggad, hantera som anonym eller returnera obehörigt
+            if (string.IsNullOrEmpty(userIdClaim))
+            {
+                return Unauthorized();
+            }
+
+            // Konvertera användarens ID från string till int (eller annan relevant datatyp)
+            var userId = int.Parse(userIdClaim);
 
             var result = await _postService.RemovePost(userId, id);
             if (!result)
@@ -136,11 +155,20 @@ namespace Grupp4forum.Dev.App.Controllers
             }
             return NoContent();
         }
-
+        [Authorize]
         [HttpPost("{postId}/like")]
         public async Task<IActionResult> LikePost(int postId)
         {
-            var userId = 1;  // Exempel för att hämta userId från autentisering (exempelvis JWT)
+            // Hämta användarens ID från ClaimsPrincipal (den inloggade användaren)
+            var userIdClaim = User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            // Om användaren inte är inloggad, hantera som anonym eller returnera obehörigt
+            if (string.IsNullOrEmpty(userIdClaim))
+            {
+                return Unauthorized();
+            }
+
+            // Konvertera användarens ID från string till int (eller annan relevant datatyp)
+            var userId = int.Parse(userIdClaim);
 
             var result = await _postService.LikePostAsync(postId, userId);
 
@@ -156,5 +184,69 @@ namespace Grupp4forum.Dev.App.Controllers
 
             return Ok(new { message = result });
         }
+
+        [Authorize]
+        [HttpPost("{postId}/unlike")]
+        public async Task<IActionResult> UnlikePost(int postId)
+        {
+            // Hämta användarens ID från ClaimsPrincipal (den inloggade användaren)
+            var userIdClaim = User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userIdClaim))
+            {
+                return Unauthorized();
+            }
+
+            var userId = int.Parse(userIdClaim);
+            var result = await _postService.UnlikePostAsync(postId, userId);
+
+            if (result == "Posten kunde inte hittas.")
+            {
+                return NotFound(new { message = result });
+            }
+
+            if (result == "Du har inte gillat denna post.")
+            {
+                return BadRequest(new { message = result });
+            }
+
+            return Ok(new { message = result });
+        }
+
+        [Authorize]
+        [HttpGet("{postId}/hasLiked")]
+        public async Task<IActionResult> HasUserLikedPost(int postId)
+        {
+            try
+            {
+                // Hämta userId från ClaimsPrincipal (den inloggade användaren)
+                var userIdClaim = User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                if (string.IsNullOrEmpty(userIdClaim))
+                {
+                    return Unauthorized();
+                }
+
+                var userId = int.Parse(userIdClaim);
+
+                // Kontrollera om användaren har gillat posten
+                var hasLiked = await _postService.HasUserLikedPost(postId, userId);
+
+                return Ok(new { hasLiked });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Interna serverfel: {ex.Message}");
+            }
+        }
+
+        [HttpGet("{postId}/can-edit")]
+        public async Task<IActionResult> CanEditPost(int postId)
+        {
+            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+
+            var canEdit = await _postService.CanEditPost(userId, postId);
+
+            return Ok(new { canEdit });
+        }
+
     }
 }

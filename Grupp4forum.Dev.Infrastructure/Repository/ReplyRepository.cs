@@ -110,10 +110,21 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
         }
 
 
-        public async Task<bool> UpdateReply(Reply reply)
+        public async Task<bool> UpdateReply(Reply reply, int userId)
         {
             try
             {
+                var isReplyAuthor = await IsUserReplyAuthor(userId, reply.ReplyId);
+                if (!isReplyAuthor)
+                {
+                    // Om användaren inte är författare, kontrollera om de är admin eller moderator
+                    var isAdminOrModerator = await IsAdminOrModerator(userId);
+                    if (!isAdminOrModerator)
+                    {
+                        return false; // Användaren har inte rättigheter att uppdatera svaret
+                    }
+                }
+
                 using (var connection = new SqlConnection(_databaseSettings.DefaultConnection))
                 {
                     await connection.ExecuteAsync(@"
@@ -138,15 +149,15 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
         {
             try
             {
-                //var isReplyAuthor = await IsUserReplyAuthor(userId, id);
-                //if(!isReplyAuthor) 
-                //{
-                //    var isAdminOrModerator = await IsAdminOrModerator(userId);
-                //    if (!isAdminOrModerator) 
-                //    {
-                //        return false;
-                //    }
-                //}
+                var isReplyAuthor = await IsUserReplyAuthor(userId, id);
+                if (!isReplyAuthor)
+                {                
+                    var isAdminOrModerator = await IsAdminOrModerator(userId);
+                    if (!isAdminOrModerator)
+                    {
+                        return false;
+                    }
+                }
 
                 using (var connection = new SqlConnection(_databaseSettings.DefaultConnection))
                 {
@@ -218,9 +229,9 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
                 using (var connection = new SqlConnection(_databaseSettings.DefaultConnection))
                 {
                     var query = @"
-                INSERT INTO Replies (user_id, post_id, content, parent_reply_id, likes, created_at, updated_at) 
+                INSERT INTO Replies (user_id, post_id, content, parent_reply_id, likes, created_at, updated_at, Image) 
                 OUTPUT INSERTED.reply_id
-                VALUES (@UserId, @PostId, @Content, @ParentReplyId, @Likes, @CreatedAt, @UpdatedAt);
+                VALUES (@UserId, @PostId, @Content, @ParentReplyId, @Likes, @CreatedAt, @UpdatedAt, @Image);
             ";
 
                     reply.ReplyId = await connection.ExecuteScalarAsync<int>(query, new
@@ -231,7 +242,8 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
                         reply.ParentReplyId,
                         reply.Likes,
                         reply.CreatedAt,
-                        reply.UpdatedAt, 
+                        reply.UpdatedAt,
+                        Image = reply.Image
                     });
                 }
                 return true;
@@ -261,19 +273,22 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
             using (var connection = new SqlConnection(_databaseSettings.DefaultConnection))
             {
                 var ownerId = await connection.ExecuteScalarAsync<int?>(@"
-         SELECT user_id
-         FROM Replies
-         WHERE reply_id = @ReplyId
-     ", new { ReplyId = replyId });
+            SELECT user_id
+            FROM Replies
+            WHERE reply_id = @ReplyId
+        ", new { ReplyId = replyId });
+
+                Console.WriteLine($"ReplyId: {replyId}, UserId: {userId}, OwnerId: {ownerId}");
 
                 return ownerId.HasValue && ownerId.Value == userId;
             }
         }
+
         public async Task<bool> IsAdminOrModerator(int userId)
         {
             using var connection = new SqlConnection(_databaseSettings.DefaultConnection);
             var roleId = await connection.ExecuteScalarAsync<int?>(@"
-        SELECT RoleId FROM Users WHERE Id = @UserId", new { UserId = userId });
+        SELECT role_Id FROM Users WHERE Id = @UserId", new { UserId = userId });
 
             if (roleId.HasValue && (roleId == 2 || roleId == 3))
             {
@@ -327,6 +342,33 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
                 await connection.ExecuteAsync(query, new { Likes = likes, ReplyId = replyId });
             }
         }
+
+        public async Task RemoveReplyLikeAsync(int replyId, int userId)
+        {
+            using (var connection = new SqlConnection(_databaseSettings.DefaultConnection))
+            {
+                var query = @"
+            DELETE FROM reply_likes
+            WHERE reply_id = @ReplyId AND user_id = @UserId";
+
+                await connection.ExecuteAsync(query, new { ReplyId = replyId, UserId = userId });
+            }
+        }
+
+        public async Task<bool> UserHasLikedReply(int replyId, int userId)
+        {
+            using (var connection = new SqlConnection(_databaseSettings.DefaultConnection))
+            {
+                var query = @"
+            SELECT COUNT(1)
+            FROM reply_likes
+            WHERE reply_id = @ReplyId AND user_id = @UserId";
+
+                var hasLiked = await connection.ExecuteScalarAsync<int>(query, new { ReplyId = replyId, UserId = userId });
+                return hasLiked > 0;  // Returnera true om användaren har gillat replyn
+            }
+        }
+
     }
 
     public interface IReplyRepository

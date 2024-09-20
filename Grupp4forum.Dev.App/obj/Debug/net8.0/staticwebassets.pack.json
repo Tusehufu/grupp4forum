@@ -37,6 +37,14 @@
       "PackagePath": "staticwebassets\\clientapp\\src\\App.vue"
     },
     {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\assets\\bottomleft.png",
+      "PackagePath": "staticwebassets\\clientapp\\src\\assets\\bottomleft.png"
+    },
+    {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\assets\\bottomright.png",
+      "PackagePath": "staticwebassets\\clientapp\\src\\assets\\bottomright.png"
+    },
+    {
       "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\assets\\flowertopleft.png",
       "PackagePath": "staticwebassets\\clientapp\\src\\assets\\flowertopleft.png"
     },
@@ -67,6 +75,10 @@
     {
       "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\CreateReplyModal.vue",
       "PackagePath": "staticwebassets\\clientapp\\src\\components\\CreateReplyModal.vue"
+    },
+    {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\DeleteUser.vue",
+      "PackagePath": "staticwebassets\\clientapp\\src\\components\\DeleteUser.vue"
     },
     {
       "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\EditPostModal.vue",
@@ -111,6 +123,10 @@
     {
       "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\views\\HomeView.vue",
       "PackagePath": "staticwebassets\\clientapp\\src\\views\\HomeView.vue"
+    },
+    {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\views\\ProfileView.vue",
+      "PackagePath": "staticwebassets\\clientapp\\src\\views\\ProfileView.vue"
     },
     {
       "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\tsconfig.json",
