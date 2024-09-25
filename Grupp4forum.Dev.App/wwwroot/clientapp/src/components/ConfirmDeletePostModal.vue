@@ -43,7 +43,7 @@
             const token = localStorage.getItem('jwtToken');
 
             // Gör DELETE-anropet här med Bearer-token och rätt headers
-            await axios.delete(`https://localhost:7147/api/Post/${props.postId}`, {
+            await axios.delete(`https://grupp4forumdevapp20240923094105.azurewebsites.net/api/Post/${props.postId}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json' // Lägg till om det behövs för DELETE

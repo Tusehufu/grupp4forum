@@ -81,7 +81,7 @@
             }
 
             // Skicka POST-förfrågan till API med postId och parentReplyId som query-parametrar
-            let url = `https://localhost:7147/api/Replies?postId=${props.postId}`;
+            let url = `https://grupp4forumdevapp20240923094105.azurewebsites.net/api/Replies?postId=${props.postId}`;
 
             // Lägg till parentReplyId till URL:en endast om det inte är null
             if (props.parentReplyId !== null) {
@@ -95,7 +95,6 @@
                 },
             });
 
-            console.log('Svar skapat:', response.data);
 
             emit('replyCreated');  // Emitera event för att meddela att ett svar har skapats
 

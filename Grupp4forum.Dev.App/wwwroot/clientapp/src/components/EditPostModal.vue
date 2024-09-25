@@ -68,7 +68,7 @@ const closeModal = () => {
 // Funktion för att hämta alla kategorier från API
 const fetchCategories = async () => {
     try {
-        const response = await axios.get('https://localhost:7147/api/Category'); // Hämta från API
+        const response = await axios.get('https://grupp4forumdevapp20240923094105.azurewebsites.net/api/Category'); // Hämta från API
         categories.value = response.data; // Spara kategorierna
     } catch (error) {
         console.error('Misslyckades med att hämta kategorier:', error);
@@ -77,7 +77,6 @@ const fetchCategories = async () => {
 
     // Funktion för att hantera formulärinlämning och uppdatera inlägget
     const submitForm = async () => {
-        console.log('submitForm anropad');
 
         try {
 
@@ -93,7 +92,7 @@ const fetchCategories = async () => {
                 console.error('Ingen JWT-token hittades i localStorage.');
                 return;
             }
-            await axios.put(`https://localhost:7147/api/Post/${props.post.postId}`, formData, {
+            await axios.put(`https://grupp4forumdevapp20240923094105.azurewebsites.net/api/Post/${props.post.postId}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'Authorization': `Bearer ${token}`

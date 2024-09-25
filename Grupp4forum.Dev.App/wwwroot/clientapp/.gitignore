@@ -64,7 +64,7 @@
     // Funktion för att hämta alla kategorier från API
     const fetchCategories = async () => {
         try {
-            const response = await axios.get('https://localhost:7147/api/Category');  // Hämta från API
+            const response = await axios.get('https://grupp4forumdevapp20240923094105.azurewebsites.net/api/Category');  // Hämta från API
             categories.value = response.data;  // Spara kategorierna
         } catch (error) {
             console.error('Misslyckades med att hämta kategorier:', error);
@@ -85,7 +85,7 @@
                 content: content.value,
                 categoryId: selectedCategory.value,
             };
-            await axios.post('https://localhost:7147/api/Post', newPost);
+            await axios.post('https://grupp4forumdevapp20240923094105.azurewebsites.net/api/Post', newPost);
 
             // Emitera en händelse för att uppdatera listan av inlägg
             emit('postCreated');

@@ -65,14 +65,14 @@
             loading.value = true;
             errorMessage.value = '';
 
-            const loginResponse = await axios.post('https://localhost:7147/api/auth/login', userCredentials.value);
+            const loginResponse = await axios.post('https://grupp4forumdevapp20240923094105.azurewebsites.net/api/auth/login', userCredentials.value);
 
             if (loginResponse.status === 200) {
                 const token = loginResponse.data.token;
                 localStorage.setItem('jwtToken', token);
 
                 const username = userCredentials.value.username;
-                const userIdResponse = await axios.get(`https://localhost:7147/api/users/id?username=${username}`);
+                const userIdResponse = await axios.get(`https://grupp4forumdevapp20240923094105.azurewebsites.net/api/users/id?username=${username}`);
 
                 if (userIdResponse.status === 200) {
                     const userId = userIdResponse.data;

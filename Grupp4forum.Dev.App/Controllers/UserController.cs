@@ -119,26 +119,6 @@ namespace Grupp4forum.Dev.API.Controllers
         }
 
 
-        //// DELETE: api/users/5
-        //[Authorize]
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> Delete(int id)
-        //{
-        //    var userIdClaim = User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        //    // Om användaren inte är inloggad, hantera som anonym eller returnera obehörigt
-        //    if (string.IsNullOrEmpty(userIdClaim))
-        //    {
-        //        return Unauthorized();
-        //    }
-        //    bool success = await _userService.DeleteUser(id);
-        //    if (!success)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return NoContent();
-        //}
-
         // DELETE: api/users/by-username/{username}
         [Authorize]
         [HttpDelete("by-username/{username}")]

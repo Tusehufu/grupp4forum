@@ -14,6 +14,9 @@ using System.IdentityModel.Tokens.Jwt;
 
 
 var builder = WebApplication.CreateBuilder(args);
+//// Lägg till DbContext för migrationshantering
+builder.Services.AddDbContext<MigrationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("ConnectionStrings"));
 
@@ -35,12 +38,14 @@ builder.Services.AddScoped<PasswordService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: "CorsRule",
     builder =>
     {
-        builder.WithOrigins("http://localhost:8080")
+        builder.AllowAnyOrigin() 
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
@@ -61,16 +66,25 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
     var app = builder.Build();
+
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    
 }
+
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Dispatch API V1");
+        c.RoutePrefix = "swagger";
+    });
 app.UseStaticFiles();
 app.UseCors("CorsRule");
 app.UseRouting();
+
 
 
 
@@ -78,18 +92,12 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+    endpoints.MapFallbackToFile("index.html");
+});
 
 app.MapControllers();
 
-// Here you can see we make sure it doesn't start with /api, if it does, it'll 404 within .NET if it can't be found.
-//app.MapWhen(x => !x.Request.Path.StartsWithSegments("/api"), x =>
-//{
-//    app.UseSpa(spa =>
-//    {
-//        if (!builder.Environment.IsDevelopment())
-//            spa.Options.SourcePath = "wwwroot/clientapp";
-//        else
-//            spa.Options.SourcePath = @"C:\Data\Repos\KEYnet\InternJohan.Dev.App\wwwroot\clientapp";
-//    });
-//});
 app.Run();

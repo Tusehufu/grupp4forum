@@ -312,7 +312,7 @@
     // Funktion för att hämta alla inlägg
     const fetchPosts = async () => {
         try {
-            const response = await axios.get<Post[]>('https://localhost:7147/api/Post');
+            const response = await axios.get<Post[]>('https://grupp4forumdevapp20240923094105.azurewebsites.net/api/Post');
             const postsWithReplies = await Promise.all(
                 response.data.map(async (post) => {
                     const replies = await fetchRepliesForPost(post.postId);
@@ -344,28 +344,32 @@
     // Hämta replies för ett inlägg
     const fetchRepliesForPost = async (postId: number) => {
         try {
-            const response = await axios.get<Reply[]>(`https://localhost:7147/api/Replies/post/${postId}`);
+            const response = await axios.get<Reply[]>(`https://grupp4forumdevapp20240923094105.azurewebsites.net/api/Replies/post/${postId}`);
             const repliesWithAdditionalInfo = await Promise.all(
                 response.data.map(async (reply) => {
                     const userHasLiked = await HasUserLikedReply(reply.replyId);
                     const canEdit = await checkEditPermissionsForReply(reply.replyId);
 
-                    console.log(`Reply ${reply.replyId} - canEdit: ${canEdit}`); // Lägg till debug-logg här också
-
                     return {
                         ...reply,
                         imageBase64: reply.imageBase64 || null,
                         userHasLiked,
-                        canEdit,  // Lägg till canEdit flaggan
+                        canEdit,
                     };
                 })
             );
             return repliesWithAdditionalInfo;
-        } catch (error) {
-            console.error('Fel vid hämtning av replies:', error);
-            return [];
+        } catch (error: any) {
+            if (error.response && error.response.status === 404) {
+                console.info(`Inga replies hittades för postId: ${postId}.`);
+                return [];  // Returnera en tom array om inga replies hittas
+            } else {
+                console.error('Fel vid hämtning av replies:', error);
+                return [];
+            }
         }
     };
+
 
 
 
@@ -373,7 +377,7 @@
     // Funktion för att hämta kategorier
     const fetchCategories = async () => {
         try {
-            const response = await axios.get<Category[]>('https://localhost:7147/api/Category');
+            const response = await axios.get<Category[]>('https://grupp4forumdevapp20240923094105.azurewebsites.net/api/Category');
             categories.value = response.data;
         } catch (error) {
             console.error('Fel vid hämtning av kategorier:', error);
@@ -409,7 +413,7 @@
 
             // Anropa backend-API för att gilla posten med Bearer-token (JWT)
             const response = await axios.post(
-                `https://localhost:7147/api/Post/${postId}/like`,
+                `https://grupp4forumdevapp20240923094105.azurewebsites.net/api/Post/${postId}/like`,
                 {}, // Tom body för POST-förfrågan
                 {
                     headers: {
@@ -427,7 +431,6 @@
                 post.userHasLiked = true;  // Uppdatera flaggan direkt för att reflektera att användaren har gillat
             }
 
-            console.log(message); // Feedback från API:t
         } catch (error: any) {
             if (error.response && error.response.data.message) {
                 // Specifika felmeddelanden från API:t
@@ -451,7 +454,7 @@
 
             // Anropa backend-API för att gilla reply med Bearer-token (JWT)
             const response = await axios.post(
-                `https://localhost:7147/api/Replies/${replyId}/like`,
+                `https://grupp4forumdevapp20240923094105.azurewebsites.net/api/Replies/${replyId}/like`,
                 {}, // Tom body för POST-förfrågan
                 {
                     headers: {
@@ -472,7 +475,6 @@
                 }
             }
 
-            console.log(message); // Feedback från API:t
         } catch (error: any) {
             if (error.response && error.response.data.message) {
                 // Specifika felmeddelanden från API:t
@@ -493,7 +495,7 @@
             }
 
             const response = await axios.post(
-                `https://localhost:7147/api/Post/${postId}/unlike`,  // Endpoint för att sluta gilla
+                `https://grupp4forumdevapp20240923094105.azurewebsites.net/api/Post/${postId}/unlike`,  // Endpoint för att sluta gilla
                 {},
                 {
                     headers: {
@@ -508,7 +510,6 @@
                 post.userHasLiked = false;  // Markera att användaren inte längre har gillat posten
             }
 
-            console.log(response.data.message);
         } catch (error: any) {
             console.error('Fel vid att sluta gilla posten:', error);
         }
@@ -516,25 +517,37 @@
 
     const HasUserLikedPost = async (postId: number): Promise<boolean> => {
         try {
+            // Hämta JWT-token från localStorage
             const token = localStorage.getItem('jwtToken');
             if (!token) {
-                throw new Error('Ingen JWT-token tillgänglig, användaren är inte inloggad.');
+                console.warn('Ingen JWT-token tillgänglig, användaren är inte inloggad.');
+                return false;  // Användaren är inte inloggad, returnera false
             }
 
+            // Anropa backend för att kontrollera om användaren har gillat posten
             const response = await axios.get<boolean>(
-                `https://localhost:7147/api/Post/${postId}/hasLiked`,
+                `https://grupp4forumdevapp20240923094105.azurewebsites.net/api/Post/${postId}/hasLiked`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,  // Skicka JWT-token i Authorization-headern
                     },
                 }
             );
-            return response.data.hasLiked;  // Returnera true eller false baserat på backend-svaret
-        } catch (error) {
-            console.error('Fel vid kontroll av om användaren har gillat posten:', error);
+
+            return response.data;  // Returnera true eller false baserat på backend-svaret
+
+        } catch (error: any) {
+            // Om det är en 401 Unauthorized, logga ett specifikt meddelande
+            if (error.response && error.response.status === 401) {
+                console.warn('Användaren är inte auktoriserad eller token har löpt ut.');
+            } else {
+                console.error('Fel vid kontroll av om användaren har gillat posten:', error);
+            }
+
             return false;  // Vid fel, returnera false som standard
         }
     };
+
 
     const unlikeReply = async (replyId: number) => {
         try {
@@ -555,7 +568,7 @@
 
                     // Anropa backend för att sluta gilla reply
                     const response = await axios.post(
-                        `https://localhost:7147/api/Replies/${replyId}/unlike`,
+                        `https://grupp4forumdevapp20240923094105.azurewebsites.net/api/Replies/${replyId}/unlike`,
                         {},
                         {
                             headers: {
@@ -564,7 +577,6 @@
                         }
                     );
 
-                    console.log(response.data.message); // Skriv ut svaret från backend
                     break; // Avbryt loopen när rätt reply har uppdaterats
                 }
             }
@@ -578,66 +590,102 @@
             // Hämta JWT-token från localStorage (justera detta baserat på var du lagrar token)
             const token = localStorage.getItem('jwtToken');
             if (!token) {
-                throw new Error('Ingen JWT-token tillgänglig, användaren är inte inloggad.');
+                console.warn('Ingen JWT-token tillgänglig, användaren är inte inloggad.');
+                return false; // Användaren är inte inloggad, returnera false
             }
 
             // Anropa backend för att kontrollera om användaren har gillat reply
             const response = await axios.get<boolean>(
-                `https://localhost:7147/api/Replies/${replyId}/hasLiked`,
+                `https://grupp4forumdevapp20240923094105.azurewebsites.net/api/Replies/${replyId}/hasLiked`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,  // Skicka JWT-token i Authorization-headern
                     },
                 }
             );
-            console.log("hej", response);
+
             return response.data;  // Returnera true eller false baserat på backend-svaret
-        } catch (error) {
-            console.error('Fel vid kontroll av om användaren har gillat replyn:', error);
+
+        } catch (error: any) {
+            // Om det är en 401 Unauthorized, logga ett specifikt meddelande
+            if (error.response && error.response.status === 401) {
+                console.warn('Användaren är inte auktoriserad eller token har löpt ut.');
+            } else {
+                console.error('Fel vid kontroll av om användaren har gillat replyn:', error);
+            }
+
             return false;  // Vid fel, returnera false som standard
         }
     };
 
+
     const checkEditPermissions = async (postId: number): Promise<boolean> => {
         try {
+            // Hämta JWT-token från localStorage
             const token = localStorage.getItem('jwtToken');
             if (!token) {
-                throw new Error('Ingen JWT-token tillgänglig, användaren är inte inloggad.');
+                console.warn('Ingen JWT-token tillgänglig, användaren är inte inloggad.');
+                return false;  // Användaren är inte inloggad, returnera false
             }
 
-            const response = await axios.get(`https://localhost:7147/api/Post/${postId}/can-edit`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
+            // Anropa backend för att kontrollera redigeringsbehörighet
+            const response = await axios.get(
+                `https://grupp4forumdevapp20240923094105.azurewebsites.net/api/Post/${postId}/can-edit`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,  // Skicka JWT-token i Authorization-headern
+                    },
+                }
+            );
 
-            return response.data.canEdit;
-        } catch (error) {
-            console.error('Fel vid kontroll av redigeringsbehörighet:', error);
-            return false;
+            return response.data.canEdit;  // Returnera true eller false baserat på backend-svaret
+
+        } catch (error: any) {
+            // Om det är en 401 Unauthorized, logga ett specifikt meddelande
+            if (error.response && error.response.status === 401) {
+                console.warn('Användaren är inte auktoriserad eller token har löpt ut.');
+            } else {
+                console.error('Fel vid kontroll av redigeringsbehörighet:', error);
+            }
+
+            return false;  // Vid fel, returnera false som standard
         }
     };
+
 
     const checkEditPermissionsForReply = async (replyId: number): Promise<boolean> => {
         try {
+            // Hämta JWT-token från localStorage
             const token = localStorage.getItem('jwtToken');
             if (!token) {
-                throw new Error('Ingen JWT-token tillgänglig, användaren är inte inloggad.');
+                console.warn('Ingen JWT-token tillgänglig, användaren är inte inloggad.');
+                return false;  // Användaren är inte inloggad, returnera false
             }
 
-            const response = await axios.get(`https://localhost:7147/api/Replies/${replyId}/can-edit`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
+            // Anropa backend för att kontrollera redigeringsbehörighet
+            const response = await axios.get(
+                `https://grupp4forumdevapp20240923094105.azurewebsites.net/api/Replies/${replyId}/can-edit`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,  // Skicka JWT-token i Authorization-headern
+                    },
+                }
+            );
 
-            console.log(`canEdit for reply ${replyId}:`, response.data.canEdit); // Debug
-            return response.data.canEdit;
-        } catch (error) {
-            console.error('Fel vid kontroll av redigeringsbehörighet för reply:', error);
-            return false;
+            return response.data.canEdit;  // Returnera true eller false baserat på backend-svaret
+
+        } catch (error: any) {
+            // Om det är en 401 Unauthorized, logga ett specifikt meddelande
+            if (error.response && error.response.status === 401) {
+                console.warn('Användaren är inte auktoriserad eller token har löpt ut.');
+            } else {
+                console.error('Fel vid kontroll av redigeringsbehörighet för reply:', error);
+            }
+
+            return false;  // Vid fel, returnera false som standard
         }
     };
+
 
 
 
@@ -829,15 +877,4 @@
         border-radius: 0.375rem;
     }
 
-    /* Responsive Design */
-    /*@media (max-width: 768px) {
-        .btn {
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .pagination-controls {
-            display: block;
-        }
-    }*/
 </style>

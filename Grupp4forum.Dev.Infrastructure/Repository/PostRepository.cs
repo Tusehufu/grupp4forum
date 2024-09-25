@@ -159,7 +159,6 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
             var isPostAuthor = await IsUserPostAuthor(userId, id);
             if (!isPostAuthor)
             {
-                Console.WriteLine("Fisk");
                 var isAdminOrModerator = await IsAdminOrModerator(userId);
                 if (!isAdminOrModerator)
                 {
@@ -174,7 +173,8 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
                     SET 
                         title = 'Raderat', 
                         content = 'Raderat',
-                        isVisible = 0 
+                        isVisible = 0,
+                        Image = NULL
                     WHERE 
                         post_id = @Id
                 ", new { Id = id });

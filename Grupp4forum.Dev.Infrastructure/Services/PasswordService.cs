@@ -10,8 +10,7 @@ public class PasswordService
             return false;
         }
 
-        Console.WriteLine($"Verifying password: {password}");
-        Console.WriteLine($"Against hash: {hashedPassword}");
+        
 
         try
         {

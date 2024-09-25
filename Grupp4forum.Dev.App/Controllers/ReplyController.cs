@@ -156,7 +156,7 @@ public class RepliesController : ControllerBase
 
         if (replies == null || !replies.Any())
         {
-            return NotFound($"Inga replies hittades för postId: {postId}");
+            return Ok(new List<Reply>());
         }
 
         return Ok(replies);

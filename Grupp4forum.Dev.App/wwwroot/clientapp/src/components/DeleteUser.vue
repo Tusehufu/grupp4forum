@@ -28,7 +28,7 @@
         }
 
         try {
-            const response = await axios.delete(`https://localhost:7147/api/Users/by-username/${username.value}`, {
+            const response = await axios.delete(`https://grupp4forumdevapp20240923094105.azurewebsites.net/api/Users/by-username/${username.value}`, {
                 headers: {
                     'Authorization': `Bearer ${token}` // Skicka JWT-token i Authorization-headern
                 }

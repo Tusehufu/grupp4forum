@@ -59,7 +59,7 @@ const submitForm = async () => {
             console.error('Ingen JWT-token hittades i localStorage.');
             return;
         }
-        await axios.put(`https://localhost:7147/api/Replies/${props.reply.replyId}`, formData, {
+        await axios.put(`https://grupp4forumdevapp20240923094105.azurewebsites.net/api/Replies/${props.reply.replyId}`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 'Authorization': `Bearer ${token}`

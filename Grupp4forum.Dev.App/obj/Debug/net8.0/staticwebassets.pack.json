@@ -13,6 +13,58 @@
       "PackagePath": "staticwebassets\\clientapp\\babel.config.js"
     },
     {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\dist\\css\\app.aabc1c12.css",
+      "PackagePath": "staticwebassets\\clientapp\\dist\\css\\app.aabc1c12.css"
+    },
+    {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\dist\\css\\chunk-vendors.8a42e1de.css",
+      "PackagePath": "staticwebassets\\clientapp\\dist\\css\\chunk-vendors.8a42e1de.css"
+    },
+    {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\dist\\favicon.ico",
+      "PackagePath": "staticwebassets\\clientapp\\dist\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\dist\\img\\HemBild.6a323100.jpg",
+      "PackagePath": "staticwebassets\\clientapp\\dist\\img\\HemBild.6a323100.jpg"
+    },
+    {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\dist\\img\\bottomleft.889fc4a7.png",
+      "PackagePath": "staticwebassets\\clientapp\\dist\\img\\bottomleft.889fc4a7.png"
+    },
+    {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\dist\\img\\bottomright.5a57b37e.png",
+      "PackagePath": "staticwebassets\\clientapp\\dist\\img\\bottomright.5a57b37e.png"
+    },
+    {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\dist\\img\\flowertopleft.de38edd9.png",
+      "PackagePath": "staticwebassets\\clientapp\\dist\\img\\flowertopleft.de38edd9.png"
+    },
+    {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\dist\\img\\flowertopright.7232d18a.png",
+      "PackagePath": "staticwebassets\\clientapp\\dist\\img\\flowertopright.7232d18a.png"
+    },
+    {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\dist\\index.html",
+      "PackagePath": "staticwebassets\\clientapp\\dist\\index.html"
+    },
+    {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\dist\\js\\app.bfa5afd0.js",
+      "PackagePath": "staticwebassets\\clientapp\\dist\\js\\app.bfa5afd0.js"
+    },
+    {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\dist\\js\\app.bfa5afd0.js.map",
+      "PackagePath": "staticwebassets\\clientapp\\dist\\js\\app.bfa5afd0.js.map"
+    },
+    {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\dist\\js\\chunk-vendors.3ca08aa3.js",
+      "PackagePath": "staticwebassets\\clientapp\\dist\\js\\chunk-vendors.3ca08aa3.js"
+    },
+    {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\dist\\js\\chunk-vendors.3ca08aa3.js.map",
+      "PackagePath": "staticwebassets\\clientapp\\dist\\js\\chunk-vendors.3ca08aa3.js.map"
+    },
+    {
       "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\jsconfig.json",
       "PackagePath": "staticwebassets\\clientapp\\jsconfig.json"
     },
@@ -29,12 +81,12 @@
       "PackagePath": "staticwebassets\\clientapp\\public\\favicon.ico"
     },
     {
-      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\public\\index.html",
-      "PackagePath": "staticwebassets\\clientapp\\public\\index.html"
-    },
-    {
       "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\App.vue",
       "PackagePath": "staticwebassets\\clientapp\\src\\App.vue"
+    },
+    {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\assets\\HemBild.jpg",
+      "PackagePath": "staticwebassets\\clientapp\\src\\assets\\HemBild.jpg"
     },
     {
       "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\assets\\bottomleft.png",
@@ -89,10 +141,6 @@
       "PackagePath": "staticwebassets\\clientapp\\src\\components\\EditReplyModal.vue"
     },
     {
-      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\HelloWorld.vue",
-      "PackagePath": "staticwebassets\\clientapp\\src\\components\\HelloWorld.vue"
-    },
-    {
       "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\clientapp\\src\\components\\Login.vue",
       "PackagePath": "staticwebassets\\clientapp\\src\\components\\Login.vue"
     },
@@ -137,12 +185,56 @@
       "PackagePath": "staticwebassets\\clientapp\\vue.config.js"
     },
     {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\css\\app.690f8004.css",
+      "PackagePath": "staticwebassets\\css\\app.690f8004.css"
+    },
+    {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\css\\chunk-vendors.8a42e1de.css",
+      "PackagePath": "staticwebassets\\css\\chunk-vendors.8a42e1de.css"
+    },
+    {
       "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\favicon.ico",
-      "PackagePath": "staticwebassets\\favicon.ico"
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\img\\HemBild.6a323100.jpg",
+      "PackagePath": "staticwebassets\\img\\HemBild.6a323100.jpg"
+    },
+    {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\img\\bottomleft.889fc4a7.png",
+      "PackagePath": "staticwebassets\\img\\bottomleft.889fc4a7.png"
+    },
+    {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\img\\bottomright.5a57b37e.png",
+      "PackagePath": "staticwebassets\\img\\bottomright.5a57b37e.png"
+    },
+    {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\img\\flowertopleft.de38edd9.png",
+      "PackagePath": "staticwebassets\\img\\flowertopleft.de38edd9.png"
+    },
+    {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\img\\flowertopright.7232d18a.png",
+      "PackagePath": "staticwebassets\\img\\flowertopright.7232d18a.png"
+    },
+    {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\js\\app.18733a88.js",
+      "PackagePath": "staticwebassets\\js\\app.18733a88.js"
+    },
+    {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\js\\app.18733a88.js.map",
+      "PackagePath": "staticwebassets\\js\\app.18733a88.js.map"
+    },
+    {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\js\\chunk-vendors.9b2de815.js",
+      "PackagePath": "staticwebassets\\js\\chunk-vendors.9b2de815.js"
+    },
+    {
+      "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\js\\chunk-vendors.9b2de815.js.map",
+      "PackagePath": "staticwebassets\\js\\chunk-vendors.9b2de815.js.map"
     },
     {
       "Id": "C:\\Users\\johan\\OneDrive\\Skrivbord\\grupp4forum\\Grupp4forum.Dev.App\\wwwroot\\js\\site.js",

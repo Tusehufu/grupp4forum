@@ -79,9 +79,8 @@ const handleImageUpload = (event: Event) => {
     // Funktion för att hämta alla kategorier från API
    const fetchCategories = async () => {
     try {
-        const response = await axios.get('https://localhost:7147/api/Category');  // Din API-endpoint
+        const response = await axios.get('https://grupp4forumdevapp20240923094105.azurewebsites.net/api/Category');  // Din API-endpoint
         categories.value = response.data;
-        console.log('Kategorier hämtade:', categories.value);  // Kontrollera om kategorier hämtas korrekt
     } catch (error) {
         console.error('Fel vid hämtning av kategorier:', error);
     }
@@ -111,7 +110,7 @@ const submitForm = async () => {
             console.error('Ingen JWT-token hittades i localStorage.');
             return;
         }
-        await axios.post('https://localhost:7147/api/Post', formData, {
+        await axios.post('https://grupp4forumdevapp20240923094105.azurewebsites.net/api/Post', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 'Authorization': `Bearer ${token}`

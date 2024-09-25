@@ -8,7 +8,7 @@
             <p><strong>Uppdaterades senast:</strong> {{ formatDate(user.updatedAt) }}</p>
         </div>
         <div v-else>
-            <p>Loading profile data...</p>
+            <p>Hämtar profile data...</p>
         </div>
     </div>
 </template>
@@ -26,7 +26,7 @@
     // Fetch user profile when the component is mounted
     const fetchUserProfile = async () => {
         try {
-            const response = await axios.get(`https://localhost:7147/api/Users/${userId}`, {
+            const response = await axios.get(`https://grupp4forumdevapp20240923094105.azurewebsites.net/api/Users/${userId}`, {
                 headers: {
                     Authorization: `Bearer ${token}` // Lägg till JWT-token i Authorization-headern
                 }

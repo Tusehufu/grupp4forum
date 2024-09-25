@@ -41,7 +41,7 @@
     // Hämtar inlägg från API
     const fetchPosts = async () => {
         try {
-            const response = await axios.get('https://localhost:7147/api/Post');
+            const response = await axios.get('https://grupp4forumdevapp20240923094105.azurewebsites.net/api/Post');
             posts.value = response.data;
         } catch (error) {
             console.error('Fel vid hämtning av inlägg:', error);

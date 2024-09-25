@@ -48,7 +48,7 @@
 
         try {
             const response = await axios.delete(
-                `https://localhost:7147/api/Replies/${props.replyId}`,
+                `https://grupp4forumdevapp20240923094105.azurewebsites.net/api/Replies/${props.replyId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`, // Skicka JWT-token som en del av Authorization-headers

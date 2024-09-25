@@ -49,7 +49,7 @@
             }
 
             // Kolla om användaren är admin eller moderator
-            const response = await axios.get('https://localhost:7147/api/Users/is-admin-or-moderator', {
+            const response = await axios.get('https://grupp4forumdevapp20240923094105.azurewebsites.net/api/Users/is-admin-or-moderator', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }

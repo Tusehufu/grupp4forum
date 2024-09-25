@@ -24,7 +24,7 @@
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7147;http://localhost:5013",
+      "applicationUrl": "https://grupp4forumdevapp20240923094105.azurewebsites.net;http://localhost:5013",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

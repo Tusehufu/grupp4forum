@@ -173,7 +173,7 @@ namespace Grupp4forum.Dev.Infrastructure.Repository
             if (user != null)
             {
                 // Logga lösenordshashen
-                Console.WriteLine($"User: {user.Username}, PasswordHash: {user.PasswordHash ?? "null"}");
+                Console.WriteLine("User found.");
             }
             else
             {

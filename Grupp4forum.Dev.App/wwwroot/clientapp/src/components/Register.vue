@@ -49,7 +49,7 @@
     const submitForm = async () => {
         try {
             // Skicka POST-förfrågan till API:et för att registrera en ny användare
-            await axios.post('https://localhost:7147/api/Users', newUser.value);
+            await axios.post('https://grupp4forumdevapp20240923094105.azurewebsites.net/api/Users', newUser.value);
 
             // Visa meddelandet om framgång
             successMessage.value = 'Användaren har registrerats framgångsrikt!';

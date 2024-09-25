@@ -13,7 +13,6 @@ C:\Users\johan\source\repos\Grupp4forum\Grupp4forum.Dev.Infrastructure\obj\Debug
 C:\Users\johan\source\repos\Grupp4forum\Grupp4forum.Dev.Infrastructure\obj\Debug\net8.0\Grupp4forum.Dev.Infrastructure.genruntimeconfig.cache
 C:\Users\johan\source\repos\Grupp4forum\Grupp4forum.Dev.Infrastructure\obj\Debug\net8.0\ref\Grupp4forum.Dev.Infrastructure.dll
 C:\Users\johan\OneDrive\Skrivbord\grupp4forum\Grupp4forum.Dev.Infrastructure\bin\Debug\net8.0\Grupp4forum.Dev.Infrastructure.deps.json
-C:\Users\johan\OneDrive\Skrivbord\grupp4forum\Grupp4forum.Dev.Infrastructure\bin\Debug\net8.0\Grupp4forum.Dev.Infrastructure.runtimeconfig.json
 C:\Users\johan\OneDrive\Skrivbord\grupp4forum\Grupp4forum.Dev.Infrastructure\bin\Debug\net8.0\Grupp4forum.Dev.Infrastructure.dll
 C:\Users\johan\OneDrive\Skrivbord\grupp4forum\Grupp4forum.Dev.Infrastructure\bin\Debug\net8.0\Grupp4forum.Dev.Infrastructure.pdb
 C:\Users\johan\OneDrive\Skrivbord\grupp4forum\Grupp4forum.Dev.Infrastructure\obj\Debug\net8.0\Grupp4forum.Dev.Infrastructure.csproj.AssemblyReference.cache
@@ -25,5 +24,6 @@ C:\Users\johan\OneDrive\Skrivbord\grupp4forum\Grupp4forum.Dev.Infrastructure\obj
 C:\Users\johan\OneDrive\Skrivbord\grupp4forum\Grupp4forum.Dev.Infrastructure\obj\Debug\net8.0\Grupp4forum.Dev.Infrastructure.dll
 C:\Users\johan\OneDrive\Skrivbord\grupp4forum\Grupp4forum.Dev.Infrastructure\obj\Debug\net8.0\refint\Grupp4forum.Dev.Infrastructure.dll
 C:\Users\johan\OneDrive\Skrivbord\grupp4forum\Grupp4forum.Dev.Infrastructure\obj\Debug\net8.0\Grupp4forum.Dev.Infrastructure.pdb
-C:\Users\johan\OneDrive\Skrivbord\grupp4forum\Grupp4forum.Dev.Infrastructure\obj\Debug\net8.0\Grupp4forum.Dev.Infrastructure.genruntimeconfig.cache
 C:\Users\johan\OneDrive\Skrivbord\grupp4forum\Grupp4forum.Dev.Infrastructure\obj\Debug\net8.0\ref\Grupp4forum.Dev.Infrastructure.dll
+C:\Users\johan\OneDrive\Skrivbord\grupp4forum\Grupp4forum.Dev.Infrastructure\bin\Debug\net8.0\Grupp4forum.Dev.Infrastructure.runtimeconfig.json
+C:\Users\johan\OneDrive\Skrivbord\grupp4forum\Grupp4forum.Dev.Infrastructure\obj\Debug\net8.0\Grupp4forum.Dev.Infrastructure.genruntimeconfig.cache
